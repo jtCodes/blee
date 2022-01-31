@@ -27,6 +27,10 @@ class AuthManager: ObservableObject {
             if let viewerDetail = viewerDetail {
                 self.authedUser = viewerDetail
                 self.isAuthed = true
+                
+                AnilistNetworkClient.shared.fetchMediaListCollection(userId: viewerDetail.id,
+                                                                     userName: viewerDetail.name,
+                                                                     type: .manga)
             }
         }
     }

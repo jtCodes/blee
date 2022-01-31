@@ -40,6 +40,21 @@ extension AnilistNetworkClient {
         }
     }
     
+    func fetchMediaListCollection(userId: Int,
+                                  userName: String,
+                                  type: MediaType) {
+        AnilistNetworkClient.shared.apollo.fetch(query: GetMediaListCollectionQuery(userId: userId,
+                                                                                    userName: userName ,
+                                                                                    type: type)) { result in
+            switch result {
+            case .success(let graphQLResult):
+                print(graphQLResult.data?.mediaListCollection?.lists)
+            case .failure(let error):
+                print("Failure! Error: \(error)")
+            }
+        }
+    }
+    
     func fetchViewerDetail(completion: @escaping (_ user: User?) -> ()) {
         AnilistNetworkClient.shared.apollo.fetch(query: ViewerDetailQuery()) { result in
             switch result {

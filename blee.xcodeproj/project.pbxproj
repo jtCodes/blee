@@ -34,13 +34,13 @@
 		ED9F0E9E27A60D230025668E /* MediaTrackingOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9F0E9D27A60D230025668E /* MediaTrackingOptionView.swift */; };
 		ED9F0EA027A60EE60025668E /* MediaStatusTrackingOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9F0E9F27A60EE60025668E /* MediaStatusTrackingOptionView.swift */; };
 		ED9F0EA227A618C40025668E /* KeychainSwiftDistrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9F0EA127A618C40025668E /* KeychainSwiftDistrib.swift */; };
-		ED9F0EA427A629D40025668E /* MediaListEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9F0EA327A629D40025668E /* MediaListEntry.swift */; };
 		EDB888C427A63CCF0033453B /* MediaTrackingEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB888C327A63CCF0033453B /* MediaTrackingEditView.swift */; };
 		EDB888C627A64AE50033453B /* MediaTrackingEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB888C527A64AE50033453B /* MediaTrackingEntry.swift */; };
 		EDB888C927A6ECEF0033453B /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB888C827A6ECEF0033453B /* AuthManager.swift */; };
 		EDB888CC27A6F8590033453B /* AuthDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB888CB27A6F8590033453B /* AuthDetail.swift */; };
 		EDB888CE27A772F00033453B /* TokenAddingInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB888CD27A772F00033453B /* TokenAddingInterceptor.swift */; };
 		EDB888D027A773650033453B /* NetworkInterceptorProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB888CF27A773650033453B /* NetworkInterceptorProvider.swift */; };
+		EDB888D227A794460033453B /* BleeMediaListCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB888D127A794460033453B /* BleeMediaListCollection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,13 +90,13 @@
 		ED9F0E9D27A60D230025668E /* MediaTrackingOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaTrackingOptionView.swift; sourceTree = "<group>"; };
 		ED9F0E9F27A60EE60025668E /* MediaStatusTrackingOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaStatusTrackingOptionView.swift; sourceTree = "<group>"; };
 		ED9F0EA127A618C40025668E /* KeychainSwiftDistrib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainSwiftDistrib.swift; sourceTree = "<group>"; };
-		ED9F0EA327A629D40025668E /* MediaListEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaListEntry.swift; sourceTree = "<group>"; };
 		EDB888C327A63CCF0033453B /* MediaTrackingEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaTrackingEditView.swift; sourceTree = "<group>"; };
 		EDB888C527A64AE50033453B /* MediaTrackingEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaTrackingEntry.swift; sourceTree = "<group>"; };
 		EDB888C827A6ECEF0033453B /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		EDB888CB27A6F8590033453B /* AuthDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthDetail.swift; sourceTree = "<group>"; };
 		EDB888CD27A772F00033453B /* TokenAddingInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenAddingInterceptor.swift; sourceTree = "<group>"; };
 		EDB888CF27A773650033453B /* NetworkInterceptorProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInterceptorProvider.swift; sourceTree = "<group>"; };
+		EDB888D127A794460033453B /* BleeMediaListCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleeMediaListCollection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,7 +201,7 @@
 			isa = PBXGroup;
 			children = (
 				ED9F0E8627A3B4730025668E /* AnilistNetworkClient.swift */,
-				ED9F0EA327A629D40025668E /* MediaListEntry.swift */,
+				EDB888D127A794460033453B /* BleeMediaListCollection.swift */,
 			);
 			path = Anilist;
 			sourceTree = "<group>";
@@ -420,11 +420,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDB888D227A794460033453B /* BleeMediaListCollection.swift in Sources */,
 				ED61D130279E33CB001EBBE0 /* AppDelegate.swift in Sources */,
 				ED9F0E9627A598D30025668E /* SearchResultView.swift in Sources */,
 				ED61D0FF279D1EC9001EBBE0 /* MenuBarView.swift in Sources */,
 				ED9F0E9327A597E60025668E /* Trailer.swift in Sources */,
-				ED9F0EA427A629D40025668E /* MediaListEntry.swift in Sources */,
 				ED9F0E9E27A60D230025668E /* MediaTrackingOptionView.swift in Sources */,
 				EDB888D027A773650033453B /* NetworkInterceptorProvider.swift in Sources */,
 				EDB888CC27A6F8590033453B /* AuthDetail.swift in Sources */,

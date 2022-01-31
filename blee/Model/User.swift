@@ -11,6 +11,7 @@ struct User: Hashable {
     let id: Int
     let avatar: Avatar
     let name: String
+    let mediaListOptions: MediaListOptions? = nil
     
     internal init(id: Int, avatar: Avatar, name: String) {
         self.id = id
@@ -31,3 +32,16 @@ struct Avatar: Hashable {
     let large: String?
     let medium: String?
 }
+
+// MARK: - MediaListOptions
+struct MediaListOptions: Hashable {
+    let scoreFormat, rowOrder: String?
+    let animeList, mangaList: AnimeListClass?
+}
+
+// MARK: - AnimeListClass
+struct AnimeListClass: Hashable {
+    let sectionOrder, customLists: [String]?
+    let splitCompletedSectionByFormat: Bool?
+}
+
