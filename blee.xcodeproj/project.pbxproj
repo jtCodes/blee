@@ -8,12 +8,39 @@
 
 /* Begin PBXBuildFile section */
 		ED61D0FD279D1EC9001EBBE0 /* bleeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED61D0FC279D1EC9001EBBE0 /* bleeApp.swift */; };
-		ED61D0FF279D1EC9001EBBE0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED61D0FE279D1EC9001EBBE0 /* ContentView.swift */; };
+		ED61D0FF279D1EC9001EBBE0 /* MenuBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED61D0FE279D1EC9001EBBE0 /* MenuBarView.swift */; };
 		ED61D101279D1ECA001EBBE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED61D100279D1ECA001EBBE0 /* Assets.xcassets */; };
 		ED61D104279D1ECA001EBBE0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED61D103279D1ECA001EBBE0 /* Preview Assets.xcassets */; };
 		ED61D10F279D1ECA001EBBE0 /* bleeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED61D10E279D1ECA001EBBE0 /* bleeTests.swift */; };
 		ED61D119279D1ECA001EBBE0 /* bleeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED61D118279D1ECA001EBBE0 /* bleeUITests.swift */; };
 		ED61D11B279D1ECA001EBBE0 /* bleeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED61D11A279D1ECA001EBBE0 /* bleeUITestsLaunchTests.swift */; };
+		ED61D12C279D3A40001EBBE0 /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = ED61D12B279D3A40001EBBE0 /* Apollo */; };
+		ED61D12E279D3A40001EBBE0 /* ApolloWebSocket in Frameworks */ = {isa = PBXBuildFile; productRef = ED61D12D279D3A40001EBBE0 /* ApolloWebSocket */; };
+		ED61D130279E33CB001EBBE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED61D12F279E33CA001EBBE0 /* AppDelegate.swift */; };
+		ED61D132279E35E1001EBBE0 /* StatusBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED61D131279E35E1001EBBE0 /* StatusBarController.swift */; };
+		ED61D136279E4A8A001EBBE0 /* ListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED61D135279E4A8A001EBBE0 /* ListItemView.swift */; };
+		ED9F0E8027A3B1440025668E /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = ED9F0E7F27A3B1440025668E /* schema.json */; };
+		ED9F0E8327A3B21F0025668E /* Queries.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED9F0E8227A3B21F0025668E /* Queries.graphql */; };
+		ED9F0E8527A3B4220025668E /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9F0E8427A3B4220025668E /* API.swift */; };
+		ED9F0E8727A3B4730025668E /* AnilistNetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9F0E8627A3B4730025668E /* AnilistNetworkClient.swift */; };
+		ED9F0E8B27A5967B0025668E /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9F0E8A27A5967B0025668E /* Media.swift */; };
+		ED9F0E8D27A597990025668E /* RelatedMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9F0E8C27A597990025668E /* RelatedMedia.swift */; };
+		ED9F0E8F27A597AB0025668E /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9F0E8E27A597AB0025668E /* Review.swift */; };
+		ED9F0E9127A597C70025668E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9F0E9027A597C70025668E /* User.swift */; };
+		ED9F0E9327A597E60025668E /* Trailer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9F0E9227A597E60025668E /* Trailer.swift */; };
+		ED9F0E9627A598D30025668E /* SearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9F0E9527A598D30025668E /* SearchResultView.swift */; };
+		ED9F0E9927A5AB9C0025668E /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = ED9F0E9827A5AB9C0025668E /* Kingfisher */; };
+		ED9F0E9B27A5AE260025668E /* SearchResultRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9F0E9A27A5AE260025668E /* SearchResultRowView.swift */; };
+		ED9F0E9E27A60D230025668E /* MediaTrackingOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9F0E9D27A60D230025668E /* MediaTrackingOptionView.swift */; };
+		ED9F0EA027A60EE60025668E /* MediaStatusTrackingOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9F0E9F27A60EE60025668E /* MediaStatusTrackingOptionView.swift */; };
+		ED9F0EA227A618C40025668E /* KeychainSwiftDistrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9F0EA127A618C40025668E /* KeychainSwiftDistrib.swift */; };
+		ED9F0EA427A629D40025668E /* MediaListEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9F0EA327A629D40025668E /* MediaListEntry.swift */; };
+		EDB888C427A63CCF0033453B /* MediaTrackingEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB888C327A63CCF0033453B /* MediaTrackingEditView.swift */; };
+		EDB888C627A64AE50033453B /* MediaTrackingEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB888C527A64AE50033453B /* MediaTrackingEntry.swift */; };
+		EDB888C927A6ECEF0033453B /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB888C827A6ECEF0033453B /* AuthManager.swift */; };
+		EDB888CC27A6F8590033453B /* AuthDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB888CB27A6F8590033453B /* AuthDetail.swift */; };
+		EDB888CE27A772F00033453B /* TokenAddingInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB888CD27A772F00033453B /* TokenAddingInterceptor.swift */; };
+		EDB888D027A773650033453B /* NetworkInterceptorProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB888CF27A773650033453B /* NetworkInterceptorProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +63,7 @@
 /* Begin PBXFileReference section */
 		ED61D0F9279D1EC9001EBBE0 /* blee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = blee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED61D0FC279D1EC9001EBBE0 /* bleeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bleeApp.swift; sourceTree = "<group>"; };
-		ED61D0FE279D1EC9001EBBE0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		ED61D0FE279D1EC9001EBBE0 /* MenuBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarView.swift; sourceTree = "<group>"; };
 		ED61D100279D1ECA001EBBE0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ED61D103279D1ECA001EBBE0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		ED61D105279D1ECA001EBBE0 /* blee.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = blee.entitlements; sourceTree = "<group>"; };
@@ -45,6 +72,31 @@
 		ED61D114279D1ECA001EBBE0 /* bleeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = bleeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED61D118279D1ECA001EBBE0 /* bleeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bleeUITests.swift; sourceTree = "<group>"; };
 		ED61D11A279D1ECA001EBBE0 /* bleeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bleeUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		ED61D127279D1FE3001EBBE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		ED61D12F279E33CA001EBBE0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		ED61D131279E35E1001EBBE0 /* StatusBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarController.swift; sourceTree = "<group>"; };
+		ED61D135279E4A8A001EBBE0 /* ListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemView.swift; sourceTree = "<group>"; };
+		ED9F0E7F27A3B1440025668E /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
+		ED9F0E8227A3B21F0025668E /* Queries.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Queries.graphql; sourceTree = "<group>"; };
+		ED9F0E8427A3B4220025668E /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		ED9F0E8627A3B4730025668E /* AnilistNetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnilistNetworkClient.swift; sourceTree = "<group>"; };
+		ED9F0E8A27A5967B0025668E /* Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
+		ED9F0E8C27A597990025668E /* RelatedMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelatedMedia.swift; sourceTree = "<group>"; };
+		ED9F0E8E27A597AB0025668E /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
+		ED9F0E9027A597C70025668E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		ED9F0E9227A597E60025668E /* Trailer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trailer.swift; sourceTree = "<group>"; };
+		ED9F0E9527A598D30025668E /* SearchResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultView.swift; sourceTree = "<group>"; };
+		ED9F0E9A27A5AE260025668E /* SearchResultRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultRowView.swift; sourceTree = "<group>"; };
+		ED9F0E9D27A60D230025668E /* MediaTrackingOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaTrackingOptionView.swift; sourceTree = "<group>"; };
+		ED9F0E9F27A60EE60025668E /* MediaStatusTrackingOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaStatusTrackingOptionView.swift; sourceTree = "<group>"; };
+		ED9F0EA127A618C40025668E /* KeychainSwiftDistrib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainSwiftDistrib.swift; sourceTree = "<group>"; };
+		ED9F0EA327A629D40025668E /* MediaListEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaListEntry.swift; sourceTree = "<group>"; };
+		EDB888C327A63CCF0033453B /* MediaTrackingEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaTrackingEditView.swift; sourceTree = "<group>"; };
+		EDB888C527A64AE50033453B /* MediaTrackingEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaTrackingEntry.swift; sourceTree = "<group>"; };
+		EDB888C827A6ECEF0033453B /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		EDB888CB27A6F8590033453B /* AuthDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthDetail.swift; sourceTree = "<group>"; };
+		EDB888CD27A772F00033453B /* TokenAddingInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenAddingInterceptor.swift; sourceTree = "<group>"; };
+		EDB888CF27A773650033453B /* NetworkInterceptorProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInterceptorProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +104,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED9F0E9927A5AB9C0025668E /* Kingfisher in Frameworks */,
+				ED61D12C279D3A40001EBBE0 /* Apollo in Frameworks */,
+				ED61D12E279D3A40001EBBE0 /* ApolloWebSocket in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,8 +150,21 @@
 		ED61D0FB279D1EC9001EBBE0 /* blee */ = {
 			isa = PBXGroup;
 			children = (
+				ED9F0E7F27A3B1440025668E /* schema.json */,
+				ED9F0E8227A3B21F0025668E /* Queries.graphql */,
+				ED9F0E8427A3B4220025668E /* API.swift */,
+				EDB888CD27A772F00033453B /* TokenAddingInterceptor.swift */,
+				EDB888CF27A773650033453B /* NetworkInterceptorProvider.swift */,
+				EDB888C727A6EC1E0033453B /* Auth */,
+				ED9F0E8827A3BDF80025668E /* Anilist */,
+				EDB888CA27A6F1AE0033453B /* MenuBar */,
+				ED9F0E9427A5989F0025668E /* Search */,
+				ED9F0E9C27A60BCA0025668E /* MediaTracking */,
+				ED9F0E8927A596120025668E /* Model */,
+				ED61D127279D1FE3001EBBE0 /* Info.plist */,
 				ED61D0FC279D1EC9001EBBE0 /* bleeApp.swift */,
-				ED61D0FE279D1EC9001EBBE0 /* ContentView.swift */,
+				ED61D12F279E33CA001EBBE0 /* AppDelegate.swift */,
+				ED9F0EA127A618C40025668E /* KeychainSwiftDistrib.swift */,
 				ED61D100279D1ECA001EBBE0 /* Assets.xcassets */,
 				ED61D105279D1ECA001EBBE0 /* blee.entitlements */,
 				ED61D102279D1ECA001EBBE0 /* Preview Content */,
@@ -129,6 +197,66 @@
 			path = bleeUITests;
 			sourceTree = "<group>";
 		};
+		ED9F0E8827A3BDF80025668E /* Anilist */ = {
+			isa = PBXGroup;
+			children = (
+				ED9F0E8627A3B4730025668E /* AnilistNetworkClient.swift */,
+				ED9F0EA327A629D40025668E /* MediaListEntry.swift */,
+			);
+			path = Anilist;
+			sourceTree = "<group>";
+		};
+		ED9F0E8927A596120025668E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				ED9F0E8A27A5967B0025668E /* Media.swift */,
+				ED9F0E8C27A597990025668E /* RelatedMedia.swift */,
+				ED9F0E8E27A597AB0025668E /* Review.swift */,
+				ED9F0E9027A597C70025668E /* User.swift */,
+				ED9F0E9227A597E60025668E /* Trailer.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		ED9F0E9427A5989F0025668E /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				ED9F0E9527A598D30025668E /* SearchResultView.swift */,
+				ED9F0E9A27A5AE260025668E /* SearchResultRowView.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		ED9F0E9C27A60BCA0025668E /* MediaTracking */ = {
+			isa = PBXGroup;
+			children = (
+				EDB888C327A63CCF0033453B /* MediaTrackingEditView.swift */,
+				ED9F0E9D27A60D230025668E /* MediaTrackingOptionView.swift */,
+				ED9F0E9F27A60EE60025668E /* MediaStatusTrackingOptionView.swift */,
+				EDB888C527A64AE50033453B /* MediaTrackingEntry.swift */,
+			);
+			path = MediaTracking;
+			sourceTree = "<group>";
+		};
+		EDB888C727A6EC1E0033453B /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				EDB888C827A6ECEF0033453B /* AuthManager.swift */,
+				EDB888CB27A6F8590033453B /* AuthDetail.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		EDB888CA27A6F1AE0033453B /* MenuBar */ = {
+			isa = PBXGroup;
+			children = (
+				ED61D0FE279D1EC9001EBBE0 /* MenuBarView.swift */,
+				ED61D135279E4A8A001EBBE0 /* ListItemView.swift */,
+				ED61D131279E35E1001EBBE0 /* StatusBarController.swift */,
+			);
+			path = MenuBar;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -136,6 +264,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = ED61D11E279D1ECA001EBBE0 /* Build configuration list for PBXNativeTarget "blee" */;
 			buildPhases = (
+				ED9F0E8127A3B1980025668E /* Generate Apollo GraphQL API */,
 				ED61D0F5279D1EC9001EBBE0 /* Sources */,
 				ED61D0F6279D1EC9001EBBE0 /* Frameworks */,
 				ED61D0F7279D1EC9001EBBE0 /* Resources */,
@@ -145,6 +274,11 @@
 			dependencies = (
 			);
 			name = blee;
+			packageProductDependencies = (
+				ED61D12B279D3A40001EBBE0 /* Apollo */,
+				ED61D12D279D3A40001EBBE0 /* ApolloWebSocket */,
+				ED9F0E9827A5AB9C0025668E /* Kingfisher */,
+			);
 			productName = blee;
 			productReference = ED61D0F9279D1EC9001EBBE0 /* blee.app */;
 			productType = "com.apple.product-type.application";
@@ -217,6 +351,10 @@
 				Base,
 			);
 			mainGroup = ED61D0F0279D1EC9001EBBE0;
+			packageReferences = (
+				ED61D12A279D3A40001EBBE0 /* XCRemoteSwiftPackageReference "apollo-ios" */,
+				ED9F0E9727A5AB9C0025668E /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = ED61D0FA279D1EC9001EBBE0 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -234,6 +372,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED61D104279D1ECA001EBBE0 /* Preview Assets.xcassets in Resources */,
+				ED9F0E8027A3B1440025668E /* schema.json in Resources */,
+				ED9F0E8327A3B21F0025668E /* Queries.graphql in Resources */,
 				ED61D101279D1ECA001EBBE0 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -254,13 +394,56 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		ED9F0E8127A3B1980025668E /* Generate Apollo GraphQL API */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Generate Apollo GraphQL API";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Don't run this during index builds\nif [ $ACTION = \"indexbuild\" ]; then exit 0; fi\n\n# Go to the build root and search up the chain to find the Derived Data Path where the source packages are checked out.\nDERIVED_DATA_CANDIDATE=\"${BUILD_ROOT}\"\n\nwhile ! [ -d \"${DERIVED_DATA_CANDIDATE}/SourcePackages\" ]; do\n  if [ \"${DERIVED_DATA_CANDIDATE}\" = / ]; then\n    echo >&2 \"error: Unable to locate SourcePackages directory from BUILD_ROOT: '${BUILD_ROOT}'\"\n    exit 1\n  fi\n\n  DERIVED_DATA_CANDIDATE=\"$(dirname \"${DERIVED_DATA_CANDIDATE}\")\"\ndone\n\n# Grab a reference to the directory where scripts are checked out\nSCRIPT_PATH=\"${DERIVED_DATA_CANDIDATE}/SourcePackages/checkouts/apollo-ios/scripts\"\n\nif [ -z \"${SCRIPT_PATH}\" ]; then\n    echo >&2 \"error: Couldn't find the CLI script in your checked out SPM packages; make sure to add the framework to your project.\"\n    exit 1\nfi\n\ncd \"${SRCROOT}/${TARGET_NAME}\"\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=./**/*.graphql --localSchemaFile=\"schema.json\" API.swift\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		ED61D0F5279D1EC9001EBBE0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED61D0FF279D1EC9001EBBE0 /* ContentView.swift in Sources */,
+				ED61D130279E33CB001EBBE0 /* AppDelegate.swift in Sources */,
+				ED9F0E9627A598D30025668E /* SearchResultView.swift in Sources */,
+				ED61D0FF279D1EC9001EBBE0 /* MenuBarView.swift in Sources */,
+				ED9F0E9327A597E60025668E /* Trailer.swift in Sources */,
+				ED9F0EA427A629D40025668E /* MediaListEntry.swift in Sources */,
+				ED9F0E9E27A60D230025668E /* MediaTrackingOptionView.swift in Sources */,
+				EDB888D027A773650033453B /* NetworkInterceptorProvider.swift in Sources */,
+				EDB888CC27A6F8590033453B /* AuthDetail.swift in Sources */,
+				ED9F0EA227A618C40025668E /* KeychainSwiftDistrib.swift in Sources */,
+				ED9F0E8727A3B4730025668E /* AnilistNetworkClient.swift in Sources */,
+				EDB888C627A64AE50033453B /* MediaTrackingEntry.swift in Sources */,
+				ED9F0E9B27A5AE260025668E /* SearchResultRowView.swift in Sources */,
+				ED61D136279E4A8A001EBBE0 /* ListItemView.swift in Sources */,
+				ED9F0E8B27A5967B0025668E /* Media.swift in Sources */,
+				ED9F0E8F27A597AB0025668E /* Review.swift in Sources */,
+				ED61D132279E35E1001EBBE0 /* StatusBarController.swift in Sources */,
+				ED9F0E9127A597C70025668E /* User.swift in Sources */,
+				ED9F0EA027A60EE60025668E /* MediaStatusTrackingOptionView.swift in Sources */,
 				ED61D0FD279D1EC9001EBBE0 /* bleeApp.swift in Sources */,
+				ED9F0E8D27A597990025668E /* RelatedMedia.swift in Sources */,
+				EDB888CE27A772F00033453B /* TokenAddingInterceptor.swift in Sources */,
+				EDB888C927A6ECEF0033453B /* AuthManager.swift in Sources */,
+				EDB888C427A63CCF0033453B /* MediaTrackingEditView.swift in Sources */,
+				ED9F0E8527A3B4220025668E /* API.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,6 +609,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = blee/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -453,6 +637,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = blee/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -578,6 +763,43 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		ED61D12A279D3A40001EBBE0 /* XCRemoteSwiftPackageReference "apollo-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apollographql/apollo-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.5;
+			};
+		};
+		ED9F0E9727A5AB9C0025668E /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		ED61D12B279D3A40001EBBE0 /* Apollo */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ED61D12A279D3A40001EBBE0 /* XCRemoteSwiftPackageReference "apollo-ios" */;
+			productName = Apollo;
+		};
+		ED61D12D279D3A40001EBBE0 /* ApolloWebSocket */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ED61D12A279D3A40001EBBE0 /* XCRemoteSwiftPackageReference "apollo-ios" */;
+			productName = ApolloWebSocket;
+		};
+		ED9F0E9827A5AB9C0025668E /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ED9F0E9727A5AB9C0025668E /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = ED61D0F1279D1EC9001EBBE0 /* Project object */;
 }
