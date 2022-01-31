@@ -16,7 +16,20 @@ class AuthManager: ObservableObject {
     static let shared: AuthManager = AuthManager()
     private let keychain = KeychainSwift()
     @Published var isAuthed: Bool = false
-    @Published var autherUser: User?
+    @Published var authedUser: User?
+    
+    init() {
+        fetchViewerDetail()
+    }
+    
+    func fetchViewerDetail() {
+        AnilistNetworkClient.shared.fetchViewerDetail() { viewerDetail in
+            if let viewerDetail = viewerDetail {
+                self.authedUser = viewerDetail
+                self.isAuthed = true
+            }
+        }
+    }
     
     func onReceiveAuthUrlScheme(url: URL) {
         let authDetail: AuthDetail = parseAnilistAuthResponse(url: url)
@@ -24,7 +37,7 @@ class AuthManager: ObservableObject {
                      forKey: AnilistKeychainKey.accessToken.rawValue)
         keychain.set(String(authDetail.expirationDate.timeIntervalSince1970),
                      forKey: AnilistKeychainKey.expirationDate.rawValue)
-        print(keychain.get(AnilistKeychainKey.accessToken.rawValue))
+        fetchViewerDetail()
     }
     
     fileprivate func parseAnilistAuthResponse(url: URL) -> AuthDetail {

@@ -19,8 +19,8 @@ struct MenuBarView: View {
             .searchable(text: $searchText, prompt: "Look for something")
             .navigationTitle("Searchable Example")
         VStack() {
-            if authManager.isAuthed {
-                Text("YOU ARE AUTHED")
+            if authManager.isAuthed && (authManager.authedUser != nil) {
+                Text("Hello, \(authManager.authedUser!.name)")
                     .padding()
             } else {
                 Button("CLICK TO AUTH") {

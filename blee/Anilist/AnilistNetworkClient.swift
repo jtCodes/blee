@@ -11,15 +11,15 @@ import Apollo
 class AnilistNetworkClient {
     static let shared = AnilistNetworkClient()
     private(set) lazy var apollo: ApolloClient = {
-         let client = URLSessionClient()
-         let cache = InMemoryNormalizedCache()
-         let store = ApolloStore(cache: cache)
-         let provider = NetworkInterceptorProvider(client: client, store: store)
-         let url = URL(string: "https://graphql.anilist.co/")!
-         let transport = RequestChainNetworkTransport(interceptorProvider: provider,
-                                                      endpointURL: url)
-         return ApolloClient(networkTransport: transport, store: store)
-     }()
+        let client = URLSessionClient()
+        let cache = InMemoryNormalizedCache()
+        let store = ApolloStore(cache: cache)
+        let provider = NetworkInterceptorProvider(client: client, store: store)
+        let url = URL(string: "https://graphql.anilist.co/")!
+        let transport = RequestChainNetworkTransport(interceptorProvider: provider,
+                                                     endpointURL: url)
+        return ApolloClient(networkTransport: transport, store: store)
+    }()
 }
 
 extension AnilistNetworkClient {
@@ -40,7 +40,22 @@ extension AnilistNetworkClient {
         }
     }
     
-    func fetchViewerDetail() {
-        
+    func fetchViewerDetail(completion: @escaping (_ user: User?) -> ()) {
+        AnilistNetworkClient.shared.apollo.fetch(query: ViewerDetailQuery()) { result in
+            switch result {
+            case .success(let graphQLResult):
+                if let viewer = graphQLResult.data?.viewer {
+                    completion(User(id: viewer.id,
+                                    avatar: Avatar(large: viewer.avatar?.large,
+                                                   medium: viewer.avatar?.large),
+                                    name: viewer.name))
+                } else {
+                    completion(nil)
+                }
+            case .failure(let error):
+                print("Failure! Error: \(error)")
+                completion(nil)
+            }
+        }
     }
 }

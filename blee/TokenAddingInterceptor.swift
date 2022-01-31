@@ -18,7 +18,10 @@ class TokenAddingInterceptor: ApolloInterceptor {
             let keychain = KeychainSwift()
             if let token = keychain.get(AnilistKeychainKey.accessToken.rawValue) {
                 request.addHeader(name: "Authorization", value: token)
-            } // else do nothing
+            } else {
+                AuthManager.shared.isAuthed = false
+                AuthManager.shared.authedUser = nil
+            }
             
             chain.proceedAsync(request: request,
                                response: response,
