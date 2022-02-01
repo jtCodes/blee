@@ -8,17 +8,20 @@
 import Foundation
 
 class MediaTrackingEntry: ObservableObject {
+    var mediaId: Int
     @Published var status: MediaListStatus?
     @Published var isEdited: Bool = false
     
     func copy(with zone: NSZone? = nil) -> Any {
-        let copy = MediaTrackingEntry()
+        let copy = MediaTrackingEntry(mediaId: mediaId)
+        copy.mediaId = mediaId
         copy.isEdited = isEdited
         copy.status = status
         return copy
     }
     
-    init() {
+    init(mediaId: Int) {
+        self.mediaId = mediaId
         self.status = status
         print("init")
     }

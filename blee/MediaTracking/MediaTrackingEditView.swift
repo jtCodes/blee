@@ -37,20 +37,28 @@ struct MediaTrackingEditView: View {
             
             if (mediaTrackingEntry.isEdited) {
                 Button("Save") {
-                    print("save")
+                    AnilistNetworkClient.shared.saveMediaListEntry(mediaId: mediaTrackingEntry.mediaId,
+                                                                   status: mediaTrackingEntry.status,
+                                                                   score: 0,
+                                                                   progress: 0,
+                                                                   progressVolumes: 0,
+                                                                   isRepeat: 0,
+                                                                   isPrivate: nil,
+                                                                   notes: nil,
+                                                                   customLists: nil,
+                                                                   hiddenFromStatusLists: nil,
+                                                                   startedAt: nil,
+                                                                   completedAt: nil) { success in
+                        
+                    }
                 }
                 Button("Discard Changes") {
-                    print("before discaard", initialTrackingEntry.status)
                     mediaTrackingEntry.status = initialTrackingEntry.status
-                    print("after discaard", initialTrackingEntry.status)
                     mediaTrackingEntry.isEdited = false
                 }
             }
         }
         .onAppear() {
-//            if (!currentMediaTrackingEntry.isEdited) {
-//                currentMediaTrackingEntry.status = initialMediaTrackingEntry.status
-//            }
         }
     }
 }

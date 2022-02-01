@@ -75,4 +75,42 @@ extension AnilistNetworkClient {
             }
         }
     }
+    
+    func saveMediaListEntry(
+                            mediaId: Int,
+                            status: MediaListStatus?,
+                            score: Double?,
+                            progress: Int?,
+                            progressVolumes: Int?,
+                            isRepeat: Int?,
+                            isPrivate: Bool?,
+                            notes: String?,
+                            customLists: [String?]?,
+                            hiddenFromStatusLists: Bool?,
+                            startedAt: FuzzyDateInput?,
+                            completedAt: FuzzyDateInput?,
+                            completion: @escaping (_ success: Bool) -> ()) {
+        AnilistNetworkClient.shared.apollo.perform(mutation: SaveMediaListEntryMutation(
+                                                                                        mediaId: mediaId,
+                                                                                        status: status,
+                                                                                        score: score,
+                                                                                        progress: progress,
+                                                                                        progressVolumes: progressVolumes,
+                                                                                        repeat: isRepeat,
+                                                                                        private: isPrivate,
+                                                                                        notes: notes,
+                                                                                        customLists: customLists,
+                                                                                        hiddenFromStatusLists: hiddenFromStatusLists,
+                                                                                        startedAt: startedAt,
+                                                                                        completedAt: completedAt)) { result in
+            switch result {
+            case .success(let graphQLResult):
+                print(graphQLResult)
+                completion(true)
+            case .failure(let error):
+                print("Failure! Error: \(error.localizedDescription)")
+                completion(false)
+            }
+        }
+    }
 }

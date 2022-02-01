@@ -31,7 +31,7 @@ class MediaListViewModel: ObservableObject {
                                     mediaRowViewModelCollection.append(MediaRowViewModel(media: Media(shortMediaDetails: (entry.fragments.mediaListEntry.media?.fragments.shortMediaDetails)!),
                                                                                          mediaListEntry: entry))
                                     
-                                    let mediaTrackingEntry: MediaTrackingEntry = MediaTrackingEntry()
+                                    let mediaTrackingEntry: MediaTrackingEntry = MediaTrackingEntry(mediaId: entry.fragments.mediaListEntry.mediaId)
                                     mediaTrackingEntry.status = entry.fragments.mediaListEntry.status
                                     
                                     self.initEntry[entry.fragments.mediaListEntry.id] = mediaTrackingEntry.copy(with: nil) as? MediaTrackingEntry
