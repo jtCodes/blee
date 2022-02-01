@@ -43,7 +43,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         self.statusItem = NSStatusBar.system.statusItem(withLength: CGFloat(NSStatusItem.variableLength))
         
         if let button = self.statusItem?.button {
-            button.title = "Click"
+            button.title = "ß"
+//            button.image = NSImage(named: NSImage.Name("icon-orange"))
             button.action = #selector(showPopover(_:))
         }
     }
