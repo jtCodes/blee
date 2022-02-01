@@ -19,6 +19,9 @@ struct MediaListView: View {
             SearchResultRowView()
             SearchResultRowView()
         }
+        .onAppear() {
+            print("appear")
+        }
     }
 }
 

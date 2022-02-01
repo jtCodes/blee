@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 class AppDelegate: NSObject, NSApplicationDelegate {
+    let authManager: AuthManager = AuthManager.shared
     var statusBar: StatusBarController?
     var popover: NSPopover?
     private var statusItem: NSStatusItem?
@@ -35,6 +36,25 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Insert code here to tear down your application
     }
     
+//    open func applicationWillFinishLaunching(_ notification: Notification) {
+//        initializeURIOptions()
+//    }
+
+    fileprivate func initializeURIOptions() {
+        // register to listen to the url event
+        let appleEventManager = NSAppleEventManager.shared()
+        appleEventManager.setEventHandler(self, andSelector: #selector(handleGetURLEvent(event:withReplyEvent:)), forEventClass: AEEventClass(kInternetEventClass), andEventID: AEEventID(kAEGetURL))
+    }
+    
+    @objc fileprivate func handleGetURLEvent(event: NSAppleEventDescriptor?, withReplyEvent replyEvent: NSAppleEventDescriptor?) {
+        guard let event = event else {
+            return
+        }
+        
+        guard let urlStr: String = event.paramDescriptor(forKeyword: AEKeyword(keyDirectObject))?.stringValue else { return }
+        
+        authManager.onReceiveAuthUrlScheme(url: URL(string: urlStr)!)
+    }
     
     @objc func showPopover(_ sender: AnyObject?) {
         if let button = self.statusItem?.button {
