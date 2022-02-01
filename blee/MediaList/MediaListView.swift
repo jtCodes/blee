@@ -10,14 +10,17 @@ import SwiftUI
 struct MediaListView: View {
     @ObservedObject var viewModel: MediaListViewModel = MediaListViewModel()
     
+    init() {
+        if let viewer = AuthManager.shared.authedUser {
+            viewModel.fetchMediaCollection(user: viewer, type: .manga)
+        }
+    }
+    
     var body: some View {
         List() {
-            SearchResultRowView()
-            SearchResultRowView()
-            SearchResultRowView()
-            SearchResultRowView()
-            SearchResultRowView()
-            SearchResultRowView()
+            ForEach(viewModel.mediaRowViewModelCollection, id: \.self) { viewModel in
+                MediaRowView(viewModel: viewModel)
+            }
         }
         .onAppear() {
             print("appear")
