@@ -12,6 +12,7 @@
 		ED266FCA27A8AE27005D7EF0 /* LogoutButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED266FC927A8AE27005D7EF0 /* LogoutButtonView.swift */; };
 		ED266FCC27A8C5F3005D7EF0 /* MediaRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED266FCB27A8C5F3005D7EF0 /* MediaRowView.swift */; };
 		ED266FCE27A8CC5F005D7EF0 /* MediaRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED266FCD27A8CC5F005D7EF0 /* MediaRowViewModel.swift */; };
+		ED266FD027A8FEAD005D7EF0 /* MediaTrackingEntryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED266FCF27A8FEAD005D7EF0 /* MediaTrackingEntryStore.swift */; };
 		ED61D0FD279D1EC9001EBBE0 /* bleeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED61D0FC279D1EC9001EBBE0 /* bleeApp.swift */; };
 		ED61D0FF279D1EC9001EBBE0 /* MenuBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED61D0FE279D1EC9001EBBE0 /* MenuBarView.swift */; };
 		ED61D101279D1ECA001EBBE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED61D100279D1ECA001EBBE0 /* Assets.xcassets */; };
@@ -71,6 +72,7 @@
 		ED266FC927A8AE27005D7EF0 /* LogoutButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutButtonView.swift; sourceTree = "<group>"; };
 		ED266FCB27A8C5F3005D7EF0 /* MediaRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaRowView.swift; sourceTree = "<group>"; };
 		ED266FCD27A8CC5F005D7EF0 /* MediaRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaRowViewModel.swift; sourceTree = "<group>"; };
+		ED266FCF27A8FEAD005D7EF0 /* MediaTrackingEntryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaTrackingEntryStore.swift; sourceTree = "<group>"; };
 		ED61D0F9279D1EC9001EBBE0 /* blee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = blee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED61D0FC279D1EC9001EBBE0 /* bleeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bleeApp.swift; sourceTree = "<group>"; };
 		ED61D0FE279D1EC9001EBBE0 /* MenuBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarView.swift; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 				ED9F0E9D27A60D230025668E /* MediaTrackingOptionView.swift */,
 				ED9F0E9F27A60EE60025668E /* MediaStatusTrackingOptionView.swift */,
 				EDB888C527A64AE50033453B /* MediaTrackingEntry.swift */,
+				ED266FCF27A8FEAD005D7EF0 /* MediaTrackingEntryStore.swift */,
 			);
 			path = MediaTracking;
 			sourceTree = "<group>";
@@ -447,6 +450,7 @@
 				EDB888D227A794460033453B /* BleeMediaListCollection.swift in Sources */,
 				ED61D130279E33CB001EBBE0 /* AppDelegate.swift in Sources */,
 				ED9F0E9627A598D30025668E /* SearchResultView.swift in Sources */,
+				ED266FD027A8FEAD005D7EF0 /* MediaTrackingEntryStore.swift in Sources */,
 				ED61D0FF279D1EC9001EBBE0 /* MenuBarView.swift in Sources */,
 				ED9F0E9327A597E60025668E /* Trailer.swift in Sources */,
 				ED9F0E9E27A60D230025668E /* MediaTrackingOptionView.swift in Sources */,

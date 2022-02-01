@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MediaTrackingEditView: View {
-    @StateObject var mediaTrackingEntry: MediaTrackingEntry = MediaTrackingEntry()
+    @EnvironmentObject var mediaTrackingEntry: MediaTrackingEntry
     @State private var date = Date()
     @State private var sleepAmount = 8
     
@@ -33,8 +33,21 @@ struct MediaTrackingEditView: View {
                 }
             }
             .padding(5)
+            
+            if (mediaTrackingEntry.isEdited) {
+                Button("Save") {
+                    print("save")
+                }
+                Button("Discard Changes") {
+                    print("save")
+                }
+            }
         }
-        .environmentObject(mediaTrackingEntry)
+        .onAppear() {
+//            if (!currentMediaTrackingEntry.isEdited) {
+//                currentMediaTrackingEntry.status = initialMediaTrackingEntry.status
+//            }
+        }
     }
 }
 
@@ -70,8 +83,8 @@ extension HorizontalAlignment {
     static let controlAlignment = HorizontalAlignment(ControlAlignment.self)
 }
 
-struct MediaTrackingEditView_Previews: PreviewProvider {
-    static var previews: some View {
-        MediaTrackingEditView()
-    }
-}
+//struct MediaTrackingEditView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MediaTrackingEditView()
+//    }
+//}

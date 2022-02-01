@@ -15,12 +15,14 @@ struct MediaStatusTrackingOptionView: View {
             Menu {
                 Button {
                     mediaTrackingEntry.status = .current
+                    mediaTrackingEntry.isEdited = true
                 } label: {
                     Text("Watching")
                     Image(systemName: "arrow.down.right.circle")
                 }
                 Button {
                     mediaTrackingEntry.status = .planning
+                    mediaTrackingEntry.isEdited = true
                 } label: {
                     Text("Plan to Watch")
                     Image(systemName: "arrow.up.and.down.circle")

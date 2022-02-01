@@ -9,4 +9,10 @@ import Foundation
 
 class MediaTrackingEntry: ObservableObject {
     @Published var status: MediaListStatus?
+    @Published var isEdited: Bool = false
+    
+    init() {
+        self.status = status
+        print("init")
+    }
 }

@@ -20,11 +20,11 @@ struct MediaListView: View {
         List() {
             ForEach(viewModel.mediaRowViewModelCollection, id: \.self) { viewModel in
                 MediaRowView(viewModel: viewModel)
+                    .environmentObject(self.viewModel
+                                        .currentEntry[viewModel.mediaListEntry.fragments.mediaListEntry.id]!)
             }
         }
-        .onAppear() {
-            print("appear")
-        }
+        .environmentObject(viewModel)
     }
 }
 

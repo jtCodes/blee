@@ -13,30 +13,31 @@ struct SearchResultRowView: View {
     @State var isExpanded: Bool = false
     
     var body: some View {
-        VStack(alignment: .leading) {
-            HStack() {
-                KFImage(URL(string: media.coverImage.extraLarge!)!)
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 50, height: 60)
-                    .cornerRadius(5)
-                Text(media.title.userPreferred)
-                Spacer()
-                Image(systemName: isExpanded ? "chevron.down" : "chevron.right")
-                    .onTapGesture {
-                        isExpanded.toggle()
-                    }
-                    .frame(width: 30, alignment: .trailing)
-            }
-            if (isExpanded == true) {
-                MediaTrackingEditView()
-                    .background(.quaternary)
-                    .cornerRadius(5)
-                    .frame(maxWidth: .infinity)
-                    .padding(10)
-            }
-        }
-        .frame(maxWidth: .infinity)
+//        VStack(alignment: .leading) {
+//            HStack() {
+//                KFImage(URL(string: media.coverImage.extraLarge!)!)
+//                    .resizable()
+//                    .scaledToFill()
+//                    .frame(width: 50, height: 60)
+//                    .cornerRadius(5)
+//                Text(media.title.userPreferred)
+//                Spacer()
+//                Image(systemName: isExpanded ? "chevron.down" : "chevron.right")
+//                    .onTapGesture {
+//                        isExpanded.toggle()
+//                    }
+//                    .frame(width: 30, alignment: .trailing)
+//            }
+//            if (isExpanded == true) {
+//                MediaTrackingEditView()
+//                    .background(.quaternary)
+//                    .cornerRadius(5)
+//                    .frame(maxWidth: .infinity)
+//                    .padding(10)
+//            }
+//        }
+//        .frame(maxWidth: .infinity)
+        Text("hello")
     }
 }
 
