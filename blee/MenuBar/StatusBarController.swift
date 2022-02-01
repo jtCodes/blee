@@ -48,11 +48,16 @@ class StatusBarController {
 final class HostingView<Content: View>: NSHostingView<Content> {
     override func viewDidMoveToWindow() {
         print("move to window")
-        self.window?.becomeKey()
+        self.window?.makeKey()
     }
     
     override func acceptsFirstMouse(for event: NSEvent?) -> Bool {
         return true
+    }
+    
+    override func updateTrackingAreas() {
+        let trackingArea = NSTrackingArea(rect: bounds, options: [.enabledDuringMouseDrag, .mouseEnteredAndExited, .activeInActiveApp], owner: self, userInfo: nil)
+        addTrackingArea(trackingArea)
     }
 }
 

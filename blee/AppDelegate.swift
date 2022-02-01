@@ -13,33 +13,49 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var statusBar: StatusBarController?
     var popover: NSPopover?
     private var statusItem: NSStatusItem?
-
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        //        let view = HostingView(rootView: MenuBarView().frame(width: 300))
+        //        view.frame = NSRect(x: 0, y: 0, width: 350, height: 550)
+        //        view.window?.becomeKey()
+        //
+        //        let menuItem = NSMenuItem()
+        //        menuItem.view = view
+        //
+        //        let menu = NSMenu()
+        //        menu.addItem(menuItem)
+        //
+        //        // StatusItem is stored as a class property.
+        //        self.statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
+        //        self.statusItem?.menu = menu
+        //        self.statusItem?.button?.title = "Test"
+        
         let popover = NSPopover()
-        popover.contentSize = NSSize(width: 350, height: 350)
+        popover.contentSize = NSSize(width: 350, height: 550)
         popover.behavior = .transient
         popover.contentViewController = NSViewController()
-        popover.contentViewController?.view = NSHostingView(rootView: MenuBarView())
-        popover.contentViewController?.view.window?.makeKey()
+        popover.contentViewController?.view = NSHostingView(rootView: MenuBarView().frame(width: 350,
+                                                                                          height: 550))
+        popover.contentViewController?.view.window?.becomeKey()
         
         self.popover = popover
-
+        
         self.statusItem = NSStatusBar.system.statusItem(withLength: CGFloat(NSStatusItem.variableLength))
-
+        
         if let button = self.statusItem?.button {
             button.title = "Click"
             button.action = #selector(showPopover(_:))
         }
     }
-
+    
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }
     
-//    open func applicationWillFinishLaunching(_ notification: Notification) {
-//        initializeURIOptions()
-//    }
-
+    //    open func applicationWillFinishLaunching(_ notification: Notification) {
+    //        initializeURIOptions()
+    //    }
+    
     fileprivate func initializeURIOptions() {
         // register to listen to the url event
         let appleEventManager = NSAppleEventManager.shared()
@@ -56,12 +72,31 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         authManager.onReceiveAuthUrlScheme(url: URL(string: urlStr)!)
     }
     
-    @objc func showPopover(_ sender: AnyObject?) {
+    @objc func showPopover(_ sender: NSButton) {
         if let button = self.statusItem?.button {
             if (self.popover?.isShown ?? false == true) {
                 self.popover?.performClose(sender)
             } else {
-                self.popover?.show(relativeTo: button.bounds, of: button, preferredEdge: NSRectEdge.minY)
+                let invisibleWindow = NSWindow(contentRect: NSMakeRect(0, 0, 20, 5), styleMask: .borderless, backing: .buffered, defer: false)
+                invisibleWindow.backgroundColor = .red
+                invisibleWindow.alphaValue = 0
+                
+                // find the coordinates of the statusBarItem in screen space
+                let buttonRect:NSRect = button.convert(button.bounds, to: nil)
+                let screenRect:NSRect = button.window!.convertToScreen(buttonRect)
+                
+                // calculate the bottom center position (10 is the half of the window width)
+                let posX = screenRect.origin.x + (screenRect.width / 2) - 10
+                let posY = screenRect.origin.y
+                
+                // position and show the window
+                invisibleWindow.setFrameOrigin(NSPoint(x: posX, y: posY))
+                invisibleWindow.makeKeyAndOrderFront(self)
+                
+                // position and show the NSPopover
+                popover?.show(relativeTo: invisibleWindow.contentView!.frame, of: invisibleWindow.contentView!, preferredEdge: NSRectEdge.minY)
+                sender.bounds = sender.bounds.offsetBy(dx: 0, dy: sender.bounds.height)
+                NSApp.activate(ignoringOtherApps: true)
             }
         }
     }
