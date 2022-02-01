@@ -19,7 +19,9 @@ struct MediaListView: View {
     var body: some View {
         List() {
             ForEach(viewModel.mediaRowViewModelCollection, id: \.self) { viewModel in
-                MediaRowView(viewModel: viewModel)
+                MediaRowView(initialMediaTrackingEntry: self.viewModel
+                                .initEntry[viewModel.mediaListEntry.fragments.mediaListEntry.id]!,
+                             viewModel: viewModel)
                     .environmentObject(self.viewModel
                                         .currentEntry[viewModel.mediaListEntry.fragments.mediaListEntry.id]!)
             }

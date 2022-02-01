@@ -9,6 +9,7 @@ import SwiftUI
 import Kingfisher
 
 struct MediaRowView: View {
+    var initialMediaTrackingEntry: MediaTrackingEntry
     var viewModel: MediaRowViewModel
     @State var isExpanded: Bool = false
     
@@ -29,7 +30,7 @@ struct MediaRowView: View {
                     .frame(width: 30, alignment: .trailing)
             }
             if (isExpanded == true) {
-                MediaTrackingEditView()
+                MediaTrackingEditView(initialTrackingEntry: initialMediaTrackingEntry)
                     .background(.quaternary)
                     .cornerRadius(5)
                     .frame(maxWidth: .infinity)

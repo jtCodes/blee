@@ -33,7 +33,8 @@ class MediaListViewModel: ObservableObject {
                                     
                                     let mediaTrackingEntry: MediaTrackingEntry = MediaTrackingEntry()
                                     mediaTrackingEntry.status = entry.fragments.mediaListEntry.status
-                                    self.initEntry[entry.fragments.mediaListEntry.id] = mediaTrackingEntry
+                                    
+                                    self.initEntry[entry.fragments.mediaListEntry.id] = mediaTrackingEntry.copy(with: nil) as? MediaTrackingEntry
                                     self.currentEntry[entry.fragments.mediaListEntry.id] = mediaTrackingEntry
                                 }
                             }

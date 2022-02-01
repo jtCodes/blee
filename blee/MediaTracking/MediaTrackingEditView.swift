@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MediaTrackingEditView: View {
+    var initialTrackingEntry: MediaTrackingEntry
     @EnvironmentObject var mediaTrackingEntry: MediaTrackingEntry
     @State private var date = Date()
     @State private var sleepAmount = 8
@@ -39,7 +40,10 @@ struct MediaTrackingEditView: View {
                     print("save")
                 }
                 Button("Discard Changes") {
-                    print("save")
+                    print("before discaard", initialTrackingEntry.status)
+                    mediaTrackingEntry.status = initialTrackingEntry.status
+                    print("after discaard", initialTrackingEntry.status)
+                    mediaTrackingEntry.isEdited = false
                 }
             }
         }

@@ -8,29 +8,28 @@
 import SwiftUI
 
 struct MediaStatusTrackingOptionView: View {
+    let statusList: [MediaListStatus] = [.current,
+                                         .planning,
+                                         .completed,
+                                         .repeating,
+                                         .paused,
+                                         .dropped]
     @EnvironmentObject var mediaTrackingEntry: MediaTrackingEntry
     
     var body: some View {
         MediaTrackingOptionView(title: "Status") {
             Menu {
-                Button {
-                    mediaTrackingEntry.status = .current
-                    mediaTrackingEntry.isEdited = true
-                } label: {
-                    Text("Watching")
-                    Image(systemName: "arrow.down.right.circle")
-                }
-                Button {
-                    mediaTrackingEntry.status = .planning
-                    mediaTrackingEntry.isEdited = true
-                } label: {
-                    Text("Plan to Watch")
-                    Image(systemName: "arrow.up.and.down.circle")
+                ForEach(statusList, id: \.self) { status in
+                    Button {
+                        mediaTrackingEntry.status = status
+                        mediaTrackingEntry.isEdited = true
+                    } label: {
+                        Text(status.rawValue)
+                    }
                 }
             } label: {
                 if let status = mediaTrackingEntry.status {
                     Text(status.rawValue)
-                    Image(systemName: "tag.circle")
                 } else {
                     Text("-")
                 }
