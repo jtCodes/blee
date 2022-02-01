@@ -22,7 +22,7 @@ struct MediaList {
 
 // MARK: - Entry
 struct MediaEntry {
-    let id, mediaID: Int?
+    let id, mediaID: Int
     let status: String?
     let score, progress, entryRepeat: Int?
     let priority: Int?

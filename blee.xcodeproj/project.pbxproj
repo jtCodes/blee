@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ED266FC627A8A421005D7EF0 /* MediaListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED266FC527A8A421005D7EF0 /* MediaListViewModel.swift */; };
+		ED266FC827A8A899005D7EF0 /* MediaListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED266FC727A8A899005D7EF0 /* MediaListView.swift */; };
+		ED266FCA27A8AE27005D7EF0 /* LogoutButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED266FC927A8AE27005D7EF0 /* LogoutButtonView.swift */; };
 		ED61D0FD279D1EC9001EBBE0 /* bleeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED61D0FC279D1EC9001EBBE0 /* bleeApp.swift */; };
 		ED61D0FF279D1EC9001EBBE0 /* MenuBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED61D0FE279D1EC9001EBBE0 /* MenuBarView.swift */; };
 		ED61D101279D1ECA001EBBE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED61D100279D1ECA001EBBE0 /* Assets.xcassets */; };
@@ -61,6 +64,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		ED266FC527A8A421005D7EF0 /* MediaListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaListViewModel.swift; sourceTree = "<group>"; };
+		ED266FC727A8A899005D7EF0 /* MediaListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaListView.swift; sourceTree = "<group>"; };
+		ED266FC927A8AE27005D7EF0 /* LogoutButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutButtonView.swift; sourceTree = "<group>"; };
 		ED61D0F9279D1EC9001EBBE0 /* blee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = blee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED61D0FC279D1EC9001EBBE0 /* bleeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bleeApp.swift; sourceTree = "<group>"; };
 		ED61D0FE279D1EC9001EBBE0 /* MenuBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarView.swift; sourceTree = "<group>"; };
@@ -127,6 +133,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		ED266FC427A8A3DC005D7EF0 /* MediaList */ = {
+			isa = PBXGroup;
+			children = (
+				ED266FC727A8A899005D7EF0 /* MediaListView.swift */,
+				ED266FC527A8A421005D7EF0 /* MediaListViewModel.swift */,
+			);
+			path = MediaList;
+			sourceTree = "<group>";
+		};
 		ED61D0F0279D1EC9001EBBE0 = {
 			isa = PBXGroup;
 			children = (
@@ -159,6 +174,7 @@
 				ED9F0E8827A3BDF80025668E /* Anilist */,
 				EDB888CA27A6F1AE0033453B /* MenuBar */,
 				ED9F0E9427A5989F0025668E /* Search */,
+				ED266FC427A8A3DC005D7EF0 /* MediaList */,
 				ED9F0E9C27A60BCA0025668E /* MediaTracking */,
 				ED9F0E8927A596120025668E /* Model */,
 				ED61D127279D1FE3001EBBE0 /* Info.plist */,
@@ -243,6 +259,7 @@
 			children = (
 				EDB888C827A6ECEF0033453B /* AuthManager.swift */,
 				EDB888CB27A6F8590033453B /* AuthDetail.swift */,
+				ED266FC927A8AE27005D7EF0 /* LogoutButtonView.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -428,8 +445,10 @@
 				ED9F0E9E27A60D230025668E /* MediaTrackingOptionView.swift in Sources */,
 				EDB888D027A773650033453B /* NetworkInterceptorProvider.swift in Sources */,
 				EDB888CC27A6F8590033453B /* AuthDetail.swift in Sources */,
+				ED266FC627A8A421005D7EF0 /* MediaListViewModel.swift in Sources */,
 				ED9F0EA227A618C40025668E /* KeychainSwiftDistrib.swift in Sources */,
 				ED9F0E8727A3B4730025668E /* AnilistNetworkClient.swift in Sources */,
+				ED266FC827A8A899005D7EF0 /* MediaListView.swift in Sources */,
 				EDB888C627A64AE50033453B /* MediaTrackingEntry.swift in Sources */,
 				ED9F0E9B27A5AE260025668E /* SearchResultRowView.swift in Sources */,
 				ED61D136279E4A8A001EBBE0 /* ListItemView.swift in Sources */,
@@ -439,6 +458,7 @@
 				ED9F0E9127A597C70025668E /* User.swift in Sources */,
 				ED9F0EA027A60EE60025668E /* MediaStatusTrackingOptionView.swift in Sources */,
 				ED61D0FD279D1EC9001EBBE0 /* bleeApp.swift in Sources */,
+				ED266FCA27A8AE27005D7EF0 /* LogoutButtonView.swift in Sources */,
 				ED9F0E8D27A597990025668E /* RelatedMedia.swift in Sources */,
 				EDB888CE27A772F00033453B /* TokenAddingInterceptor.swift in Sources */,
 				EDB888C927A6ECEF0033453B /* AuthManager.swift in Sources */,

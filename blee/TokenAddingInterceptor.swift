@@ -19,8 +19,10 @@ class TokenAddingInterceptor: ApolloInterceptor {
             if let token = keychain.get(AnilistKeychainKey.accessToken.rawValue) {
                 request.addHeader(name: "Authorization", value: token)
             } else {
-                AuthManager.shared.isAuthed = false
-                AuthManager.shared.authedUser = nil
+                // TODO: figure a global way to handle invalid auth token
+                // the follow doesn't work probably due to accessing static
+//                AuthManager.shared.isAuthed = false
+//                AuthManager.shared.authedUser = nil
             }
             
             chain.proceedAsync(request: request,

@@ -38,30 +38,10 @@ struct MenuBarView: View {
             Button("QUIT") {
                 NSApplication.shared.terminate(nil)
             }
-            Button("SEARCH ONE PIECE") {
-                AnilistNetworkClient.shared.searchAnilistAnime(keywords: "one piece",
-                                                               mediaType: .anime)
-            }
-            SearchResultView()
-            Menu {
-                Button {
-                    
-                } label: {
-                    Text("Linear")
-                    Image(systemName: "arrow.down.right.circle")
-                }
-                Button {
-                    
-                } label: {
-                    Text("Radial")
-                    Image(systemName: "arrow.up.and.down.circle")
-                }
-            } label: {
-                Text("Style")
-                Image(systemName: "tag.circle")
-            }
-            .onTapGesture {
-                print("hshs")
+            
+            if authManager.isAuthed && (authManager.authedUser != nil) {
+                MediaListView()
+                LogoutButtonView()
             }
         }
     }

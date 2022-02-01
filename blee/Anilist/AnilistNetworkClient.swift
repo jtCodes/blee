@@ -42,15 +42,17 @@ extension AnilistNetworkClient {
     
     func fetchMediaListCollection(userId: Int,
                                   userName: String,
-                                  type: MediaType) {
+                                  type: MediaType,
+                                  completion: @escaping (_ mediaCollection: GetMediaListCollectionQuery.Data.MediaListCollection?) -> ()) {
         AnilistNetworkClient.shared.apollo.fetch(query: GetMediaListCollectionQuery(userId: userId,
                                                                                     userName: userName ,
                                                                                     type: type)) { result in
             switch result {
             case .success(let graphQLResult):
-                print(graphQLResult.data?.mediaListCollection?.lists)
+                completion(graphQLResult.data?.mediaListCollection)
             case .failure(let error):
                 print("Failure! Error: \(error)")
+                completion(nil)
             }
         }
     }

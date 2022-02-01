@@ -19,7 +19,17 @@ class AuthManager: ObservableObject {
     @Published var authedUser: User?
     
     init() {
-        fetchViewerDetail()
+        let isAuthed: Bool = checkIfAuthed()
+        self.isAuthed = isAuthed
+        
+        if (isAuthed == true) {
+            fetchViewerDetail()
+        }
+    }
+    
+    // TODO: check expiration date
+    func checkIfAuthed() -> Bool {
+        return keychain.get(AnilistKeychainKey.accessToken.rawValue) != nil
     }
     
     func fetchViewerDetail() {
@@ -27,10 +37,6 @@ class AuthManager: ObservableObject {
             if let viewerDetail = viewerDetail {
                 self.authedUser = viewerDetail
                 self.isAuthed = true
-                
-                AnilistNetworkClient.shared.fetchMediaListCollection(userId: viewerDetail.id,
-                                                                     userName: viewerDetail.name,
-                                                                     type: .manga)
             }
         }
     }
