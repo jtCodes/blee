@@ -12,8 +12,8 @@ class MediaListViewModel: ObservableObject {
     @Published var mediaEntries: [GetMediaListCollectionQuery.Data.MediaListCollection.List.Entry] = []
     @Published var mediaRowViewModelCollection: [MediaRowViewModel] = []
     @Published var isFetchError: Bool = false
-    var initEntry: [Int: MediaTrackingEntry] = [:]
-    var currentEntry: [Int: MediaTrackingEntry] = [:]
+    var initEntry: [Int: MediaTrackingEntryModel] = [:]
+    var currentEntry: [Int: MediaTrackingEntryModel] = [:]
     
     func fetchMediaCollection(user: User, type: MediaType) {
         AnilistNetworkClient.shared.fetchMediaListCollection(userId: user.id,
@@ -31,10 +31,10 @@ class MediaListViewModel: ObservableObject {
                                     mediaRowViewModelCollection.append(MediaRowViewModel(media: Media(shortMediaDetails: (entry.fragments.mediaListEntry.media?.fragments.shortMediaDetails)!),
                                                                                          mediaListEntry: entry))
                                     
-                                    let mediaTrackingEntry: MediaTrackingEntry = MediaTrackingEntry(mediaId: entry.fragments.mediaListEntry.mediaId)
+                                    let mediaTrackingEntry: MediaTrackingEntryModel = MediaTrackingEntryModel(mediaId: entry.fragments.mediaListEntry.mediaId)
                                     mediaTrackingEntry.status = entry.fragments.mediaListEntry.status
                                     
-                                    self.initEntry[entry.fragments.mediaListEntry.id] = mediaTrackingEntry.copy(with: nil) as? MediaTrackingEntry
+                                    self.initEntry[entry.fragments.mediaListEntry.id] = mediaTrackingEntry.copy(with: nil) as? MediaTrackingEntryModel
                                     self.currentEntry[entry.fragments.mediaListEntry.id] = mediaTrackingEntry
                                 }
                             }

@@ -21,14 +21,15 @@ struct MediaStatusTrackingOptionView: View {
             Menu {
                 ForEach(statusList, id: \.self) { status in
                     Button {
-                        mediaTrackingEntry.status = status
-                        mediaTrackingEntry.isEdited = true
+                        mediaTrackingEntry.currentEntry.status = status
+                        mediaTrackingEntry.currentEntry.isEdited = true
+                        mediaTrackingEntry.currentEntryUpdated()
                     } label: {
                         Text(status.rawValue)
                     }
                 }
             } label: {
-                if let status = mediaTrackingEntry.status {
+                if let status = mediaTrackingEntry.currentEntry.status {
                     Text(status.rawValue)
                 } else {
                     Text("-")

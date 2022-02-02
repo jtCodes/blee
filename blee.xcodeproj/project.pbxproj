@@ -41,7 +41,7 @@
 		ED9F0EA027A60EE60025668E /* MediaStatusTrackingOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9F0E9F27A60EE60025668E /* MediaStatusTrackingOptionView.swift */; };
 		ED9F0EA227A618C40025668E /* KeychainSwiftDistrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9F0EA127A618C40025668E /* KeychainSwiftDistrib.swift */; };
 		EDB888C427A63CCF0033453B /* MediaTrackingEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB888C327A63CCF0033453B /* MediaTrackingEditView.swift */; };
-		EDB888C627A64AE50033453B /* MediaTrackingEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB888C527A64AE50033453B /* MediaTrackingEntry.swift */; };
+		EDB888C627A64AE50033453B /* MediaTrackingEntryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB888C527A64AE50033453B /* MediaTrackingEntryModel.swift */; };
 		EDB888C927A6ECEF0033453B /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB888C827A6ECEF0033453B /* AuthManager.swift */; };
 		EDB888CC27A6F8590033453B /* AuthDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB888CB27A6F8590033453B /* AuthDetail.swift */; };
 		EDB888CE27A772F00033453B /* TokenAddingInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB888CD27A772F00033453B /* TokenAddingInterceptor.swift */; };
@@ -103,7 +103,7 @@
 		ED9F0E9F27A60EE60025668E /* MediaStatusTrackingOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaStatusTrackingOptionView.swift; sourceTree = "<group>"; };
 		ED9F0EA127A618C40025668E /* KeychainSwiftDistrib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainSwiftDistrib.swift; sourceTree = "<group>"; };
 		EDB888C327A63CCF0033453B /* MediaTrackingEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaTrackingEditView.swift; sourceTree = "<group>"; };
-		EDB888C527A64AE50033453B /* MediaTrackingEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaTrackingEntry.swift; sourceTree = "<group>"; };
+		EDB888C527A64AE50033453B /* MediaTrackingEntryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaTrackingEntryModel.swift; sourceTree = "<group>"; };
 		EDB888C827A6ECEF0033453B /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		EDB888CB27A6F8590033453B /* AuthDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthDetail.swift; sourceTree = "<group>"; };
 		EDB888CD27A772F00033453B /* TokenAddingInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenAddingInterceptor.swift; sourceTree = "<group>"; };
@@ -257,7 +257,7 @@
 				EDB888C327A63CCF0033453B /* MediaTrackingEditView.swift */,
 				ED9F0E9D27A60D230025668E /* MediaTrackingOptionView.swift */,
 				ED9F0E9F27A60EE60025668E /* MediaStatusTrackingOptionView.swift */,
-				EDB888C527A64AE50033453B /* MediaTrackingEntry.swift */,
+				EDB888C527A64AE50033453B /* MediaTrackingEntryModel.swift */,
 				ED266FCF27A8FEAD005D7EF0 /* MediaTrackingEntryStore.swift */,
 			);
 			path = MediaTracking;
@@ -460,7 +460,7 @@
 				ED9F0EA227A618C40025668E /* KeychainSwiftDistrib.swift in Sources */,
 				ED9F0E8727A3B4730025668E /* AnilistNetworkClient.swift in Sources */,
 				ED266FC827A8A899005D7EF0 /* MediaListView.swift in Sources */,
-				EDB888C627A64AE50033453B /* MediaTrackingEntry.swift in Sources */,
+				EDB888C627A64AE50033453B /* MediaTrackingEntryModel.swift in Sources */,
 				ED9F0E9B27A5AE260025668E /* SearchResultRowView.swift in Sources */,
 				ED61D136279E4A8A001EBBE0 /* ListItemView.swift in Sources */,
 				ED9F0E8B27A5967B0025668E /* Media.swift in Sources */,

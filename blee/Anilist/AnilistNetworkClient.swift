@@ -8,6 +8,15 @@
 import Foundation
 import Apollo
 
+public enum CachePolicy {
+  /// Return data from the cache if available, else fetch results from the server.
+  case returnCacheDataElseFetch
+  ///  Always fetch results from the server.
+  case fetchIgnoringCacheData
+  /// Return data from the cache if available, else return nil.
+  case returnCacheDataDontFetch
+}
+
 class AnilistNetworkClient {
     static let shared = AnilistNetworkClient()
     private(set) lazy var apollo: ApolloClient = {
@@ -46,7 +55,8 @@ extension AnilistNetworkClient {
                                   completion: @escaping (_ mediaCollection: GetMediaListCollectionQuery.Data.MediaListCollection?) -> ()) {
         AnilistNetworkClient.shared.apollo.fetch(query: GetMediaListCollectionQuery(userId: userId,
                                                                                     userName: userName ,
-                                                                                    type: type)) { result in
+                                                                                    type: type),
+                                                 cachePolicy: .fetchIgnoringCacheData) { result in
             switch result {
             case .success(let graphQLResult):
                 completion(graphQLResult.data?.mediaListCollection)

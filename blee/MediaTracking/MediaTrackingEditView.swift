@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct MediaTrackingEditView: View {
-    var initialTrackingEntry: MediaTrackingEntry
     @EnvironmentObject var mediaTrackingEntry: MediaTrackingEntry
     @State private var date = Date()
     @State private var sleepAmount = 8
@@ -35,10 +34,10 @@ struct MediaTrackingEditView: View {
             }
             .padding(5)
             
-            if (mediaTrackingEntry.isEdited) {
+            if (mediaTrackingEntry.currentEntry.isEdited) {
                 Button("Save") {
-                    AnilistNetworkClient.shared.saveMediaListEntry(mediaId: mediaTrackingEntry.mediaId,
-                                                                   status: mediaTrackingEntry.status,
+                    AnilistNetworkClient.shared.saveMediaListEntry(mediaId: mediaTrackingEntry.currentEntry.mediaId,
+                                                                   status: mediaTrackingEntry.currentEntry.status,
                                                                    score: 0,
                                                                    progress: 0,
                                                                    progressVolumes: 0,
@@ -49,16 +48,20 @@ struct MediaTrackingEditView: View {
                                                                    hiddenFromStatusLists: nil,
                                                                    startedAt: nil,
                                                                    completedAt: nil) { success in
-                        
+                        if (success == true) {
+                            mediaTrackingEntry.initialEntry = mediaTrackingEntry.currentEntry.copy(with: nil) as! MediaTrackingEntryModel
+                            mediaTrackingEntry.currentEntry.isEdited = false
+                            mediaTrackingEntry.currentEntryUpdated()
+                            mediaTrackingEntry.initialEntryUpdated()
+                        }
                     }
                 }
                 Button("Discard Changes") {
-                    mediaTrackingEntry.status = initialTrackingEntry.status
-                    mediaTrackingEntry.isEdited = false
+                    mediaTrackingEntry.currentEntry.status = mediaTrackingEntry.initialEntry.status
+                    mediaTrackingEntry.currentEntry.isEdited = false
+                    mediaTrackingEntry.currentEntryUpdated()
                 }
             }
-        }
-        .onAppear() {
         }
     }
 }

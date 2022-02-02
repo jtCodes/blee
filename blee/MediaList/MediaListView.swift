@@ -8,25 +8,21 @@
 import SwiftUI
 
 struct MediaListView: View {
-    @ObservedObject var viewModel: MediaListViewModel = MediaListViewModel()
-    
-    init() {
-        if let viewer = AuthManager.shared.authedUser {
-            viewModel.fetchMediaCollection(user: viewer, type: .manga)
-        }
-    }
+    @EnvironmentObject var mediaTrackingEntryStore: MediaTrackingEntryStore
     
     var body: some View {
         List() {
-            ForEach(viewModel.mediaRowViewModelCollection, id: \.self) { viewModel in
-                MediaRowView(initialMediaTrackingEntry: self.viewModel
-                                .initEntry[viewModel.mediaListEntry.fragments.mediaListEntry.id]!,
-                             viewModel: viewModel)
-                    .environmentObject(self.viewModel
-                                        .currentEntry[viewModel.mediaListEntry.fragments.mediaListEntry.id]!)
+            ForEach(mediaTrackingEntryStore.mediaRowViewModelCollection, id: \.self) { viewModel in
+                MediaRowView(viewModel: viewModel)
+                    .environmentObject(mediaTrackingEntryStore
+                                        .mediaTrackingEntryByMediaId[viewModel.mediaListEntry.fragments.mediaListEntry.id]!)
             }
         }
-        .environmentObject(viewModel)
+        .onAppear() {
+            if let viewer = AuthManager.shared.authedUser {
+                mediaTrackingEntryStore.fetchMediaCollection(user: viewer, type: .manga)
+            }
+        }
     }
 }
 
