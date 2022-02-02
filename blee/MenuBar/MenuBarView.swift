@@ -38,11 +38,6 @@ struct MenuBarView: View {
             Button("QUIT") {
                 NSApplication.shared.terminate(nil)
             }
-            Button("Refresh") {
-                if let viewer = AuthManager.shared.authedUser {
-                    mediaTrackingEntryStore.fetchMediaCollection(user: viewer, type: .manga)
-                }
-            }
             
             if authManager.isAuthed && (authManager.authedUser != nil) {
                 MediaListView()

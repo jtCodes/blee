@@ -22,11 +22,10 @@ struct MediaRowView: View {
                     .cornerRadius(5)
                 Text(viewModel.media.title.userPreferred)
                 Spacer()
-                Image(systemName: isExpanded ? "chevron.down" : "chevron.right")
-                    .onTapGesture {
-                        isExpanded.toggle()
-                    }
-                    .frame(width: 30, alignment: .trailing)
+            }
+            .contentShape(Rectangle())
+            .onTapGesture {
+                isExpanded.toggle()
             }
             if (isExpanded == true) {
                 MediaTrackingEditView()

@@ -14,10 +14,13 @@ class MediaTrackingEntryStore: ObservableObject {
     @Published var mediaRowViewModelCollection: [MediaRowViewModel] = []
     var mediaTrackingEntryByMediaId: [Int: MediaTrackingEntry] = [:]
 
-    func fetchMediaCollection(user: User, type: MediaType) {
+    func fetchMediaCollection(user: User,
+                              type: MediaType,
+                              shouldFetchFromCache: Bool) {
         AnilistNetworkClient.shared.fetchMediaListCollection(userId: user.id,
                                                              userName: user.name,
-                                                             type: type) { mediaListCollection in
+                                                             type: type,
+                                                             shouldFetchFromCache: shouldFetchFromCache) { mediaListCollection in
             if let mediaListCollection = mediaListCollection {
                 var mediaEntries:  [GetMediaListCollectionQuery.Data.MediaListCollection.List.Entry] = []
                 var mediaRowViewModelCollection: [MediaRowViewModel] = []
