@@ -9,8 +9,7 @@ import SwiftUI
 import Kingfisher
 
 struct MediaRowView: View {
-    var viewModel: MediaRowViewModel
-    @State var isExpanded: Bool = false
+    @ObservedObject var viewModel: MediaRowViewModel
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -25,9 +24,10 @@ struct MediaRowView: View {
             }
             .contentShape(Rectangle())
             .onTapGesture {
-                isExpanded.toggle()
+                viewModel.isExpanded.toggle()
             }
-            if (isExpanded == true) {
+            if viewModel.isExpanded {
+                Text("Edit")
                 MediaTrackingEditView()
                     .background(.quaternary)
                     .cornerRadius(5)
@@ -35,7 +35,7 @@ struct MediaRowView: View {
                     .padding(10)
             }
         }
-        .frame(maxWidth: .infinity)
+        .frame(height: viewModel.isExpanded ? 250 : 100)
     }
 }
 //

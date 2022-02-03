@@ -10,12 +10,8 @@ import SwiftUI
 struct TabBarView<T>: View {
     var tabItems: [TabBarItem<T>]
     var width: CGFloat
-    @State var selectedTabIndex: Int = 0
-    
-    init(tabItems: [TabBarItem<T>], width: CGFloat) {
-        self.tabItems = tabItems
-        self.width = width
-    }
+    var onSelectedTabItemIndexChange: (_ newIndex: Int) -> Void
+    @Binding var selectedTabIndex: Int
     
     var body: some View {
         HStack(alignment: .center) {
@@ -26,6 +22,7 @@ struct TabBarView<T>: View {
                 selectedTabBarIndex: $selectedTabIndex)
                 .onTapGesture {
                     selectedTabIndex = 0
+                    onSelectedTabItemIndexChange(0)
                 }
             TabBarItemView<T>(
                 tabBarItemIndex: 1,
@@ -34,6 +31,7 @@ struct TabBarView<T>: View {
                 selectedTabBarIndex: $selectedTabIndex)
                 .onTapGesture {
                     selectedTabIndex = 1
+                    onSelectedTabItemIndexChange(1)
                 }
         }
         .frame(width: width)

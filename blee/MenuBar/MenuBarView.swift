@@ -11,6 +11,7 @@ struct MenuBarView: View {
     @ObservedObject var authManager: AuthManager = AuthManager.shared
     @Environment(\.openURL) var openURL
     @StateObject var mediaTrackingEntryStore: MediaTrackingEntryStore = MediaTrackingEntryStore()
+    @ObservedObject var mediaListViewModel: MediaListViewModel = MediaListViewModel()
     @State var showingPopover: Bool = false
     @State private var searchText = ""
     
@@ -40,7 +41,7 @@ struct MenuBarView: View {
             }
             
             if authManager.isAuthed && (authManager.authedUser != nil) {
-                MediaListView()
+                MediaListView(viewModel: mediaListViewModel)
                     .environmentObject(mediaTrackingEntryStore)
                 LogoutButtonView()
             }

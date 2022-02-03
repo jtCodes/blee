@@ -8,35 +8,50 @@
 import SwiftUI
 
 struct MediaListView: View {
-    @ObservedObject var viewModel: MediaListViewModel = MediaListViewModel()
+    @ObservedObject var viewModel: MediaListViewModel
     @EnvironmentObject var mediaTrackingEntryStore: MediaTrackingEntryStore
+    @State var selectedMediaTypeTabItemIndex: Int = 0
     
     func fetchFromServer() {
         if let viewer = AuthManager.shared.authedUser {
             mediaTrackingEntryStore.fetchMediaCollection(user: viewer,
-                                                         type: .manga,
+                                                         type: viewModel.selectedMediaType,
                                                          shouldFetchFromCache: false)
         }
     }
     
+    func fetchFromCacheIfPossible() {
+        if let viewer = AuthManager.shared.authedUser {
+            mediaTrackingEntryStore.fetchMediaCollection(user: viewer,
+                                                         type: viewModel.selectedMediaType,
+                                                         shouldFetchFromCache: true)
+        }
+    }
+    
+    func onSelectedTabItemIndexChange(newIndex: Int) {
+        viewModel.selectedMediaType = viewModel.tabBarItems[newIndex].id
+        fetchFromCacheIfPossible()
+    }
+    
     var body: some View {
+        Print(viewModel.selectedMediaType)
         VStack(alignment: .center) {
             Button("Refresh") {
                 fetchFromServer()
             }
-            TabBarView<MediaType>(tabItems: [TabBarItem(id: .anime,
-                                                        label: "Anime",
-                                                        selectedColor: .red),
-                                             TabBarItem(id: .manga,
-                                                        label: "Manga",
-                                                        selectedColor: .blue)],
-                                  width: 320)
-            List() {
-                ForEach(mediaTrackingEntryStore.mediaRowViewModelCollection, id: \.self) { viewModel in
-                    MediaRowView(viewModel: viewModel)
-                        .environmentObject(mediaTrackingEntryStore
-                                            .mediaTrackingEntryByMediaId[viewModel.mediaListEntry.fragments.mediaListEntry.id]!)
+            TabBarView<MediaType>(tabItems: viewModel.tabBarItems,
+                                  width: 320,
+                                  onSelectedTabItemIndexChange: onSelectedTabItemIndexChange,
+                                  selectedTabIndex: $selectedMediaTypeTabItemIndex)
+            ScrollView() {
+                LazyVStack() {
+                    ForEach(mediaTrackingEntryStore.mediaRowViewModelCollection, id: \.self) { viewModel in
+                        MediaRowView(viewModel: viewModel)
+                            .environmentObject(mediaTrackingEntryStore
+                                                .mediaTrackingEntryByMediaId[viewModel.mediaListEntry.fragments.mediaListEntry.id]!)
+                    }
                 }
+                .padding(10)
             }
         }
         .onAppear() {
@@ -46,8 +61,15 @@ struct MediaListView: View {
     }
 }
 
-struct MediaListView_Previews: PreviewProvider {
-    static var previews: some View {
-        MediaListView()
+//struct MediaListView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MediaListView()
+//    }
+//}
+
+extension View {
+    func Print(_ vars: Any...) -> some View {
+        for v in vars { print(v) }
+        return EmptyView()
     }
 }

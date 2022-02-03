@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MediaRowViewModel: Hashable {
+class MediaRowViewModel: Hashable, ObservableObject {
     func hash(into hasher: inout Hasher) {
         hasher.combine(media.id)
     }
@@ -17,6 +17,13 @@ struct MediaRowViewModel: Hashable {
         lhs.mediaListEntry.fragments.mediaListEntry.id == rhs.mediaListEntry.fragments.mediaListEntry.id
     }
     
+    @Published var isExpanded: Bool = false
     var media: Media
     var mediaListEntry: GetMediaListCollectionQuery.Data.MediaListCollection.List.Entry
+    
+    internal init(media: Media,
+                  mediaListEntry: GetMediaListCollectionQuery.Data.MediaListCollection.List.Entry) {
+        self.media = media
+        self.mediaListEntry = mediaListEntry
+    }
 }

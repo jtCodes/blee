@@ -43,7 +43,6 @@ class MediaTrackingEntryStore: ObservableObject {
                     }
                     self.mediaEntries = mediaEntries
                     self.mediaRowViewModelCollection = mediaRowViewModelCollection
-                    print(mediaRowViewModelCollection.map {$0.mediaListEntry.fragments.mediaListEntry.media?.fragments.shortMediaDetails.title?.userPreferred})
                 }
                 self.mediaListCollection = mediaListCollection
             } else {
