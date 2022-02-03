@@ -31,10 +31,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         //        self.statusItem?.button?.title = "Test"
         
         let popover = NSPopover()
-        popover.contentSize = NSSize(width: 350, height: 550)
+        popover.contentSize = NSSize(width: 400, height: 550)
         popover.behavior = .transient
         popover.contentViewController = NSViewController()
-        popover.contentViewController?.view = NSHostingView(rootView: MenuBarView().frame(width: 350,
+        popover.contentViewController?.view = NSHostingView(rootView: MenuBarView().frame(width: 400,
                                                                                           height: 550))
         popover.contentViewController?.view.window?.becomeKey()
         

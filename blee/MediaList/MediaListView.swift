@@ -49,6 +49,7 @@ struct MediaListView: View {
                         MediaRowView(viewModel: viewModel)
                             .environmentObject(mediaTrackingEntryStore
                                                 .mediaTrackingEntryByMediaId[viewModel.mediaListEntry.fragments.mediaListEntry.id]!)
+                        Divider()
                     }
                 }
                 .padding(10)

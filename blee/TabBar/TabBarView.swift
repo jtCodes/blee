@@ -32,6 +32,7 @@ struct TabBarView<T>: View {
                 .onTapGesture {
                     selectedTabIndex = 1
                     onSelectedTabItemIndexChange(1)
+                    
                 }
         }
         .frame(width: width)

@@ -24,10 +24,11 @@ struct MediaRowView: View {
             }
             .contentShape(Rectangle())
             .onTapGesture {
-                viewModel.isExpanded.toggle()
+                withAnimation(Animation.spring().speed(1.5)) {
+                    viewModel.isExpanded.toggle()
+                }
             }
             if viewModel.isExpanded {
-                Text("Edit")
                 MediaTrackingEditView()
                     .background(.quaternary)
                     .cornerRadius(5)
@@ -35,7 +36,6 @@ struct MediaRowView: View {
                     .padding(10)
             }
         }
-        .frame(height: viewModel.isExpanded ? 250 : 100)
     }
 }
 //
