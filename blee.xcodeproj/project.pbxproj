@@ -16,6 +16,7 @@
 		ED266FD227AB22CE005D7EF0 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED266FD127AB22CE005D7EF0 /* TabBarView.swift */; };
 		ED266FD527AB244E005D7EF0 /* TabBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED266FD427AB244E005D7EF0 /* TabBarItemView.swift */; };
 		ED266FD727AB2946005D7EF0 /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED266FD627AB2946005D7EF0 /* TabBarItem.swift */; };
+		ED266FD927AC3A38005D7EF0 /* MediaTrackingEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED266FD827AC3A38005D7EF0 /* MediaTrackingEditViewModel.swift */; };
 		ED61D0FD279D1EC9001EBBE0 /* bleeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED61D0FC279D1EC9001EBBE0 /* bleeApp.swift */; };
 		ED61D0FF279D1EC9001EBBE0 /* MenuBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED61D0FE279D1EC9001EBBE0 /* MenuBarView.swift */; };
 		ED61D101279D1ECA001EBBE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED61D100279D1ECA001EBBE0 /* Assets.xcassets */; };
@@ -79,6 +80,7 @@
 		ED266FD127AB22CE005D7EF0 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		ED266FD427AB244E005D7EF0 /* TabBarItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemView.swift; sourceTree = "<group>"; };
 		ED266FD627AB2946005D7EF0 /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
+		ED266FD827AC3A38005D7EF0 /* MediaTrackingEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaTrackingEditViewModel.swift; sourceTree = "<group>"; };
 		ED61D0F9279D1EC9001EBBE0 /* blee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = blee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED61D0FC279D1EC9001EBBE0 /* bleeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bleeApp.swift; sourceTree = "<group>"; };
 		ED61D0FE279D1EC9001EBBE0 /* MenuBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarView.swift; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 			isa = PBXGroup;
 			children = (
 				EDB888C327A63CCF0033453B /* MediaTrackingEditView.swift */,
+				ED266FD827AC3A38005D7EF0 /* MediaTrackingEditViewModel.swift */,
 				ED9F0E9D27A60D230025668E /* MediaTrackingOptionView.swift */,
 				ED9F0E9F27A60EE60025668E /* MediaStatusTrackingOptionView.swift */,
 				EDB888C527A64AE50033453B /* MediaTrackingEntryModel.swift */,
@@ -465,6 +468,7 @@
 			files = (
 				ED266FCC27A8C5F3005D7EF0 /* MediaRowView.swift in Sources */,
 				EDB888D227A794460033453B /* BleeMediaListCollection.swift in Sources */,
+				ED266FD927AC3A38005D7EF0 /* MediaTrackingEditViewModel.swift in Sources */,
 				ED61D130279E33CB001EBBE0 /* AppDelegate.swift in Sources */,
 				ED9F0E9627A598D30025668E /* SearchResultView.swift in Sources */,
 				ED266FD027A8FEAD005D7EF0 /* MediaTrackingEntryStore.swift in Sources */,

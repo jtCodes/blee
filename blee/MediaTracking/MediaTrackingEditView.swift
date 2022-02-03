@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct MediaTrackingEditView: View {
-    @EnvironmentObject var mediaTrackingEntry: MediaTrackingEntry
+    var viewModel: MediaTrackingEditViewModel = MediaTrackingEditViewModel()
+    @EnvironmentObject var mediaTrackingEntry: MediaTrackingEntryModel
     @State private var date = Date()
     @State private var sleepAmount = 8
     
@@ -20,7 +21,7 @@ struct MediaTrackingEditView: View {
                 Spacer()
                 VStack(alignment: .leading) {
                     Text("C. Progress")
-                    StepperField(title: "", value: $sleepAmount)
+                    StepperField(title: "", value: $mediaTrackingEntry.progress)
                 }
                 Spacer()
                 VStack(alignment: .leading) {
@@ -29,7 +30,6 @@ struct MediaTrackingEditView: View {
                 }
                 Spacer()
             }
-            .padding(5)
             HStack() {
                 VStack(alignment: .leading) {
                     Text("Start Date")
@@ -37,7 +37,15 @@ struct MediaTrackingEditView: View {
                                displayedComponents: .date) {
                     }
                 }
-                .frame(width: 140)
+                .frame(width: 90)
+                Spacer()
+                VStack(alignment: .leading) {
+                    Text("Finish Date")
+                    DatePicker(selection: $date, in: ...Date(),
+                               displayedComponents: .date) {
+                    }
+                }
+                .frame(width: 90)
                 Spacer()
                 VStack(alignment: .leading) {
                     Text("Score")
@@ -50,60 +58,52 @@ struct MediaTrackingEditView: View {
                 }
                 Spacer()
             }
-            .padding(5)
-            HStack() {
-                VStack(alignment: .leading) {
-                    Text("Finish Date")
-                    DatePicker(selection: $date, in: ...Date(),
-                               displayedComponents: .date) {
-                    }
-                }
-                .frame(width: 140)
-                Spacer()
-                if (mediaTrackingEntry.currentEntry.isEdited) {
-                    HStack() {
-                        Button("Save") {
-                            AnilistNetworkClient.shared.saveMediaListEntry(mediaId: mediaTrackingEntry.currentEntry.mediaId,
-                                                                           status: mediaTrackingEntry.currentEntry.status,
-                                                                           score: 0,
-                                                                           progress: 0,
-                                                                           progressVolumes: 0,
-                                                                           isRepeat: 0,
-                                                                           isPrivate: nil,
-                                                                           notes: nil,
-                                                                           customLists: nil,
-                                                                           hiddenFromStatusLists: nil,
-                                                                           startedAt: nil,
-                                                                           completedAt: nil) { success in
-                                if (success == true) {
-                                    mediaTrackingEntry.initialEntry = mediaTrackingEntry.currentEntry.copy(with: nil) as! MediaTrackingEntryModel
-                                    mediaTrackingEntry.currentEntry.isEdited = false
-                                    mediaTrackingEntry.currentEntryUpdated()
-                                    mediaTrackingEntry.initialEntryUpdated()
-                                }
+            if (mediaTrackingEntry.isEdited) {
+                HStack() {
+                    Spacer()
+                    Button("Save") {
+                        AnilistNetworkClient.shared.saveMediaListEntry(mediaId: mediaTrackingEntry.mediaId,
+                                                                       status: mediaTrackingEntry.status,
+                                                                       score: 0,
+                                                                       progress: mediaTrackingEntry.progress,
+                                                                       progressVolumes: 0,
+                                                                       isRepeat: 0,
+                                                                       isPrivate: nil,
+                                                                       notes: nil,
+                                                                       customLists: nil,
+                                                                       hiddenFromStatusLists: nil,
+                                                                       startedAt: nil,
+                                                                       completedAt: nil) { success in
+                            if (success == true) {
+                                viewModel.initialEntry = mediaTrackingEntry.copy(with: nil) as? MediaTrackingEntryModel
+                                mediaTrackingEntry.isEdited = false
                             }
                         }
-                        
-                        .background(.blue)
-                        .cornerRadius(5)
-                        Button("Discard Changes") {
-                            mediaTrackingEntry.currentEntry.status = mediaTrackingEntry.initialEntry.status
-                            mediaTrackingEntry.currentEntry.isEdited = false
-                            mediaTrackingEntry.currentEntryUpdated()
-                        }
-                        .background(.red)
-                        .cornerRadius(5)
                     }
-                    .padding(.top, 20)
+                    
+                    .background(.blue)
+                    .cornerRadius(5)
+                    Button("Discard Edit") {
+                        mediaTrackingEntry.status = viewModel.initialEntry?.status
+                        mediaTrackingEntry.isEdited = false
+                    }
+                    .background(.red)
+                    .cornerRadius(5)
                 }
             }
-            .padding(5)
+            
+        }
+        .padding(10)
+        .onAppear() {
+            print("appear")
+            viewModel.initialEntry = mediaTrackingEntry.copy(with: nil) as? MediaTrackingEntryModel
         }
     }
 }
 
 struct StepperField: View {
     let title: LocalizedStringKey
+    let maxValue: Int = 99999
     @Binding var value: Int
     var alignToControl: Bool = false
     
@@ -114,7 +114,7 @@ struct StepperField: View {
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .frame(minWidth: 15, maxWidth: 60)
                 .alignmentGuide(.controlAlignment) { $0[.leading] }
-            Stepper(title, value: $value, in: 1...100)
+            Stepper(title, value: $value, in: 0...maxValue)
                 .labelsHidden()
         }
         .alignmentGuide(.leading) {
@@ -134,12 +134,12 @@ extension HorizontalAlignment {
     static let controlAlignment = HorizontalAlignment(ControlAlignment.self)
 }
 
-struct MediaTrackingEditView_Previews: PreviewProvider {
-    static let mediaTrackingEntry: MediaTrackingEntry = MediaTrackingEntry(initialEntry: MediaTrackingEntryModel(mediaId: 1),
-                                                                           currentEntry: MediaTrackingEntryModel(mediaId: 3))
-    static var previews: some View {
-        MediaTrackingEditView()
-            .frame(width: 400)
-            .environmentObject(mediaTrackingEntry)
-    }
-}
+//struct MediaTrackingEditView_Previews: PreviewProvider {
+//    static let mediaTrackingEntry: MediaTrackingEntry = MediaTrackingEntry(initialEntry: MediaTrackingEntryModel(mediaId: 1),
+//                                                                           currentEntry: MediaTrackingEntryModel(mediaId: 3))
+//    static var previews: some View {
+//        MediaTrackingEditView()
+//            .frame(width: 400)
+//            .environmentObject(mediaTrackingEntry)
+//    }
+//}

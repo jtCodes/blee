@@ -12,7 +12,7 @@ class MediaTrackingEntryStore: ObservableObject {
     @Published var mediaEntries: [GetMediaListCollectionQuery.Data.MediaListCollection.List.Entry] = []
     @Published var isFetchError: Bool = false
     @Published var mediaRowViewModelCollection: [MediaRowViewModel] = []
-    var mediaTrackingEntryByMediaId: [Int: MediaTrackingEntry] = [:]
+    @Published var mediaTrackingEntryByMediaId: [Int: MediaTrackingEntryModel] = [:]
 
     func fetchMediaCollection(user: User,
                               type: MediaType,
@@ -24,6 +24,8 @@ class MediaTrackingEntryStore: ObservableObject {
             if let mediaListCollection = mediaListCollection {
                 var mediaEntries:  [GetMediaListCollectionQuery.Data.MediaListCollection.List.Entry] = []
                 var mediaRowViewModelCollection: [MediaRowViewModel] = []
+                var mediaTrackingEntryByMediaId: [Int: MediaTrackingEntryModel] = [:]
+                
                 if let lists = mediaListCollection.lists {
                     for list in lists {
                         if let entries = list?.entries {
@@ -35,14 +37,18 @@ class MediaTrackingEntryStore: ObservableObject {
                                     
                                     let mediaTrackingEntry: MediaTrackingEntryModel = MediaTrackingEntryModel(mediaId: entry.fragments.mediaListEntry.mediaId)
                                     mediaTrackingEntry.status = entry.fragments.mediaListEntry.status
-                                    self.mediaTrackingEntryByMediaId[entry.fragments.mediaListEntry.id] = MediaTrackingEntry(initialEntry: mediaTrackingEntry,
-                                                                                                                             currentEntry: (mediaTrackingEntry.copy(with: nil) as? MediaTrackingEntryModel)!)
+                                    mediaTrackingEntry.score = entry.fragments.mediaListEntry.score ?? 0
+                                    mediaTrackingEntry.progress = entry.fragments.mediaListEntry.progress ?? 0
+                                    mediaTrackingEntry.isEdited = false
+                                    
+                                    mediaTrackingEntryByMediaId[entry.fragments.mediaListEntry.id] = mediaTrackingEntry
                                 }
                             }
                         }
                     }
                     self.mediaEntries = mediaEntries
                     self.mediaRowViewModelCollection = mediaRowViewModelCollection
+                    self.mediaTrackingEntryByMediaId = mediaTrackingEntryByMediaId
                 }
                 self.mediaListCollection = mediaListCollection
             } else {

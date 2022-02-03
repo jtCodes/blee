@@ -14,22 +14,22 @@ struct MediaStatusTrackingOptionView: View {
                                          .repeating,
                                          .paused,
                                          .dropped]
-    @EnvironmentObject var mediaTrackingEntry: MediaTrackingEntry
+    @EnvironmentObject var mediaTrackingEntry: MediaTrackingEntryModel
     
     var body: some View {
         MediaTrackingOptionView(title: "Status") {
             Menu {
                 ForEach(statusList, id: \.self) { status in
                     Button {
-                        mediaTrackingEntry.currentEntry.status = status
-                        mediaTrackingEntry.currentEntry.isEdited = true
-                        mediaTrackingEntry.currentEntryUpdated()
+                        mediaTrackingEntry.status = status
+//                        mediaTrackingEntry.currentEntry.isEdited = true
+//                        mediaTrackingEntry.currentEntryUpdated()
                     } label: {
                         Text(status.rawValue)
                     }
                 }
             } label: {
-                if let status = mediaTrackingEntry.currentEntry.status {
+                if let status = mediaTrackingEntry.status {
                     Text(status.rawValue)
                 } else {
                     Text("-")

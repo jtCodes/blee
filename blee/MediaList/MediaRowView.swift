@@ -24,7 +24,7 @@ struct MediaRowView: View {
             }
             .contentShape(Rectangle())
             .onTapGesture {
-                withAnimation(Animation.spring().speed(1.5)) {
+                withAnimation(Animation.spring().speed(2)) {
                     viewModel.isExpanded.toggle()
                 }
             }

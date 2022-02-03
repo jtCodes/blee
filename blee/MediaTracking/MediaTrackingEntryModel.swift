@@ -28,19 +28,40 @@ class MediaTrackingEntry: ObservableObject {
 
 class MediaTrackingEntryModel: ObservableObject {
     var mediaId: Int
-    @Published var status: MediaListStatus?
     @Published var isEdited: Bool = false
+    @Published var status: MediaListStatus? = nil {
+        willSet(newValue) {
+            if (newValue != status) {
+                isEdited = true
+            }
+        }
+    }
+    @Published var score: Double = 0.0 {
+        willSet(newValue) {
+            if (newValue != score) {
+                isEdited = true
+            }
+        }
+    }
+    @Published var progress: Int = 0 {
+        willSet(newValue) {
+            if (newValue != progress) {
+                isEdited = true
+            }
+        }
+    }
     
     func copy(with zone: NSZone? = nil) -> Any {
         let copy = MediaTrackingEntryModel(mediaId: mediaId)
         copy.mediaId = mediaId
         copy.isEdited = isEdited
         copy.status = status
+        copy.score = score
+        copy.progress = progress
         return copy
     }
     
     init(mediaId: Int) {
         self.mediaId = mediaId
-        self.status = status
     }
 }
