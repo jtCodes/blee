@@ -45,6 +45,20 @@ class MediaTrackingEntry: ObservableObject {
             }
         }
     }
+    @Published var completeDate: Date = Date() {
+        willSet(newValue) {
+            if (newValue != completeDate) {
+                isEdited = true
+            }
+        }
+    }
+    @Published var isCompleteDateExist: Bool = false {
+        willSet(newValue) {
+            if (newValue != isCompleteDateExist) {
+                isEdited = true
+            }
+        }
+    }
     
     func copy(with zone: NSZone? = nil) -> Any {
         let copy = MediaTrackingEntry(mediaId: mediaId)
@@ -55,6 +69,8 @@ class MediaTrackingEntry: ObservableObject {
         copy.progress = progress
         copy.startDate = startDate
         copy.isStartDateExist = isStartDateExist
+        copy.completeDate = completeDate
+        copy.isCompleteDateExist = isCompleteDateExist
         return copy
     }
     
@@ -70,5 +86,7 @@ class MediaTrackingEntry: ObservableObject {
         progress = initialEntry.progress
         startDate = initialEntry.startDate
         isStartDateExist = initialEntry.isStartDateExist
+        completeDate = initialEntry.completeDate
+        isCompleteDateExist = initialEntry.isCompleteDateExist
     }
 }

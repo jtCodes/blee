@@ -50,6 +50,16 @@ class MediaTrackingEntryStore: ObservableObject {
                                             mediaTrackingEntry.isStartDateExist = true
                                         }
                                     }
+                                    if let completeAt = entry.fragments.mediaListEntry.completedAt {
+                                        if let month = completeAt.month,
+                                           let day = completeAt.day,
+                                           let year = completeAt.year {
+                                            let formatter = DateFormatter()
+                                            formatter.dateFormat = "M/d/yyyy"
+                                            mediaTrackingEntry.completeDate = formatter.date(from: "\(month)/\(day)/\(year)")!
+                                            mediaTrackingEntry.isCompleteDateExist = true
+                                        }
+                                    }
                                     
                                     mediaTrackingEntry.isEdited = false
                                     mediaTrackingEntryByMediaId[entry.fragments.mediaListEntry.id] = mediaTrackingEntry

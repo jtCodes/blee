@@ -11,12 +11,17 @@ struct MediaTrackingEditView: View {
     var viewModel: MediaTrackingEditViewModel = MediaTrackingEditViewModel()
     @EnvironmentObject var mediaTrackingEntry: MediaTrackingEntry
     @State private var isStartDateAdded: Bool = false
-    @State private var isEndDateEdited: Bool = false
+    @State private var isCompleteDateAdded: Bool = false
     @State private var sleepAmount = 8
     
     func onStartDateAddButtonClick(_ isAdd: Bool) {
         isStartDateAdded = isAdd
         mediaTrackingEntry.isStartDateExist = isAdd
+    }
+    
+    func onCompleteDateAddButtonClick(_ isAdd: Bool) {
+        isCompleteDateAdded = isAdd
+        mediaTrackingEntry.isCompleteDateExist = isAdd
     }
     
     var body: some View {
@@ -42,10 +47,10 @@ struct MediaTrackingEditView: View {
                                             date: $mediaTrackingEntry.startDate,
                                             isAddDate: $isStartDateAdded)
                 Spacer()
-                MediaDateTrackingOptionView(label: "Finish Date",
-                                            onAddDeleteButtonClick: onStartDateAddButtonClick,
-                                            date: $mediaTrackingEntry.startDate,
-                                            isAddDate: $isEndDateEdited)
+                MediaDateTrackingOptionView(label: "End Date",
+                                            onAddDeleteButtonClick: onCompleteDateAddButtonClick,
+                                            date: $mediaTrackingEntry.completeDate,
+                                            isAddDate: $isCompleteDateAdded)
                 Spacer()
                 VStack(alignment: .leading) {
                     Text("Score")
@@ -74,7 +79,8 @@ struct MediaTrackingEditView: View {
                                                                        hiddenFromStatusLists: nil,
                                                                        startedAt: mediaTrackingEntry.isStartDateExist ?
                                                                        mediaTrackingEntry.startDate.toFuzzyDateInput() : nil,
-                                                                       completedAt: nil) { success in
+                                                                       completedAt: mediaTrackingEntry.isCompleteDateExist ?
+                                                                       mediaTrackingEntry.completeDate.toFuzzyDateInput() : nil) { success in
                             if (success == true) {
                                 viewModel.initialEntry = mediaTrackingEntry.copy(with: nil) as? MediaTrackingEntry
                                 mediaTrackingEntry.isEdited = false
@@ -88,6 +94,7 @@ struct MediaTrackingEditView: View {
                         mediaTrackingEntry.reset(initialEntry: viewModel.initialEntry!)
                         mediaTrackingEntry.isEdited = false
                         isStartDateAdded = mediaTrackingEntry.isStartDateExist
+                        isCompleteDateAdded = mediaTrackingEntry.isCompleteDateExist
                     }
                     .background(.red)
                     .cornerRadius(5)
