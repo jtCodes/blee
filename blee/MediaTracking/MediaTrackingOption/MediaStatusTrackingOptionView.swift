@@ -14,6 +14,18 @@ struct MediaStatusTrackingOptionView: View {
                                          .repeating,
                                          .paused,
                                          .dropped]
+    let statusLabel: [MediaType: [MediaListStatus: String]] = [.anime: [.current: "Watching",
+                                                                        .planning: "Plan To Watch",
+                                                                        .completed: "Completed",
+                                                                        .repeating: "Rewatching",
+                                                                        .paused: "Paused",
+                                                                        .dropped: "Dropped"],
+                                                               .manga: [.current: "Reading",
+                                                                        .planning: "Plan To Read",
+                                                                        .completed: "Completed",
+                                                                        .repeating: "Rereading",
+                                                                        .paused: "Paused",
+                                                                        .dropped: "Dropped"],]
     @EnvironmentObject var mediaTrackingEntry: MediaTrackingEntry
     
     var body: some View {
@@ -23,12 +35,12 @@ struct MediaStatusTrackingOptionView: View {
                     Button {
                         mediaTrackingEntry.status = status
                     } label: {
-                        Text(status.rawValue)
+                        Text(statusLabel[mediaTrackingEntry.mediaType]![status] ?? "")
                     }
                 }
             } label: {
                 if let status = mediaTrackingEntry.status {
-                    Text(status.rawValue)
+                    Text(statusLabel[mediaTrackingEntry.mediaType]![status] ?? "")
                 } else {
                     Text("-")
                 }
