@@ -9,9 +9,15 @@ import SwiftUI
 
 struct MediaTrackingEditView: View {
     var viewModel: MediaTrackingEditViewModel = MediaTrackingEditViewModel()
-    @EnvironmentObject var mediaTrackingEntry: MediaTrackingEntryModel
-    @State private var date = Date()
+    @EnvironmentObject var mediaTrackingEntry: MediaTrackingEntry
+    @State private var isStartDateAdded: Bool = false
+    @State private var isEndDateEdited: Bool = false
     @State private var sleepAmount = 8
+    
+    func onStartDateAddButtonClick(_ isAdd: Bool) {
+        isStartDateAdded = isAdd
+        mediaTrackingEntry.isStartDateExist = isAdd
+    }
     
     var body: some View {
         VStack() {
@@ -20,36 +26,30 @@ struct MediaTrackingEditView: View {
                     .frame(width: 140)
                 Spacer()
                 VStack(alignment: .leading) {
-                    Text("C. Progress")
+                    Text("Chapter")
                     StepperField(title: "", value: $mediaTrackingEntry.progress)
                 }
                 Spacer()
                 VStack(alignment: .leading) {
-                    Text("V. Progress")
+                    Text("Volume")
                     StepperField(title: "", value: $sleepAmount)
                 }
                 Spacer()
             }
             HStack() {
-                VStack(alignment: .leading) {
-                    Text("Start Date")
-                    DatePicker(selection: $date, in: ...Date(),
-                               displayedComponents: .date) {
-                    }
-                }
-                .frame(width: 90)
+                MediaDateTrackingOptionView(label: "Start Date",
+                                            onAddDeleteButtonClick: onStartDateAddButtonClick,
+                                            date: $mediaTrackingEntry.startDate,
+                                            isAddDate: $isStartDateAdded)
                 Spacer()
-                VStack(alignment: .leading) {
-                    Text("Finish Date")
-                    DatePicker(selection: $date, in: ...Date(),
-                               displayedComponents: .date) {
-                    }
-                }
-                .frame(width: 90)
+                MediaDateTrackingOptionView(label: "Finish Date",
+                                            onAddDeleteButtonClick: onStartDateAddButtonClick,
+                                            date: $mediaTrackingEntry.startDate,
+                                            isAddDate: $isEndDateEdited)
                 Spacer()
                 VStack(alignment: .leading) {
                     Text("Score")
-                    StepperField(title: "", value: $sleepAmount)
+                    StepperField(title: "", value: $mediaTrackingEntry.score)
                 }
                 Spacer()
                 VStack(alignment: .leading) {
@@ -72,10 +72,11 @@ struct MediaTrackingEditView: View {
                                                                        notes: nil,
                                                                        customLists: nil,
                                                                        hiddenFromStatusLists: nil,
-                                                                       startedAt: nil,
+                                                                       startedAt: mediaTrackingEntry.isStartDateExist ?
+                                                                       mediaTrackingEntry.startDate.toFuzzyDateInput() : nil,
                                                                        completedAt: nil) { success in
                             if (success == true) {
-                                viewModel.initialEntry = mediaTrackingEntry.copy(with: nil) as? MediaTrackingEntryModel
+                                viewModel.initialEntry = mediaTrackingEntry.copy(with: nil) as? MediaTrackingEntry
                                 mediaTrackingEntry.isEdited = false
                             }
                         }
@@ -84,8 +85,9 @@ struct MediaTrackingEditView: View {
                     .background(.blue)
                     .cornerRadius(5)
                     Button("Discard Edit") {
-                        mediaTrackingEntry.status = viewModel.initialEntry?.status
+                        mediaTrackingEntry.reset(initialEntry: viewModel.initialEntry!)
                         mediaTrackingEntry.isEdited = false
+                        isStartDateAdded = mediaTrackingEntry.isStartDateExist
                     }
                     .background(.red)
                     .cornerRadius(5)
@@ -95,16 +97,20 @@ struct MediaTrackingEditView: View {
         }
         .padding(10)
         .onAppear() {
-            print("appear")
-            viewModel.initialEntry = mediaTrackingEntry.copy(with: nil) as? MediaTrackingEntryModel
+            viewModel.initialEntry = mediaTrackingEntry.copy(with: nil) as? MediaTrackingEntry
+            if let isStartDateExist = viewModel.initialEntry?.isStartDateExist {
+                if (isStartDateExist) {
+                    isStartDateAdded = true
+                }
+            }
         }
     }
 }
 
-struct StepperField: View {
+struct StepperField<T: Strideable>: View {
     let title: LocalizedStringKey
     let maxValue: Int = 99999
-    @Binding var value: Int
+    @Binding var value: T
     var alignToControl: Bool = false
     
     var body: some View {
@@ -114,7 +120,7 @@ struct StepperField: View {
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .frame(minWidth: 15, maxWidth: 60)
                 .alignmentGuide(.controlAlignment) { $0[.leading] }
-            Stepper(title, value: $value, in: 0...maxValue)
+            Stepper(title, value: $value)
                 .labelsHidden()
         }
         .alignmentGuide(.leading) {
@@ -134,12 +140,11 @@ extension HorizontalAlignment {
     static let controlAlignment = HorizontalAlignment(ControlAlignment.self)
 }
 
-//struct MediaTrackingEditView_Previews: PreviewProvider {
-//    static let mediaTrackingEntry: MediaTrackingEntry = MediaTrackingEntry(initialEntry: MediaTrackingEntryModel(mediaId: 1),
-//                                                                           currentEntry: MediaTrackingEntryModel(mediaId: 3))
-//    static var previews: some View {
-//        MediaTrackingEditView()
-//            .frame(width: 400)
-//            .environmentObject(mediaTrackingEntry)
-//    }
-//}
+struct MediaTrackingEditView_Previews: PreviewProvider {
+    static let mediaTrackingEntry: MediaTrackingEntry = MediaTrackingEntry(mediaId: 1)
+    static var previews: some View {
+        MediaTrackingEditView()
+            .frame(width: 400)
+            .environmentObject(mediaTrackingEntry)
+    }
+}

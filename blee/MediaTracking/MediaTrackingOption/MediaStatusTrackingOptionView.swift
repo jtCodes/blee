@@ -14,7 +14,7 @@ struct MediaStatusTrackingOptionView: View {
                                          .repeating,
                                          .paused,
                                          .dropped]
-    @EnvironmentObject var mediaTrackingEntry: MediaTrackingEntryModel
+    @EnvironmentObject var mediaTrackingEntry: MediaTrackingEntry
     
     var body: some View {
         MediaTrackingOptionView(title: "Status") {
@@ -22,8 +22,6 @@ struct MediaStatusTrackingOptionView: View {
                 ForEach(statusList, id: \.self) { status in
                     Button {
                         mediaTrackingEntry.status = status
-//                        mediaTrackingEntry.currentEntry.isEdited = true
-//                        mediaTrackingEntry.currentEntryUpdated()
                     } label: {
                         Text(status.rawValue)
                     }

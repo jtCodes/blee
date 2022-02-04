@@ -10,6 +10,7 @@ import Kingfisher
 
 struct MediaRowView: View {
     @ObservedObject var viewModel: MediaRowViewModel
+    @State var isHovered: Bool = false
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -22,6 +23,8 @@ struct MediaRowView: View {
                 Text(viewModel.media.title.userPreferred)
                 Spacer()
             }
+            .background(isHovered ? .blue.opacity(0.6) : .clear)
+            .cornerRadius(5)
             .contentShape(Rectangle())
             .onTapGesture {
                 withAnimation(Animation.spring().speed(2)) {
@@ -33,7 +36,7 @@ struct MediaRowView: View {
                     .background(.quaternary)
                     .cornerRadius(5)
                     .frame(maxWidth: .infinity)
-                    .padding(10)
+                    .padding(5)
             }
         }
     }

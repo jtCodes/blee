@@ -29,22 +29,25 @@ struct MediaListView: View {
     }
     
     func onSelectedTabItemIndexChange(newIndex: Int) {
-        viewModel.selectedMediaType = viewModel.tabBarItems[newIndex].id
-        fetchFromCacheIfPossible()
+        let newSelectedMediaType = viewModel.tabBarItems[newIndex].id
+        
+        if (newSelectedMediaType != viewModel.selectedMediaType) {
+            viewModel.selectedMediaType = newSelectedMediaType
+            fetchFromCacheIfPossible()
+        }
     }
     
     var body: some View {
-        Print(viewModel.selectedMediaType)
         VStack(alignment: .center) {
             Button("Refresh") {
                 fetchFromServer()
             }
             TabBarView<MediaType>(tabItems: viewModel.tabBarItems,
-                                  width: 320,
+                                  width: 380,
                                   onSelectedTabItemIndexChange: onSelectedTabItemIndexChange,
                                   selectedTabIndex: $selectedMediaTypeTabItemIndex)
             ScrollView() {
-                LazyVStack() {
+                VStack() {
                     ForEach(mediaTrackingEntryStore.mediaRowViewModelCollection, id: \.self) { viewModel in
                         MediaRowView(viewModel: viewModel)
                             .environmentObject(mediaTrackingEntryStore

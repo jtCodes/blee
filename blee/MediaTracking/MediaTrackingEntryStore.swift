@@ -12,8 +12,8 @@ class MediaTrackingEntryStore: ObservableObject {
     @Published var mediaEntries: [GetMediaListCollectionQuery.Data.MediaListCollection.List.Entry] = []
     @Published var isFetchError: Bool = false
     @Published var mediaRowViewModelCollection: [MediaRowViewModel] = []
-    @Published var mediaTrackingEntryByMediaId: [Int: MediaTrackingEntryModel] = [:]
-
+    @Published var mediaTrackingEntryByMediaId: [Int: MediaTrackingEntry] = [:]
+    
     func fetchMediaCollection(user: User,
                               type: MediaType,
                               shouldFetchFromCache: Bool) {
@@ -24,7 +24,7 @@ class MediaTrackingEntryStore: ObservableObject {
             if let mediaListCollection = mediaListCollection {
                 var mediaEntries:  [GetMediaListCollectionQuery.Data.MediaListCollection.List.Entry] = []
                 var mediaRowViewModelCollection: [MediaRowViewModel] = []
-                var mediaTrackingEntryByMediaId: [Int: MediaTrackingEntryModel] = [:]
+                var mediaTrackingEntryByMediaId: [Int: MediaTrackingEntry] = [:]
                 
                 if let lists = mediaListCollection.lists {
                     for list in lists {
@@ -35,12 +35,23 @@ class MediaTrackingEntryStore: ObservableObject {
                                     mediaRowViewModelCollection.append(MediaRowViewModel(media: Media(shortMediaDetails: (entry.fragments.mediaListEntry.media?.fragments.shortMediaDetails)!),
                                                                                          mediaListEntry: entry))
                                     
-                                    let mediaTrackingEntry: MediaTrackingEntryModel = MediaTrackingEntryModel(mediaId: entry.fragments.mediaListEntry.mediaId)
+                                    let mediaTrackingEntry: MediaTrackingEntry = MediaTrackingEntry(mediaId: entry.fragments.mediaListEntry.mediaId)
                                     mediaTrackingEntry.status = entry.fragments.mediaListEntry.status
                                     mediaTrackingEntry.score = entry.fragments.mediaListEntry.score ?? 0
                                     mediaTrackingEntry.progress = entry.fragments.mediaListEntry.progress ?? 0
-                                    mediaTrackingEntry.isEdited = false
                                     
+                                    if let startAt = entry.fragments.mediaListEntry.startedAt {
+                                        if let month = startAt.month,
+                                           let day = startAt.day,
+                                           let year = startAt.year {
+                                            let formatter = DateFormatter()
+                                            formatter.dateFormat = "M/d/yyyy"
+                                            mediaTrackingEntry.startDate = formatter.date(from: "\(month)/\(day)/\(year)")!
+                                            mediaTrackingEntry.isStartDateExist = true
+                                        }
+                                    }
+                                    
+                                    mediaTrackingEntry.isEdited = false
                                     mediaTrackingEntryByMediaId[entry.fragments.mediaListEntry.id] = mediaTrackingEntry
                                 }
                             }

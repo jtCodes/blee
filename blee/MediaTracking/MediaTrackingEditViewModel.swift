@@ -8,5 +8,5 @@
 import Foundation
 
 class MediaTrackingEditViewModel: ObservableObject {
-    var initialEntry: MediaTrackingEntryModel?
+    var initialEntry: MediaTrackingEntry?
 }

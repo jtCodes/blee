@@ -8,25 +8,6 @@
 import Foundation
 
 class MediaTrackingEntry: ObservableObject {
-    @Published var initialEntry: MediaTrackingEntryModel
-    @Published var currentEntry: MediaTrackingEntryModel
-    
-    init(initialEntry: MediaTrackingEntryModel,
-         currentEntry: MediaTrackingEntryModel) {
-        self.initialEntry = initialEntry
-        self.currentEntry = currentEntry
-    }
-    
-    func currentEntryUpdated() {
-        currentEntry = currentEntry.copy(with: nil) as! MediaTrackingEntryModel
-    }
-    
-    func initialEntryUpdated() {
-        initialEntry = initialEntry.copy(with: nil) as! MediaTrackingEntryModel
-    }
-}
-
-class MediaTrackingEntryModel: ObservableObject {
     var mediaId: Int
     @Published var isEdited: Bool = false
     @Published var status: MediaListStatus? = nil {
@@ -50,18 +31,44 @@ class MediaTrackingEntryModel: ObservableObject {
             }
         }
     }
+    @Published var startDate: Date = Date() {
+        willSet(newValue) {
+            if (newValue != startDate) {
+                isEdited = true
+            }
+        }
+    }
+    @Published var isStartDateExist: Bool = false {
+        willSet(newValue) {
+            if (newValue != isStartDateExist) {
+                isEdited = true
+            }
+        }
+    }
     
     func copy(with zone: NSZone? = nil) -> Any {
-        let copy = MediaTrackingEntryModel(mediaId: mediaId)
+        let copy = MediaTrackingEntry(mediaId: mediaId)
         copy.mediaId = mediaId
         copy.isEdited = isEdited
         copy.status = status
         copy.score = score
         copy.progress = progress
+        copy.startDate = startDate
+        copy.isStartDateExist = isStartDateExist
         return copy
     }
     
     init(mediaId: Int) {
         self.mediaId = mediaId
+    }
+    
+    func reset(initialEntry: MediaTrackingEntry) {
+        mediaId = initialEntry.mediaId
+        isEdited = initialEntry.isEdited
+        status = initialEntry.status
+        score = initialEntry.score
+        progress = initialEntry.progress
+        startDate = initialEntry.startDate
+        isStartDateExist = initialEntry.isStartDateExist
     }
 }
