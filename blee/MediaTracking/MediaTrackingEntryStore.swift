@@ -35,7 +35,8 @@ class MediaTrackingEntryStore: ObservableObject {
                                     mediaRowViewModelCollection.append(MediaRowViewModel(media: Media(shortMediaDetails: (entry.fragments.mediaListEntry.media?.fragments.shortMediaDetails)!),
                                                                                          mediaListEntry: entry))
                                     
-                                    let mediaTrackingEntry: MediaTrackingEntry = MediaTrackingEntry(mediaId: entry.fragments.mediaListEntry.mediaId)
+                                    let mediaTrackingEntry: MediaTrackingEntry = MediaTrackingEntry(mediaId: entry.fragments.mediaListEntry.mediaId,
+                                                                                                    mediaType: type)
                                     mediaTrackingEntry.status = entry.fragments.mediaListEntry.status
                                     mediaTrackingEntry.score = entry.fragments.mediaListEntry.score ?? 0
                                     mediaTrackingEntry.progress = entry.fragments.mediaListEntry.progress ?? 0

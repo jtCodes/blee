@@ -9,6 +9,7 @@ import Foundation
 
 class MediaTrackingEntry: ObservableObject {
     var mediaId: Int
+    var mediaType: MediaType
     @Published var isEdited: Bool = false
     @Published var status: MediaListStatus? = nil {
         willSet(newValue) {
@@ -82,8 +83,10 @@ class MediaTrackingEntry: ObservableObject {
     }
     
     func copy(with zone: NSZone? = nil) -> Any {
-        let copy = MediaTrackingEntry(mediaId: mediaId)
+        let copy = MediaTrackingEntry(mediaId: mediaId,
+                                      mediaType: mediaType)
         copy.mediaId = mediaId
+        copy.mediaType = mediaType
         copy.isEdited = isEdited
         copy.status = status
         copy.score = score
@@ -98,12 +101,14 @@ class MediaTrackingEntry: ObservableObject {
         return copy
     }
     
-    init(mediaId: Int) {
+    init(mediaId: Int, mediaType: MediaType) {
         self.mediaId = mediaId
+        self.mediaType = mediaType
     }
     
     func reset(initialEntry: MediaTrackingEntry) {
         mediaId = initialEntry.mediaId
+        mediaType = initialEntry.mediaType
         isEdited = initialEntry.isEdited
         status = initialEntry.status
         score = initialEntry.score

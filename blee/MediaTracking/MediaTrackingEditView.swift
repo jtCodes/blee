@@ -12,7 +12,6 @@ struct MediaTrackingEditView: View {
     @EnvironmentObject var mediaTrackingEntry: MediaTrackingEntry
     @State private var isStartDateAdded: Bool = false
     @State private var isCompleteDateAdded: Bool = false
-    @State private var sleepAmount = 8
     
     func onStartDateAddButtonClick(_ isAdd: Bool) {
         isStartDateAdded = isAdd
@@ -30,12 +29,15 @@ struct MediaTrackingEditView: View {
                 MediaStatusTrackingOptionView()
                     .frame(width: 140)
                 Spacer()
-                MediaTrackingOptionView(title: "Chapter") {
+                MediaTrackingOptionView(title: mediaTrackingEntry.mediaType == .anime ?
+                                        "Episode" : "Chapter") {
                     StepperField(title: "", value: $mediaTrackingEntry.progress)
                 }
-                Spacer()
-                MediaTrackingOptionView(title: "Volume") {
-                    StepperField(title: "", value: $mediaTrackingEntry.progressVolume)
+                if mediaTrackingEntry.mediaType == .manga  {
+                    Spacer()
+                    MediaTrackingOptionView(title: "Volume") {
+                        StepperField(title: "", value: $mediaTrackingEntry.progressVolume)
+                    }
                 }
                 Spacer()
             }
@@ -54,7 +56,7 @@ struct MediaTrackingEditView: View {
                     StepperField(title: "", value: $mediaTrackingEntry.score)
                 }
                 Spacer()
-                MediaTrackingOptionView(title: "Rereads") {
+                MediaTrackingOptionView(title: "Repeats") {
                     StepperField(title: "", value: $mediaTrackingEntry.repeatCount)
                 }
                 Spacer()
@@ -146,7 +148,8 @@ extension HorizontalAlignment {
 }
 
 struct MediaTrackingEditView_Previews: PreviewProvider {
-    static let mediaTrackingEntry: MediaTrackingEntry = MediaTrackingEntry(mediaId: 1)
+    static let mediaTrackingEntry: MediaTrackingEntry = MediaTrackingEntry(mediaId: 1,
+                                                                           mediaType: .anime)
     
     static var previews: some View {
         MediaTrackingEditView()
