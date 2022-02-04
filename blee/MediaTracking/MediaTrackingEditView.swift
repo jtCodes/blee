@@ -30,13 +30,11 @@ struct MediaTrackingEditView: View {
                 MediaStatusTrackingOptionView()
                     .frame(width: 140)
                 Spacer()
-                VStack(alignment: .leading) {
-                    Text("Chapter")
+                MediaTrackingOptionView(title: "Chapter") {
                     StepperField(title: "", value: $mediaTrackingEntry.progress)
                 }
                 Spacer()
-                VStack(alignment: .leading) {
-                    Text("Volume")
+                MediaTrackingOptionView(title: "Volume") {
                     StepperField(title: "", value: $mediaTrackingEntry.progressVolume)
                 }
                 Spacer()
@@ -52,13 +50,11 @@ struct MediaTrackingEditView: View {
                                             date: $mediaTrackingEntry.completeDate,
                                             isAddDate: $isCompleteDateAdded)
                 Spacer()
-                VStack(alignment: .leading) {
-                    Text("Score")
+                MediaTrackingOptionView(title: "Score") {
                     StepperField(title: "", value: $mediaTrackingEntry.score)
                 }
                 Spacer()
-                VStack(alignment: .leading) {
-                    Text("Rereads")
+                MediaTrackingOptionView(title: "Rereads") {
                     StepperField(title: "", value: $mediaTrackingEntry.repeatCount)
                 }
                 Spacer()
@@ -151,7 +147,7 @@ extension HorizontalAlignment {
 
 struct MediaTrackingEditView_Previews: PreviewProvider {
     static let mediaTrackingEntry: MediaTrackingEntry = MediaTrackingEntry(mediaId: 1)
-
+    
     static var previews: some View {
         MediaTrackingEditView()
             .frame(width: 400)
