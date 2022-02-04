@@ -32,7 +32,7 @@ struct MediaRowView: View {
                 }
             }
             if viewModel.isExpanded {
-                MediaTrackingEditView()
+                MediaTrackingEditView(viewModel: viewModel.mediaTrackingEditViewModel)
                     .background(.quaternary)
                     .cornerRadius(5)
                     .frame(maxWidth: .infinity)

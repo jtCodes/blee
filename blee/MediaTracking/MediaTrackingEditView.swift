@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct MediaTrackingEditView: View {
-    var viewModel: MediaTrackingEditViewModel = MediaTrackingEditViewModel()
+    var viewModel: MediaTrackingEditViewModel
     @EnvironmentObject var mediaTrackingEntry: MediaTrackingEntry
+    @EnvironmentObject var mediaTrackingStore: MediaTrackingEntryStore
     @State private var isStartDateAdded: Bool = false
     @State private var isCompleteDateAdded: Bool = false
     
@@ -90,10 +91,14 @@ struct MediaTrackingEditView: View {
                     .background(.blue)
                     .cornerRadius(5)
                     Button("Discard Edit") {
-                        mediaTrackingEntry.reset(initialEntry: viewModel.initialEntry!)
-                        mediaTrackingEntry.isEdited = false
-                        isStartDateAdded = mediaTrackingEntry.isStartDateExist
-                        isCompleteDateAdded = mediaTrackingEntry.isCompleteDateExist
+                        DispatchQueue.main.async {
+                            NSApp.keyWindow?.makeFirstResponder(nil)
+                            mediaTrackingEntry.reset(initialEntry: viewModel.initialEntry!)
+                            mediaTrackingEntry.progress = viewModel.initialEntry!.progress
+                            mediaTrackingEntry.isEdited = false
+                            isStartDateAdded = mediaTrackingEntry.isStartDateExist
+                            isCompleteDateAdded = mediaTrackingEntry.isCompleteDateExist
+                        }
                     }
                     .background(.red)
                     .cornerRadius(5)
@@ -102,9 +107,8 @@ struct MediaTrackingEditView: View {
             
             
         }
-        .padding(10)
+        .padding(5)
         .onAppear() {
-            viewModel.initialEntry = mediaTrackingEntry.copy(with: nil) as? MediaTrackingEntry
             if let isStartDateExist = viewModel.initialEntry?.isStartDateExist {
                 if (isStartDateExist) {
                     isStartDateAdded = true
@@ -121,12 +125,23 @@ struct StepperField<T: Strideable>: View {
     var alignToControl: Bool = false
     
     var body: some View {
+        let binding = Binding<T>(get: {
+            self.value
+        }, set: {
+            self.value = $0
+        })
+        
         HStack {
-            TextField("Enter Value", value: $value, formatter: NumberFormatter())
+            TextField("Enter Value", value: binding, formatter: NumberFormatter())
                 .multilineTextAlignment(.center)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .frame(minWidth: 15, maxWidth: 60)
                 .alignmentGuide(.controlAlignment) { $0[.leading] }
+                .onSubmit {
+                    DispatchQueue.main.async {
+                        NSApp.keyWindow?.makeFirstResponder(nil)
+                    }
+                }
             Stepper(title, value: $value)
                 .labelsHidden()
         }
@@ -152,7 +167,7 @@ struct MediaTrackingEditView_Previews: PreviewProvider {
                                                                            mediaType: .anime)
     
     static var previews: some View {
-        MediaTrackingEditView()
+        MediaTrackingEditView(viewModel: MediaTrackingEditViewModel())
             .frame(width: 400)
             .environmentObject(mediaTrackingEntry)
     }

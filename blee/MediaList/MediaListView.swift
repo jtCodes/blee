@@ -39,8 +39,14 @@ struct MediaListView: View {
     
     var body: some View {
         VStack(alignment: .center) {
-            Button("Refresh") {
-                fetchFromServer()
+            HStack() {
+                Button {
+                    fetchFromServer()
+                } label: {
+                    Image(systemName: "arrow.clockwise")
+                }
+                .padding(.leading, 5)
+                Spacer()
             }
             TabBarView<MediaType>(tabItems: viewModel.tabBarItems,
                                   width: 380,
@@ -50,8 +56,7 @@ struct MediaListView: View {
                 VStack() {
                     ForEach(mediaTrackingEntryStore.mediaRowViewModelCollection, id: \.self) { viewModel in
                         MediaRowView(viewModel: viewModel)
-                            .environmentObject(mediaTrackingEntryStore
-                                                .mediaTrackingEntryByMediaId[viewModel.mediaListEntry.fragments.mediaListEntry.id]!)
+                            .environmentObject(viewModel.mediaListEntry)
                         Divider()
                     }
                 }

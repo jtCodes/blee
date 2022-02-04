@@ -12,7 +12,6 @@ class MediaTrackingEntryStore: ObservableObject {
     @Published var mediaEntries: [GetMediaListCollectionQuery.Data.MediaListCollection.List.Entry] = []
     @Published var isFetchError: Bool = false
     @Published var mediaRowViewModelCollection: [MediaRowViewModel] = []
-    @Published var mediaTrackingEntryByMediaId: [Int: MediaTrackingEntry] = [:]
     
     func fetchMediaCollection(user: User,
                               type: MediaType,
@@ -24,17 +23,12 @@ class MediaTrackingEntryStore: ObservableObject {
             if let mediaListCollection = mediaListCollection {
                 var mediaEntries:  [GetMediaListCollectionQuery.Data.MediaListCollection.List.Entry] = []
                 var mediaRowViewModelCollection: [MediaRowViewModel] = []
-                var mediaTrackingEntryByMediaId: [Int: MediaTrackingEntry] = [:]
                 
                 if let lists = mediaListCollection.lists {
                     for list in lists {
                         if let entries = list?.entries {
                             for entry in entries {
                                 if let entry = entry {
-                                    mediaEntries.append(entry)
-                                    mediaRowViewModelCollection.append(MediaRowViewModel(media: Media(shortMediaDetails: (entry.fragments.mediaListEntry.media?.fragments.shortMediaDetails)!),
-                                                                                         mediaListEntry: entry))
-                                    
                                     let mediaTrackingEntry: MediaTrackingEntry = MediaTrackingEntry(mediaId: entry.fragments.mediaListEntry.mediaId,
                                                                                                     mediaType: type)
                                     mediaTrackingEntry.status = entry.fragments.mediaListEntry.status
@@ -66,14 +60,17 @@ class MediaTrackingEntryStore: ObservableObject {
                                     }
                                     
                                     mediaTrackingEntry.isEdited = false
-                                    mediaTrackingEntryByMediaId[entry.fragments.mediaListEntry.id] = mediaTrackingEntry
+
+                                    mediaEntries.append(entry)
+                                    mediaRowViewModelCollection.append(MediaRowViewModel(media: Media(shortMediaDetails: (entry.fragments.mediaListEntry.media?.fragments.shortMediaDetails)!),
+                                                                                         mediaListEntry: mediaTrackingEntry))
+                                    
                                 }
                             }
                         }
                     }
                     self.mediaEntries = mediaEntries
                     self.mediaRowViewModelCollection = mediaRowViewModelCollection
-                    self.mediaTrackingEntryByMediaId = mediaTrackingEntryByMediaId
                 }
                 self.mediaListCollection = mediaListCollection
             } else {

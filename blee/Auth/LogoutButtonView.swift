@@ -16,7 +16,7 @@ struct LogoutButtonView: View {
             AuthManager.shared.authedUser = nil
         } label: {
             Text("Logout")
-            Image(systemName: "arrow.down.right.circle")
+            Image(systemName: "arrow.down.left.circle.fill")
         }
     }
 }
