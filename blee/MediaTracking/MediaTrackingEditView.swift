@@ -37,7 +37,7 @@ struct MediaTrackingEditView: View {
                 Spacer()
                 VStack(alignment: .leading) {
                     Text("Volume")
-                    StepperField(title: "", value: $sleepAmount)
+                    StepperField(title: "", value: $mediaTrackingEntry.progressVolume)
                 }
                 Spacer()
             }
@@ -59,22 +59,23 @@ struct MediaTrackingEditView: View {
                 Spacer()
                 VStack(alignment: .leading) {
                     Text("Rereads")
-                    StepperField(title: "", value: $sleepAmount)
+                    StepperField(title: "", value: $mediaTrackingEntry.repeatCount)
                 }
                 Spacer()
             }
-            if (mediaTrackingEntry.isEdited) {
-                HStack() {
-                    Spacer()
+            HStack() {
+                TextField("Notes", text: $mediaTrackingEntry.note)
+                Spacer()
+                if (mediaTrackingEntry.isEdited) {
                     Button("Save") {
                         AnilistNetworkClient.shared.saveMediaListEntry(mediaId: mediaTrackingEntry.mediaId,
                                                                        status: mediaTrackingEntry.status,
-                                                                       score: 0,
+                                                                       score: mediaTrackingEntry.score,
                                                                        progress: mediaTrackingEntry.progress,
-                                                                       progressVolumes: 0,
-                                                                       isRepeat: 0,
+                                                                       progressVolumes: mediaTrackingEntry.progressVolume,
+                                                                       repeatCount: mediaTrackingEntry.repeatCount,
                                                                        isPrivate: nil,
-                                                                       notes: nil,
+                                                                       notes: mediaTrackingEntry.note,
                                                                        customLists: nil,
                                                                        hiddenFromStatusLists: nil,
                                                                        startedAt: mediaTrackingEntry.isStartDateExist ?
@@ -100,6 +101,7 @@ struct MediaTrackingEditView: View {
                     .cornerRadius(5)
                 }
             }
+            
             
         }
         .padding(10)
@@ -149,6 +151,7 @@ extension HorizontalAlignment {
 
 struct MediaTrackingEditView_Previews: PreviewProvider {
     static let mediaTrackingEntry: MediaTrackingEntry = MediaTrackingEntry(mediaId: 1)
+
     static var previews: some View {
         MediaTrackingEditView()
             .frame(width: 400)

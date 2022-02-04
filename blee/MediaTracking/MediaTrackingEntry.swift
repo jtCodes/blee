@@ -31,6 +31,27 @@ class MediaTrackingEntry: ObservableObject {
             }
         }
     }
+    @Published var progressVolume: Int = 0 {
+        willSet(newValue) {
+            if (newValue != progressVolume) {
+                isEdited = true
+            }
+        }
+    }
+    @Published var repeatCount: Int = 0 {
+        willSet(newValue) {
+            if (newValue != repeatCount) {
+                isEdited = true
+            }
+        }
+    }
+    @Published var note: String = "" {
+        willSet(newValue) {
+            if (newValue != note) {
+                isEdited = true
+            }
+        }
+    }
     @Published var startDate: Date = Date() {
         willSet(newValue) {
             if (newValue != startDate) {
@@ -67,6 +88,9 @@ class MediaTrackingEntry: ObservableObject {
         copy.status = status
         copy.score = score
         copy.progress = progress
+        copy.progressVolume = progressVolume
+        copy.repeatCount = repeatCount
+        copy.note = note
         copy.startDate = startDate
         copy.isStartDateExist = isStartDateExist
         copy.completeDate = completeDate
@@ -84,6 +108,9 @@ class MediaTrackingEntry: ObservableObject {
         status = initialEntry.status
         score = initialEntry.score
         progress = initialEntry.progress
+        progressVolume = initialEntry.progressVolume
+        repeatCount = initialEntry.repeatCount
+        note = initialEntry.note
         startDate = initialEntry.startDate
         isStartDateExist = initialEntry.isStartDateExist
         completeDate = initialEntry.completeDate

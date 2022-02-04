@@ -39,6 +39,9 @@ class MediaTrackingEntryStore: ObservableObject {
                                     mediaTrackingEntry.status = entry.fragments.mediaListEntry.status
                                     mediaTrackingEntry.score = entry.fragments.mediaListEntry.score ?? 0
                                     mediaTrackingEntry.progress = entry.fragments.mediaListEntry.progress ?? 0
+                                    mediaTrackingEntry.progressVolume = entry.fragments.mediaListEntry.progressVolumes ?? 0
+                                    mediaTrackingEntry.repeatCount = entry.fragments.mediaListEntry.repeat ?? 0
+                                    mediaTrackingEntry.note = entry.fragments.mediaListEntry.notes ?? ""
                                     
                                     if let startAt = entry.fragments.mediaListEntry.startedAt {
                                         if let month = startAt.month,
