@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Apollo
 
 extension Date {
     func toFuzzyDateInput() -> FuzzyDateInput  {
@@ -18,3 +19,17 @@ extension Date {
     }
 }
 
+public typealias Json = [[String:Any?]]
+
+extension Json: JSONDecodable{
+    
+    public init(jsonValue value: JSONValue) throws{
+        guard let array = value as? Array else {
+            guard let dict = value as? Dictionary<String, Any> else { throw JSONDecodingError.couldNotConvert(value: value, to: Dictionary<String, Any>.self)
+            }
+            self = .init(arrayLiteral: dict)
+            return
+        }
+        self = array
+    }
+}

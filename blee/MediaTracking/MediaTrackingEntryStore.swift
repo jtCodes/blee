@@ -47,6 +47,8 @@ class MediaTrackingEntryStore: ObservableObject {
                                         mediaTrackingEntry.note = entry.fragments.mediaListEntry.notes ?? ""
                                         mediaTrackingEntry.isPrivate = entry.fragments.mediaListEntry.private ?? false
                                         
+                                        print(entry.fragments.mediaListEntry.customLists?[0])
+                                        
                                         if let startAt = entry.fragments.mediaListEntry.startedAt {
                                             if let month = startAt.month,
                                                let day = startAt.day,
