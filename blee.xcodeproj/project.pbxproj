@@ -20,6 +20,8 @@
 		ED266FE027ACB6BE005D7EF0 /* MediaDateTrackingOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED266FDF27ACB6BE005D7EF0 /* MediaDateTrackingOptionView.swift */; };
 		ED266FE427AE23D7005D7EF0 /* MediaRowInfoItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED266FE327AE23D7005D7EF0 /* MediaRowInfoItemView.swift */; };
 		ED266FE627AEF434005D7EF0 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED266FE527AEF434005D7EF0 /* Extensions.swift */; };
+		ED266FE827AEF7BB005D7EF0 /* MediaListPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED266FE727AEF7BB005D7EF0 /* MediaListPickerView.swift */; };
+		ED266FEA27AEFF70005D7EF0 /* MediaListPickerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED266FE927AEFF70005D7EF0 /* MediaListPickerItem.swift */; };
 		ED61D0FD279D1EC9001EBBE0 /* bleeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED61D0FC279D1EC9001EBBE0 /* bleeApp.swift */; };
 		ED61D0FF279D1EC9001EBBE0 /* MenuBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED61D0FE279D1EC9001EBBE0 /* MenuBarView.swift */; };
 		ED61D101279D1ECA001EBBE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED61D100279D1ECA001EBBE0 /* Assets.xcassets */; };
@@ -87,6 +89,8 @@
 		ED266FDF27ACB6BE005D7EF0 /* MediaDateTrackingOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaDateTrackingOptionView.swift; sourceTree = "<group>"; };
 		ED266FE327AE23D7005D7EF0 /* MediaRowInfoItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaRowInfoItemView.swift; sourceTree = "<group>"; };
 		ED266FE527AEF434005D7EF0 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		ED266FE727AEF7BB005D7EF0 /* MediaListPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaListPickerView.swift; sourceTree = "<group>"; };
+		ED266FE927AEFF70005D7EF0 /* MediaListPickerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaListPickerItem.swift; sourceTree = "<group>"; };
 		ED61D0F9279D1EC9001EBBE0 /* blee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = blee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED61D0FC279D1EC9001EBBE0 /* bleeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bleeApp.swift; sourceTree = "<group>"; };
 		ED61D0FE279D1EC9001EBBE0 /* MenuBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarView.swift; sourceTree = "<group>"; };
@@ -156,6 +160,7 @@
 		ED266FC427A8A3DC005D7EF0 /* MediaList */ = {
 			isa = PBXGroup;
 			children = (
+				ED266FEB27AF15E2005D7EF0 /* MediaListPicker */,
 				ED266FC727A8A899005D7EF0 /* MediaListView.swift */,
 				ED266FC527A8A421005D7EF0 /* MediaListViewModel.swift */,
 				ED266FCB27A8C5F3005D7EF0 /* MediaRowView.swift */,
@@ -183,6 +188,15 @@
 				ED266FDF27ACB6BE005D7EF0 /* MediaDateTrackingOptionView.swift */,
 			);
 			path = MediaTrackingOption;
+			sourceTree = "<group>";
+		};
+		ED266FEB27AF15E2005D7EF0 /* MediaListPicker */ = {
+			isa = PBXGroup;
+			children = (
+				ED266FE727AEF7BB005D7EF0 /* MediaListPickerView.swift */,
+				ED266FE927AEFF70005D7EF0 /* MediaListPickerItem.swift */,
+			);
+			path = MediaListPicker;
 			sourceTree = "<group>";
 		};
 		ED61D0F0279D1EC9001EBBE0 = {
@@ -492,6 +506,7 @@
 				ED266FD027A8FEAD005D7EF0 /* MediaTrackingEntryStore.swift in Sources */,
 				ED266FD527AB244E005D7EF0 /* TabBarItemView.swift in Sources */,
 				ED61D0FF279D1EC9001EBBE0 /* MenuBarView.swift in Sources */,
+				ED266FE827AEF7BB005D7EF0 /* MediaListPickerView.swift in Sources */,
 				ED9F0E9327A597E60025668E /* Trailer.swift in Sources */,
 				ED9F0E9E27A60D230025668E /* MediaTrackingOptionView.swift in Sources */,
 				EDB888D027A773650033453B /* NetworkInterceptorProvider.swift in Sources */,
@@ -506,6 +521,7 @@
 				EDB888C627A64AE50033453B /* MediaTrackingEntry.swift in Sources */,
 				ED9F0E9B27A5AE260025668E /* SearchResultRowView.swift in Sources */,
 				ED61D136279E4A8A001EBBE0 /* ListItemView.swift in Sources */,
+				ED266FEA27AEFF70005D7EF0 /* MediaListPickerItem.swift in Sources */,
 				ED9F0E8B27A5967B0025668E /* Media.swift in Sources */,
 				ED9F0E8F27A597AB0025668E /* Review.swift in Sources */,
 				ED61D132279E35E1001EBBE0 /* StatusBarController.swift in Sources */,

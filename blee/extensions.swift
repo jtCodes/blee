@@ -7,6 +7,7 @@
 
 import Foundation
 import Apollo
+import SwiftUI
 
 extension Date {
     func toFuzzyDateInput() -> FuzzyDateInput  {
@@ -33,3 +34,12 @@ extension Json: JSONDecodable{
         self = array
     }
 }
+
+extension View {
+    func Print(_ vars: Any...) -> some View {
+        for v in vars { print(v) }
+        return EmptyView()
+    }
+}
+
+
