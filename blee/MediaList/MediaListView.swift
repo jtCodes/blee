@@ -12,38 +12,10 @@ struct MediaListView: View {
     @EnvironmentObject var mediaTrackingEntryStore: MediaTrackingEntryStore
     @State var selectedMediaTypeTabItemIndex: Int = 0
     @State var selectedMediaList: MediaListPickerItem
-    let mediaList: [MediaListPickerItem] = [MediaListPickerItem(id: "all",
-                                                                label: "All",
-                                                                isMediaListStatus: false,
-                                                                isCustomList: false),
-                                            MediaListPickerItem(id: MediaListStatus.current.rawValue,
-                                                                label: MediaListStatus.current.rawValue,
-                                                                isMediaListStatus: true,
-                                                                isCustomList: false),
-                                            MediaListPickerItem(id: MediaListStatus.planning.rawValue,
-                                                                label: MediaListStatus.planning.rawValue,
-                                                                isMediaListStatus: true,
-                                                                isCustomList: false),
-                                            MediaListPickerItem(id:MediaListStatus.completed.rawValue,
-                                                                label: MediaListStatus.completed.rawValue,
-                                                                isMediaListStatus: true,
-                                                                isCustomList: false),
-                                            MediaListPickerItem(id: MediaListStatus.repeating.rawValue,
-                                                                label: MediaListStatus.repeating.rawValue,
-                                                                isMediaListStatus: true,
-                                                                isCustomList: false),
-                                            MediaListPickerItem(id: MediaListStatus.paused.rawValue,
-                                                                label:MediaListStatus.paused.rawValue,
-                                                                isMediaListStatus: true,
-                                                                isCustomList: false),
-                                            MediaListPickerItem(id: MediaListStatus.dropped.rawValue,
-                                                                label: MediaListStatus.dropped.rawValue,
-                                                                isMediaListStatus: true,
-                                                                isCustomList: false)]
     
     init(viewModel: MediaListViewModel) {
         self.viewModel = viewModel
-        _selectedMediaList = State(initialValue: mediaList[0])
+        _selectedMediaList = State(initialValue: viewModel.mediaListPickerItems[1])
     }
     
     func fetchFromServer() {
@@ -89,7 +61,7 @@ struct MediaListView: View {
     var body: some View {
         VStack(alignment: .center) {
             HStack() {
-                MediaListPickerView(mediaList: mediaList,
+                MediaListPickerView(mediaList: viewModel.mediaListPickerItems,
                                     selectedList: $selectedMediaList,
                                     onMediaListSelect: onMediaListSelect)
                     .frame(width: 140)
