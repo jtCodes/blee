@@ -8,8 +8,21 @@
 import Foundation
 
 class MediaTrackingEntry: ObservableObject {
+    let statusLabel: [MediaType: [MediaListStatus: String]] = [.anime: [.current: "Watching",
+                                                                        .planning: "Plan To Watch",
+                                                                        .completed: "Completed",
+                                                                        .repeating: "Rewatching",
+                                                                        .paused: "Paused",
+                                                                        .dropped: "Dropped"],
+                                                               .manga: [.current: "Reading",
+                                                                        .planning: "Plan To Read",
+                                                                        .completed: "Completed",
+                                                                        .repeating: "Rereading",
+                                                                        .paused: "Paused",
+                                                                        .dropped: "Dropped"],]
     var mediaId: Int
     var mediaType: MediaType
+    var media: Media?
     @Published var isEdited: Bool = false
     @Published var status: MediaListStatus? = nil {
         willSet(newValue) {
@@ -49,6 +62,13 @@ class MediaTrackingEntry: ObservableObject {
     @Published var note: String = "" {
         willSet(newValue) {
             if (newValue != note) {
+                isEdited = true
+            }
+        }
+    }
+    @Published var isPrivate: Bool = false {
+        willSet(newValue) {
+            if (newValue != isPrivate) {
                 isEdited = true
             }
         }
@@ -94,6 +114,7 @@ class MediaTrackingEntry: ObservableObject {
         copy.progressVolume = progressVolume
         copy.repeatCount = repeatCount
         copy.note = note
+        copy.isPrivate = isPrivate
         copy.startDate = startDate
         copy.isStartDateExist = isStartDateExist
         copy.completeDate = completeDate
@@ -116,9 +137,17 @@ class MediaTrackingEntry: ObservableObject {
         progressVolume = initialEntry.progressVolume
         repeatCount = initialEntry.repeatCount
         note = initialEntry.note
+        isPrivate = initialEntry.isPrivate
         startDate = initialEntry.startDate
         isStartDateExist = initialEntry.isStartDateExist
         completeDate = initialEntry.completeDate
         isCompleteDateExist = initialEntry.isCompleteDateExist
+    }
+    
+    func getStatusLabel() -> String {
+        if let status = status {
+            return (statusLabel[mediaType]?[status])!
+        }
+        return ""
     }
 }

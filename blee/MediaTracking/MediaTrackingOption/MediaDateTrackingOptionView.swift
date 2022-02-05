@@ -17,11 +17,13 @@ struct MediaDateTrackingOptionView: View {
         MediaTrackingOptionView(title: label) {
             HStack() {
                 if (isAddDate) {
-                    Button("X") {
+                    Button {
                         onAddDeleteButtonClick(false)
+                    } label: {
+                        Image(systemName: "xmark")
                     }
-                    .frame(width: 25)
-                    .background(.red)
+                    .frame(width: 18)
+                    .background(.red.opacity(0.7))
                     .cornerRadius(5)
                     DatePicker("",
                                selection: $date,
@@ -31,11 +33,13 @@ struct MediaDateTrackingOptionView: View {
                         .padding(.leading, -15)
                 }
                 else {
-                    Button("+") {
+                    Button {
                         onAddDeleteButtonClick(true)
+                    } label: {
+                        Image(systemName: "plus")
                     }
-                    .frame(width: 25)
-                    .background(.green)
+                    .frame(width: 18)
+                    .background(.green.opacity(0.7))
                     .cornerRadius(5)
                     Spacer()
                 }

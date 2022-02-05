@@ -60,11 +60,9 @@ struct MediaTrackingEditView: View {
                 MediaTrackingOptionView(title: "Repeats") {
                     StepperField(title: "", value: $mediaTrackingEntry.repeatCount)
                 }
-                Spacer()
             }
             HStack() {
                 TextField("Notes", text: $mediaTrackingEntry.note)
-                Spacer()
                 if (mediaTrackingEntry.isEdited) {
                     Button("Save") {
                         AnilistNetworkClient.shared.saveMediaListEntry(mediaId: mediaTrackingEntry.mediaId,
@@ -107,7 +105,7 @@ struct MediaTrackingEditView: View {
             
             
         }
-        .padding(5)
+        .padding(10)
         .onAppear() {
             if let isStartDateExist = viewModel.initialEntry?.isStartDateExist {
                 if (isStartDateExist) {

@@ -19,7 +19,7 @@ class MediaRowViewModel: Hashable, ObservableObject {
     
     @Published var isExpanded: Bool = false
     var media: Media
-    var mediaListEntry: MediaTrackingEntry
+    @Published var mediaListEntry: MediaTrackingEntry
     var mediaTrackingEditViewModel: MediaTrackingEditViewModel
     
     internal init(media: Media,

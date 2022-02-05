@@ -90,6 +90,8 @@ struct Media: Hashable {
     var dataSource: MediaDetailDataSource?
     var premiered: String = ""
     var trailers: [Trailer]?
+    var anilistStatus: MediaStatus?
+    var anilistFormat: MediaFormat?
     
     init() {
         
@@ -112,6 +114,8 @@ struct Media: Hashable {
         self.season = shortMediaDetails.season?.rawValue ?? ""
         self.seasonYear = shortMediaDetails.seasonYear ?? -1
         self.dataSource = .anilist
+        self.anilistStatus = shortMediaDetails.status
+        self.anilistFormat = shortMediaDetails.format
     }
     
     init(

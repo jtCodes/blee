@@ -19,6 +19,7 @@
 		ED266FD927AC3A38005D7EF0 /* MediaTrackingEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED266FD827AC3A38005D7EF0 /* MediaTrackingEditViewModel.swift */; };
 		ED266FE027ACB6BE005D7EF0 /* MediaDateTrackingOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED266FDF27ACB6BE005D7EF0 /* MediaDateTrackingOptionView.swift */; };
 		ED266FE227ACDC5A005D7EF0 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED266FE127ACDC5A005D7EF0 /* extensions.swift */; };
+		ED266FE427AE23D7005D7EF0 /* MediaRowInfoItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED266FE327AE23D7005D7EF0 /* MediaRowInfoItemView.swift */; };
 		ED61D0FD279D1EC9001EBBE0 /* bleeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED61D0FC279D1EC9001EBBE0 /* bleeApp.swift */; };
 		ED61D0FF279D1EC9001EBBE0 /* MenuBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED61D0FE279D1EC9001EBBE0 /* MenuBarView.swift */; };
 		ED61D101279D1ECA001EBBE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED61D100279D1ECA001EBBE0 /* Assets.xcassets */; };
@@ -85,6 +86,7 @@
 		ED266FD827AC3A38005D7EF0 /* MediaTrackingEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaTrackingEditViewModel.swift; sourceTree = "<group>"; };
 		ED266FDF27ACB6BE005D7EF0 /* MediaDateTrackingOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaDateTrackingOptionView.swift; sourceTree = "<group>"; };
 		ED266FE127ACDC5A005D7EF0 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
+		ED266FE327AE23D7005D7EF0 /* MediaRowInfoItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaRowInfoItemView.swift; sourceTree = "<group>"; };
 		ED61D0F9279D1EC9001EBBE0 /* blee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = blee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED61D0FC279D1EC9001EBBE0 /* bleeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bleeApp.swift; sourceTree = "<group>"; };
 		ED61D0FE279D1EC9001EBBE0 /* MenuBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarView.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				ED266FC527A8A421005D7EF0 /* MediaListViewModel.swift */,
 				ED266FCB27A8C5F3005D7EF0 /* MediaRowView.swift */,
 				ED266FCD27A8CC5F005D7EF0 /* MediaRowViewModel.swift */,
+				ED266FE327AE23D7005D7EF0 /* MediaRowInfoItemView.swift */,
 			);
 			path = MediaList;
 			sourceTree = "<group>";
@@ -484,6 +487,7 @@
 				EDB888D227A794460033453B /* BleeMediaListCollection.swift in Sources */,
 				ED266FD927AC3A38005D7EF0 /* MediaTrackingEditViewModel.swift in Sources */,
 				ED61D130279E33CB001EBBE0 /* AppDelegate.swift in Sources */,
+				ED266FE427AE23D7005D7EF0 /* MediaRowInfoItemView.swift in Sources */,
 				ED9F0E9627A598D30025668E /* SearchResultView.swift in Sources */,
 				ED266FD027A8FEAD005D7EF0 /* MediaTrackingEntryStore.swift in Sources */,
 				ED266FD527AB244E005D7EF0 /* TabBarItemView.swift in Sources */,

@@ -31,12 +31,14 @@ class MediaTrackingEntryStore: ObservableObject {
                                 if let entry = entry {
                                     let mediaTrackingEntry: MediaTrackingEntry = MediaTrackingEntry(mediaId: entry.fragments.mediaListEntry.mediaId,
                                                                                                     mediaType: type)
+                                    mediaTrackingEntry.media = Media(shortMediaDetails: (entry.fragments.mediaListEntry.media?.fragments.shortMediaDetails)!)
                                     mediaTrackingEntry.status = entry.fragments.mediaListEntry.status
                                     mediaTrackingEntry.score = entry.fragments.mediaListEntry.score ?? 0
                                     mediaTrackingEntry.progress = entry.fragments.mediaListEntry.progress ?? 0
                                     mediaTrackingEntry.progressVolume = entry.fragments.mediaListEntry.progressVolumes ?? 0
                                     mediaTrackingEntry.repeatCount = entry.fragments.mediaListEntry.repeat ?? 0
                                     mediaTrackingEntry.note = entry.fragments.mediaListEntry.notes ?? ""
+                                    mediaTrackingEntry.isPrivate = entry.fragments.mediaListEntry.private ?? false
                                     
                                     if let startAt = entry.fragments.mediaListEntry.startedAt {
                                         if let month = startAt.month,

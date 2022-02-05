@@ -60,7 +60,7 @@ struct MediaListView: View {
                         Divider()
                     }
                 }
-                .padding(10)
+                .padding(5)
             }
         }
         .onAppear() {
