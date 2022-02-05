@@ -98,4 +98,12 @@ class MediaTrackingEntryStore: ObservableObject {
         
         currentViewingMediaType = type
     }
+    
+    func getMediaRowViewModelCollection() -> [MediaRowViewModel] {
+        if (currentViewingMediaType == .anime) {
+            return animeMediaRowViewModelCollection
+        }
+        
+        return mangaMediaRowViewModelCollection
+    }
 }

@@ -62,6 +62,17 @@ struct MediaListView: View {
         }
     }
     
+    func isIncludedByFilter(mediaRowViewModel: MediaRowViewModel) -> Bool {
+        if (selectedMediaList.isMediaListStatus) {
+            if let status = selectedMediaList.toMediaListStatus() {
+                return mediaRowViewModel.mediaListEntry.status == status
+            } else {
+                return false
+            }
+        }
+        return true
+    }
+    
     func onSelectedTabItemIndexChange(newIndex: Int) {
         let newSelectedMediaType = viewModel.tabBarItems[newIndex].id
         
@@ -77,38 +88,34 @@ struct MediaListView: View {
     
     var body: some View {
         VStack(alignment: .center) {
-            MediaListPickerView(mediaList: mediaList,
-                                selectedList: $selectedMediaList,
-                                onMediaListSelect: onMediaListSelect)
             HStack() {
+                MediaListPickerView(mediaList: mediaList,
+                                    selectedList: $selectedMediaList,
+                                    onMediaListSelect: onMediaListSelect)
+                    .frame(width: 140)
+                Spacer()
                 Button {
                     fetchFromServer()
                 } label: {
                     Image(systemName: "arrow.clockwise")
                 }
-                .padding(.leading, 5)
-                Spacer()
             }
+            .padding(5)
             TabBarView<MediaType>(tabItems: viewModel.tabBarItems,
                                   width: 380,
                                   onSelectedTabItemIndexChange: onSelectedTabItemIndexChange,
                                   selectedTabIndex: $selectedMediaTypeTabItemIndex)
             ScrollView() {
                 LazyVStack() {
-                    if (viewModel.selectedMediaType == .anime) {
-                        ForEach(mediaTrackingEntryStore.animeMediaRowViewModelCollection, id: \.self) { viewModel in
-                            MediaRowView(viewModel: viewModel)
-                                .environmentObject(viewModel.mediaListEntry)
-                            Divider()
-                        }
-                    } else {
-                        ForEach(mediaTrackingEntryStore.mangaMediaRowViewModelCollection, id: \.self) { viewModel in
-                            MediaRowView(viewModel: viewModel)
-                                .environmentObject(viewModel.mediaListEntry)
-                            Divider()
+                    ForEach(mediaTrackingEntryStore.getMediaRowViewModelCollection() , id: \.self) { viewModel in
+                        Group {
+                            if (isIncludedByFilter(mediaRowViewModel: viewModel)){
+                                MediaRowView(viewModel: viewModel)
+                                    .environmentObject(viewModel.mediaListEntry)
+                                Divider()
+                            }
                         }
                     }
-                    
                 }
                 .padding(5)
             }
