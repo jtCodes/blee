@@ -7,6 +7,7 @@
 
 import Foundation
 import Apollo
+import SwiftUI
 
 //public enum CachePolicy {
 //  /// Return data from the cache if available, else fetch results from the server.
@@ -69,14 +70,24 @@ extension AnilistNetworkClient {
     }
     
     func fetchViewerDetail(completion: @escaping (_ user: User?) -> ()) {
+        let profileColorStringToColor: [String: Color] = ["blue": .blue,
+                                                          "purple": .purple,
+                                                          "pink": .pink,
+                                                          "orange": .orange,
+                                                          "red": .red,
+                                                          "gray": .gray,
+                                                          "green": .green]
+        
         AnilistNetworkClient.shared.apollo.fetch(query: ViewerDetailQuery()) { result in
             switch result {
             case .success(let graphQLResult):
                 if let viewer = graphQLResult.data?.viewer {
+                    print(profileColorStringToColor[viewer.options?.profileColor ?? ""])
                     completion(User(id: viewer.id,
                                     avatar: Avatar(large: viewer.avatar?.large,
                                                    medium: viewer.avatar?.large),
-                                    name: viewer.name))
+                                    name: viewer.name,
+                                    profileColor: profileColorStringToColor[viewer.options?.profileColor ?? ""] ?? nil))
                 } else {
                     completion(nil)
                 }

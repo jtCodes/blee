@@ -58,20 +58,6 @@ struct MediaRowView: View {
                         }
                         
                         Spacer()
-                        
-                        if (mediaListEntry.isPrivate) {
-                            MediaRowInfoItemView(label: "",
-                                                 sfSymbolName: "lock.fill",
-                                                 helpText: "Private entry")
-                                .foregroundColor(.purple.opacity(0.7))
-                        }
-                        if (mediaListEntry.media?.anilistStatus == .releasing) {
-                            MediaRowInfoItemView(label: "",
-                                                 sfSymbolName: "circle.fill",
-                                                 helpText: "Releasing")
-                                .foregroundColor(.green.opacity(0.5))
-                                .font(.caption)
-                        }
                     }
                     Spacer()
                     HStack() {
@@ -95,7 +81,22 @@ struct MediaRowView: View {
                             .padding(.bottom, 1.5)
                             .overlay(RoundedRectangle(cornerRadius: 5)
                                         .stroke(.white.opacity(0.6), lineWidth: 1))
+                        Spacer()
+                        if (mediaListEntry.isPrivate) {
+                            MediaRowInfoItemView(label: "",
+                                                 sfSymbolName: "lock.fill",
+                                                 helpText: "Private entry")
+                                .foregroundColor(.purple.opacity(0.7))
+                        }
+                        if (mediaListEntry.media?.anilistStatus == .releasing) {
+                            MediaRowInfoItemView(label: "",
+                                                 sfSymbolName: "circle.fill",
+                                                 helpText: "Releasing")
+                                .foregroundColor(.green.opacity(0.5))
+                                .font(.caption)
+                        }
                     }
+                    .padding(2.5)
                 }
                 Spacer()
             }

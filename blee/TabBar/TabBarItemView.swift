@@ -18,7 +18,7 @@ struct TabBarItemView<T>: View {
             .frame(width: width)
             .padding(2.5)
             .background(selectedTabBarIndex == tabBarItemIndex ?
-                        tabBarItem.selectedColor : .clear)
+                        AuthManager.shared.authedUser?.profileColor ?? .teal : .clear)
             .contentShape(Rectangle())
             .cornerRadius(5)
     }

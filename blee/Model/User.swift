@@ -6,17 +6,23 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct User: Hashable {
     let id: Int
     let avatar: Avatar
     let name: String
+    let profileColor: Color?
     let mediaListOptions: MediaListOptions? = nil
     
-    internal init(id: Int, avatar: Avatar, name: String) {
+    internal init(id: Int,
+                  avatar: Avatar,
+                  name: String,
+                  profileColor: Color?) {
         self.id = id
         self.avatar = avatar
         self.name = name
+        self.profileColor = profileColor
     }
     
     init(userDetails: UserDetails) {
@@ -24,6 +30,7 @@ struct User: Hashable {
         self.avatar = Avatar(large: userDetails.avatar?.large,
                              medium: userDetails.avatar?.medium)
         self.name = userDetails.name
+        self.profileColor = nil
     }
 }
 

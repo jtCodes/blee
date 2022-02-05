@@ -12,6 +12,7 @@ class MediaTrackingEntryStore: ObservableObject {
     @Published var mediaEntries: [GetMediaListCollectionQuery.Data.MediaListCollection.List.Entry] = []
     @Published var isFetchError: Bool = false
     @Published var mediaRowViewModelCollection: [MediaRowViewModel] = []
+    @Published var isSavingToServer: Bool = false
     
     func fetchMediaCollection(user: User,
                               type: MediaType,

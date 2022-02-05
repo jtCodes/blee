@@ -26,84 +26,88 @@ struct MediaTrackingEditView: View {
     
     var body: some View {
         VStack() {
-            HStack() {
-                MediaStatusTrackingOptionView()
-                    .frame(width: 140)
-                Spacer()
-                MediaTrackingOptionView(title: mediaTrackingEntry.mediaType == .anime ?
-                                        "Episode" : "Chapter") {
-                    StepperField(title: "", value: $mediaTrackingEntry.progress)
-                }
-                if mediaTrackingEntry.mediaType == .manga  {
+            if (mediaTrackingStore.isSavingToServer) {
+                ProgressView()
+            } else {
+                HStack() {
+                    MediaStatusTrackingOptionView()
+                        .frame(width: 140)
                     Spacer()
-                    MediaTrackingOptionView(title: "Volume") {
-                        StepperField(title: "", value: $mediaTrackingEntry.progressVolume)
+                    MediaTrackingOptionView(title: mediaTrackingEntry.mediaType == .anime ?
+                                            "Episode" : "Chapter") {
+                        StepperField(title: "", value: $mediaTrackingEntry.progress)
+                    }
+                    if mediaTrackingEntry.mediaType == .manga  {
+                        Spacer()
+                        MediaTrackingOptionView(title: "Volume") {
+                            StepperField(title: "", value: $mediaTrackingEntry.progressVolume)
+                        }
+                    }
+                    Spacer()
+                }
+                HStack() {
+                    MediaDateTrackingOptionView(label: "Start Date",
+                                                onAddDeleteButtonClick: onStartDateAddButtonClick,
+                                                date: $mediaTrackingEntry.startDate,
+                                                isAddDate: $isStartDateAdded)
+                    Spacer()
+                    MediaDateTrackingOptionView(label: "End Date",
+                                                onAddDeleteButtonClick: onCompleteDateAddButtonClick,
+                                                date: $mediaTrackingEntry.completeDate,
+                                                isAddDate: $isCompleteDateAdded)
+                    Spacer()
+                    MediaTrackingOptionView(title: "Score") {
+                        StepperField(title: "", value: $mediaTrackingEntry.score)
+                    }
+                    Spacer()
+                    MediaTrackingOptionView(title: "Repeats") {
+                        StepperField(title: "", value: $mediaTrackingEntry.repeatCount)
                     }
                 }
-                Spacer()
-            }
-            HStack() {
-                MediaDateTrackingOptionView(label: "Start Date",
-                                            onAddDeleteButtonClick: onStartDateAddButtonClick,
-                                            date: $mediaTrackingEntry.startDate,
-                                            isAddDate: $isStartDateAdded)
-                Spacer()
-                MediaDateTrackingOptionView(label: "End Date",
-                                            onAddDeleteButtonClick: onCompleteDateAddButtonClick,
-                                            date: $mediaTrackingEntry.completeDate,
-                                            isAddDate: $isCompleteDateAdded)
-                Spacer()
-                MediaTrackingOptionView(title: "Score") {
-                    StepperField(title: "", value: $mediaTrackingEntry.score)
-                }
-                Spacer()
-                MediaTrackingOptionView(title: "Repeats") {
-                    StepperField(title: "", value: $mediaTrackingEntry.repeatCount)
-                }
-            }
-            HStack() {
-                TextField("Notes", text: $mediaTrackingEntry.note)
-                if (mediaTrackingEntry.isEdited) {
-                    Button("Save") {
-                        AnilistNetworkClient.shared.saveMediaListEntry(mediaId: mediaTrackingEntry.mediaId,
-                                                                       status: mediaTrackingEntry.status,
-                                                                       score: mediaTrackingEntry.score,
-                                                                       progress: mediaTrackingEntry.progress,
-                                                                       progressVolumes: mediaTrackingEntry.progressVolume,
-                                                                       repeatCount: mediaTrackingEntry.repeatCount,
-                                                                       isPrivate: nil,
-                                                                       notes: mediaTrackingEntry.note,
-                                                                       customLists: nil,
-                                                                       hiddenFromStatusLists: nil,
-                                                                       startedAt: mediaTrackingEntry.isStartDateExist ?
-                                                                       mediaTrackingEntry.startDate.toFuzzyDateInput() : nil,
-                                                                       completedAt: mediaTrackingEntry.isCompleteDateExist ?
-                                                                       mediaTrackingEntry.completeDate.toFuzzyDateInput() : nil) { success in
-                            if (success == true) {
-                                viewModel.initialEntry = mediaTrackingEntry.copy(with: nil) as? MediaTrackingEntry
-                                mediaTrackingEntry.isEdited = false
+                HStack() {
+                    TextField("Notes", text: $mediaTrackingEntry.note)
+                    if (mediaTrackingEntry.isEdited) {
+                        Button("Save") {
+                            mediaTrackingStore.isSavingToServer = true
+                            AnilistNetworkClient.shared.saveMediaListEntry(mediaId: mediaTrackingEntry.mediaId,
+                                                                           status: mediaTrackingEntry.status,
+                                                                           score: mediaTrackingEntry.score,
+                                                                           progress: mediaTrackingEntry.progress,
+                                                                           progressVolumes: mediaTrackingEntry.progressVolume,
+                                                                           repeatCount: mediaTrackingEntry.repeatCount,
+                                                                           isPrivate: nil,
+                                                                           notes: mediaTrackingEntry.note,
+                                                                           customLists: nil,
+                                                                           hiddenFromStatusLists: nil,
+                                                                           startedAt: mediaTrackingEntry.isStartDateExist ?
+                                                                           mediaTrackingEntry.startDate.toFuzzyDateInput() : nil,
+                                                                           completedAt: mediaTrackingEntry.isCompleteDateExist ?
+                                                                           mediaTrackingEntry.completeDate.toFuzzyDateInput() : nil) { success in
+                                if (success == true) {
+                                    viewModel.initialEntry = mediaTrackingEntry.copy(with: nil) as? MediaTrackingEntry
+                                    mediaTrackingEntry.isEdited = false
+                                }
+                                mediaTrackingStore.isSavingToServer = false
                             }
                         }
-                    }
-                    
-                    .background(.blue)
-                    .cornerRadius(5)
-                    Button("Discard Edit") {
-                        DispatchQueue.main.async {
-                            NSApp.keyWindow?.makeFirstResponder(nil)
-                            mediaTrackingEntry.reset(initialEntry: viewModel.initialEntry!)
-                            mediaTrackingEntry.progress = viewModel.initialEntry!.progress
-                            mediaTrackingEntry.isEdited = false
-                            isStartDateAdded = mediaTrackingEntry.isStartDateExist
-                            isCompleteDateAdded = mediaTrackingEntry.isCompleteDateExist
+                        
+                        .background(.blue)
+                        .cornerRadius(5)
+                        Button("Discard Edit") {
+                            DispatchQueue.main.async {
+                                NSApp.keyWindow?.makeFirstResponder(nil)
+                                mediaTrackingEntry.reset(initialEntry: viewModel.initialEntry!)
+                                mediaTrackingEntry.progress = viewModel.initialEntry!.progress
+                                mediaTrackingEntry.isEdited = false
+                                isStartDateAdded = mediaTrackingEntry.isStartDateExist
+                                isCompleteDateAdded = mediaTrackingEntry.isCompleteDateExist
+                            }
                         }
+                        .background(.red)
+                        .cornerRadius(5)
                     }
-                    .background(.red)
-                    .cornerRadius(5)
                 }
             }
-            
-            
         }
         .padding(10)
         .onAppear() {

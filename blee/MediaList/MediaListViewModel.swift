@@ -8,11 +8,15 @@
 import Foundation
 
 class MediaListViewModel: ObservableObject {
-    var tabBarItems: [TabBarItem<MediaType>] = [TabBarItem(id: .anime,
+    var tabBarItems: [TabBarItem<MediaType>]
+    @Published var selectedMediaType: MediaType = .anime
+    
+    init() {
+    tabBarItems = [TabBarItem(id: .anime,
                                                            label: "Anime",
-                                                           selectedColor: .teal),
+                                                           selectedColor: AuthManager.shared.authedUser?.profileColor ?? .teal),
                                                 TabBarItem(id: .manga,
                                                            label: "Manga",
-                                                           selectedColor: .teal)]
-    @Published var selectedMediaType: MediaType = .anime
+                                                           selectedColor: AuthManager.shared.authedUser?.profileColor ?? .teal)]
+    }
 }

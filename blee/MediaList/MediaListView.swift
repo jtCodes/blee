@@ -33,6 +33,7 @@ struct MediaListView: View {
         
         if (newSelectedMediaType != viewModel.selectedMediaType) {
             viewModel.selectedMediaType = newSelectedMediaType
+            mediaTrackingEntryStore.mediaRowViewModelCollection = []
             fetchFromCacheIfPossible()
         }
     }
@@ -53,7 +54,7 @@ struct MediaListView: View {
                                   onSelectedTabItemIndexChange: onSelectedTabItemIndexChange,
                                   selectedTabIndex: $selectedMediaTypeTabItemIndex)
             ScrollView() {
-                VStack() {
+                LazyVStack() {
                     ForEach(mediaTrackingEntryStore.mediaRowViewModelCollection, id: \.self) { viewModel in
                         MediaRowView(viewModel: viewModel)
                             .environmentObject(viewModel.mediaListEntry)
