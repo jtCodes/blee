@@ -33,7 +33,6 @@ struct MediaListView: View {
         
         if (newSelectedMediaType != viewModel.selectedMediaType) {
             viewModel.selectedMediaType = newSelectedMediaType
-            mediaTrackingEntryStore.mediaRowViewModelCollection = []
             fetchFromCacheIfPossible()
         }
     }
@@ -55,11 +54,20 @@ struct MediaListView: View {
                                   selectedTabIndex: $selectedMediaTypeTabItemIndex)
             ScrollView() {
                 LazyVStack() {
-                    ForEach(mediaTrackingEntryStore.mediaRowViewModelCollection, id: \.self) { viewModel in
-                        MediaRowView(viewModel: viewModel)
-                            .environmentObject(viewModel.mediaListEntry)
-                        Divider()
+                    if (viewModel.selectedMediaType == .anime) {
+                        ForEach(mediaTrackingEntryStore.animeMediaRowViewModelCollection, id: \.self) { viewModel in
+                            MediaRowView(viewModel: viewModel)
+                                .environmentObject(viewModel.mediaListEntry)
+                            Divider()
+                        }
+                    } else {
+                        ForEach(mediaTrackingEntryStore.mangaMediaRowViewModelCollection, id: \.self) { viewModel in
+                            MediaRowView(viewModel: viewModel)
+                                .environmentObject(viewModel.mediaListEntry)
+                            Divider()
+                        }
                     }
+                    
                 }
                 .padding(5)
             }

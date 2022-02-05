@@ -88,12 +88,19 @@ struct MediaRowView: View {
                                                  helpText: "Private entry")
                                 .foregroundColor(.purple.opacity(0.7))
                         }
+                        
                         if (mediaListEntry.media?.anilistStatus == .releasing) {
                             MediaRowInfoItemView(label: "",
                                                  sfSymbolName: "circle.fill",
                                                  helpText: "Releasing")
-                                .foregroundColor(.green.opacity(0.5))
-                                .font(.caption)
+                                .foregroundColor(.green)
+                                .font(.footnote)
+                        } else if (mediaListEntry.media?.anilistStatus == .notYetReleased) {
+                            MediaRowInfoItemView(label: "",
+                                                 sfSymbolName: "circle.fill",
+                                                 helpText: "Releasing")
+                                .foregroundColor(.red)
+                                .font(.footnote)
                         }
                     }
                     .padding(2.5)
