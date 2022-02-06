@@ -55,7 +55,7 @@ struct SearchBarView: View {
         .background(.quaternary)
         .cornerRadius(5)
         .onAppear() {
-            DispatchQueue.main.async {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
                 NSApp.keyWindow?.makeFirstResponder(nil)
             }
         }

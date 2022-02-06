@@ -36,14 +36,25 @@ struct MediaListView: View {
     }
     
     func isIncludedByFilter(mediaRowViewModel: MediaRowViewModel) -> Bool {
+        var shouldInclude: Bool = true
+        
+        // media list
         if (selectedMediaList.isMediaListStatus) {
             if let status = selectedMediaList.toMediaListStatus() {
-                return mediaRowViewModel.mediaListEntry.status == status
+                shouldInclude = mediaRowViewModel.mediaListEntry.status == status
             } else {
-                return false
+                shouldInclude = false
             }
         }
-        return true
+        
+        // search
+        if (!searchText.isEmpty) {
+            if let titleSearchString = mediaRowViewModel.mediaListEntry.media?.getTitleSearchString() {
+                shouldInclude = titleSearchString.score(word: searchText, fuzziness:0.5) > 0.3
+            }
+        }
+        
+        return shouldInclude
     }
     
     func onSelectedTabItemIndexChange(newIndex: Int) {

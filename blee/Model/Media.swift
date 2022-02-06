@@ -104,9 +104,9 @@ struct Media: Hashable {
     ) {
         self.id = shortMediaDetails.id
         self.idMal = shortMediaDetails.idMal
-        self.title = MediaTitle(romaji:"",
-                                english: "",
-                                native: "",
+        self.title = MediaTitle(romaji: shortMediaDetails.title?.romaji ?? "",
+                                english: shortMediaDetails.title?.english ?? "",
+                                native: shortMediaDetails.title?.native ?? "",
                                 userPreferred: shortMediaDetails.title?.userPreferred ?? "")
         self.coverImage = MediaCoverImage(extraLarge: shortMediaDetails.coverImage?.extraLarge,
                                           large: shortMediaDetails.coverImage?.large,
@@ -245,6 +245,10 @@ extension Media {
                      meanScore: 1,
                      season: "SPRING",
                      dataSource: .anilist)
+    }
+    
+    func getTitleSearchString() -> String {
+        return title.native + title.english + title.romaji + title.userPreferred
     }
 }
 
