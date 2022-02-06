@@ -54,6 +54,7 @@ struct MenuBarView: View {
             .padding(5)
         }
         .padding(5)
+        .accentColor(authManager.authedUser?.profileColor)
         .simultaneousGesture(
             TapGesture()
                 .onEnded { _ in

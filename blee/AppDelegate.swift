@@ -35,7 +35,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         popover.behavior = .transient
         popover.contentViewController = NSViewController()
         popover.contentViewController?.view = NSHostingView(rootView: MenuBarView().frame(width: 400,
-                                                                                          height: 550))
+                                                                                          height: 550)
+                                                                .preferredColorScheme(.dark))
         popover.contentViewController?.view.window?.becomeKey()
         
         self.popover = popover
@@ -100,7 +101,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 NSApp.activate(ignoringOtherApps: true)
                 
                 // don't want the textfield to be automatically focused
-                NSApp.keyWindow?.makeFirstResponder(nil)
+                DispatchQueue.main.async {
+                    NSApp.keyWindow?.makeFirstResponder(nil)
+                }
             }
         }
     }

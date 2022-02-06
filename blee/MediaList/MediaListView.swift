@@ -50,7 +50,7 @@ struct MediaListView: View {
         // search
         if (!searchText.isEmpty) {
             if let titleSearchString = mediaRowViewModel.mediaListEntry.media?.getTitleSearchString() {
-                shouldInclude = titleSearchString.score(word: searchText, fuzziness:0.5) > 0.3
+                shouldInclude = titleSearchString.score(word: searchText, fuzziness: 0.5) > 0.3
             }
         }
         

@@ -84,7 +84,7 @@ struct MediaRowView: View {
                         Spacer()
                         if (mediaListEntry.isPrivate) {
                             MediaRowInfoItemView(label: "",
-                                                 sfSymbolName: "lock.fill",
+                                                 sfSymbolName: "eye.slash",
                                                  helpText: "Private entry")
                                 .foregroundColor(.purple.opacity(0.7))
                         }

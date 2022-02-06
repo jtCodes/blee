@@ -36,7 +36,6 @@
 		ED61D12E279D3A40001EBBE0 /* ApolloWebSocket in Frameworks */ = {isa = PBXBuildFile; productRef = ED61D12D279D3A40001EBBE0 /* ApolloWebSocket */; };
 		ED61D130279E33CB001EBBE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED61D12F279E33CA001EBBE0 /* AppDelegate.swift */; };
 		ED61D132279E35E1001EBBE0 /* StatusBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED61D131279E35E1001EBBE0 /* StatusBarController.swift */; };
-		ED61D136279E4A8A001EBBE0 /* ListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED61D135279E4A8A001EBBE0 /* ListItemView.swift */; };
 		ED9F0E8027A3B1440025668E /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = ED9F0E7F27A3B1440025668E /* schema.json */; };
 		ED9F0E8327A3B21F0025668E /* Queries.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ED9F0E8227A3B21F0025668E /* Queries.graphql */; };
 		ED9F0E8527A3B4220025668E /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9F0E8427A3B4220025668E /* API.swift */; };
@@ -46,9 +45,7 @@
 		ED9F0E8F27A597AB0025668E /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9F0E8E27A597AB0025668E /* Review.swift */; };
 		ED9F0E9127A597C70025668E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9F0E9027A597C70025668E /* User.swift */; };
 		ED9F0E9327A597E60025668E /* Trailer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9F0E9227A597E60025668E /* Trailer.swift */; };
-		ED9F0E9627A598D30025668E /* SearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9F0E9527A598D30025668E /* SearchResultView.swift */; };
 		ED9F0E9927A5AB9C0025668E /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = ED9F0E9827A5AB9C0025668E /* Kingfisher */; };
-		ED9F0E9B27A5AE260025668E /* SearchResultRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9F0E9A27A5AE260025668E /* SearchResultRowView.swift */; };
 		ED9F0E9E27A60D230025668E /* MediaTrackingOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9F0E9D27A60D230025668E /* MediaTrackingOptionView.swift */; };
 		ED9F0EA027A60EE60025668E /* MediaStatusTrackingOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9F0E9F27A60EE60025668E /* MediaStatusTrackingOptionView.swift */; };
 		ED9F0EA227A618C40025668E /* KeychainSwiftDistrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9F0EA127A618C40025668E /* KeychainSwiftDistrib.swift */; };
@@ -110,7 +107,6 @@
 		ED61D127279D1FE3001EBBE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		ED61D12F279E33CA001EBBE0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ED61D131279E35E1001EBBE0 /* StatusBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarController.swift; sourceTree = "<group>"; };
-		ED61D135279E4A8A001EBBE0 /* ListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemView.swift; sourceTree = "<group>"; };
 		ED9F0E7F27A3B1440025668E /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
 		ED9F0E8227A3B21F0025668E /* Queries.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Queries.graphql; sourceTree = "<group>"; };
 		ED9F0E8427A3B4220025668E /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
@@ -120,8 +116,6 @@
 		ED9F0E8E27A597AB0025668E /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		ED9F0E9027A597C70025668E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		ED9F0E9227A597E60025668E /* Trailer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trailer.swift; sourceTree = "<group>"; };
-		ED9F0E9527A598D30025668E /* SearchResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultView.swift; sourceTree = "<group>"; };
-		ED9F0E9A27A5AE260025668E /* SearchResultRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultRowView.swift; sourceTree = "<group>"; };
 		ED9F0E9D27A60D230025668E /* MediaTrackingOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaTrackingOptionView.swift; sourceTree = "<group>"; };
 		ED9F0E9F27A60EE60025668E /* MediaStatusTrackingOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaStatusTrackingOptionView.swift; sourceTree = "<group>"; };
 		ED9F0EA127A618C40025668E /* KeychainSwiftDistrib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainSwiftDistrib.swift; sourceTree = "<group>"; };
@@ -303,8 +297,6 @@
 		ED9F0E9427A5989F0025668E /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				ED9F0E9527A598D30025668E /* SearchResultView.swift */,
-				ED9F0E9A27A5AE260025668E /* SearchResultRowView.swift */,
 				ED266FEC27AF2FD4005D7EF0 /* SearchBarView.swift */,
 			);
 			path = Search;
@@ -336,7 +328,6 @@
 			isa = PBXGroup;
 			children = (
 				ED61D0FE279D1EC9001EBBE0 /* MenuBarView.swift */,
-				ED61D135279E4A8A001EBBE0 /* ListItemView.swift */,
 				ED61D131279E35E1001EBBE0 /* StatusBarController.swift */,
 			);
 			path = MenuBar;
@@ -512,7 +503,6 @@
 				ED266FD927AC3A38005D7EF0 /* MediaTrackingEditViewModel.swift in Sources */,
 				ED61D130279E33CB001EBBE0 /* AppDelegate.swift in Sources */,
 				ED266FE427AE23D7005D7EF0 /* MediaRowInfoItemView.swift in Sources */,
-				ED9F0E9627A598D30025668E /* SearchResultView.swift in Sources */,
 				ED266FD027A8FEAD005D7EF0 /* MediaTrackingEntryStore.swift in Sources */,
 				ED266FD527AB244E005D7EF0 /* TabBarItemView.swift in Sources */,
 				ED61D0FF279D1EC9001EBBE0 /* MenuBarView.swift in Sources */,
@@ -531,8 +521,6 @@
 				ED266FED27AF2FD4005D7EF0 /* SearchBarView.swift in Sources */,
 				ED266FC827A8A899005D7EF0 /* MediaListView.swift in Sources */,
 				EDB888C627A64AE50033453B /* MediaTrackingEntry.swift in Sources */,
-				ED9F0E9B27A5AE260025668E /* SearchResultRowView.swift in Sources */,
-				ED61D136279E4A8A001EBBE0 /* ListItemView.swift in Sources */,
 				ED266FEA27AEFF70005D7EF0 /* MediaListPickerItem.swift in Sources */,
 				ED9F0E8B27A5967B0025668E /* Media.swift in Sources */,
 				ED9F0E8F27A597AB0025668E /* Review.swift in Sources */,

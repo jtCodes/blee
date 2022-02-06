@@ -248,7 +248,7 @@ extension Media {
     }
     
     func getTitleSearchString() -> String {
-        return title.native + title.english + title.romaji + title.userPreferred
+        return title.userPreferred + title.english + title.romaji + title.native
     }
 }
 

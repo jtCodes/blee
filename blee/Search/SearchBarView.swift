@@ -44,7 +44,7 @@ struct SearchBarView: View {
                 self.searchText = ""
                 NSApp.keyWindow?.makeFirstResponder(nil)
             }) {
-                Image(systemName: "xmark")
+                Image(systemName: "x.circle.fill")
             }
             .buttonStyle(PlainButtonStyle())
         }
