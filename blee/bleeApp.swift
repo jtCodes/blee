@@ -12,6 +12,7 @@ struct bleeApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @Environment(\.openURL) var openURL
     @ObservedObject var authManager: AuthManager = AuthManager.shared
+    @State var searchText: String = ""
     
     var body: some Scene {
         //        Settings {
@@ -26,6 +27,7 @@ struct bleeApp: App {
                         openURL(URL(string: "https://anilist.co/api/v2/oauth/authorize?client_id=7361&response_type=token")!)
                     }
                 }
+                SearchBarView(searchText: $searchText)
             }
             .frame(width: 400, height: 400)
             .handlesExternalEvents(preferring: Set(arrayLiteral: "blee"),

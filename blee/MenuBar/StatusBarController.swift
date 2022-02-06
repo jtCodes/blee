@@ -59,6 +59,12 @@ final class HostingView<Content: View>: NSHostingView<Content> {
         let trackingArea = NSTrackingArea(rect: bounds, options: [.enabledDuringMouseDrag, .mouseEnteredAndExited, .activeInActiveApp], owner: self, userInfo: nil)
         addTrackingArea(trackingArea)
     }
+    
+    override func mouseDown(with event: NSEvent) {
+        DispatchQueue.main.async {
+            NSApp.keyWindow?.makeFirstResponder(nil)
+        }
+       }
 }
 
 struct SwiftyUIScrollView: NSViewControllerRepresentable {

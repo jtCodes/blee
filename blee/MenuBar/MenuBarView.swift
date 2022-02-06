@@ -54,6 +54,14 @@ struct MenuBarView: View {
             .padding(5)
         }
         .padding(5)
+        .simultaneousGesture(
+            TapGesture()
+                .onEnded { _ in
+                    DispatchQueue.main.async {
+                        NSApp.keyWindow?.makeFirstResponder(nil)
+                    }
+                }
+        )
     }
 }
 

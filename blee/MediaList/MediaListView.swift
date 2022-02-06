@@ -12,6 +12,7 @@ struct MediaListView: View {
     @EnvironmentObject var mediaTrackingEntryStore: MediaTrackingEntryStore
     @State var selectedMediaTypeTabItemIndex: Int = 0
     @State var selectedMediaList: MediaListPickerItem
+    @State var searchText: String = ""
     
     init(viewModel: MediaListViewModel) {
         self.viewModel = viewModel
@@ -61,10 +62,15 @@ struct MediaListView: View {
     var body: some View {
         VStack(alignment: .center) {
             HStack() {
+                TabBarView<MediaType>(tabItems: viewModel.tabBarItems,
+                                      width: 200,
+                                      onSelectedTabItemIndexChange: onSelectedTabItemIndexChange,
+                                      selectedTabIndex: $selectedMediaTypeTabItemIndex)
+                Spacer()
                 MediaListPickerView(mediaList: viewModel.mediaListPickerItems,
                                     selectedList: $selectedMediaList,
                                     onMediaListSelect: onMediaListSelect)
-                    .frame(width: 140)
+                    .frame(width: 120)
                 Spacer()
                 Button {
                     fetchFromServer()
@@ -72,11 +78,11 @@ struct MediaListView: View {
                     Image(systemName: "arrow.clockwise")
                 }
             }
-            .padding(5)
-            TabBarView<MediaType>(tabItems: viewModel.tabBarItems,
-                                  width: 380,
-                                  onSelectedTabItemIndexChange: onSelectedTabItemIndexChange,
-                                  selectedTabIndex: $selectedMediaTypeTabItemIndex)
+            .padding(.leading,5)
+            .padding(.trailing, 5)
+            SearchBarView(searchText: $searchText)
+                .padding(.leading, 5)
+                .padding(.trailing, 5)
             ScrollView() {
                 LazyVStack() {
                     ForEach(mediaTrackingEntryStore.getMediaRowViewModelCollection() , id: \.self) { viewModel in
@@ -91,6 +97,7 @@ struct MediaListView: View {
                 }
                 .padding(5)
             }
+            
         }
         .onAppear() {
             fetchFromServer()

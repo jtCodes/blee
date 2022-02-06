@@ -44,7 +44,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         if let button = self.statusItem?.button {
             button.title = "ß"
-//            button.image = NSImage(named: NSImage.Name("icon-orange"))
+            //            button.image = NSImage(named: NSImage.Name("icon-orange"))
             button.action = #selector(showPopover(_:))
         }
     }
@@ -98,7 +98,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 popover?.show(relativeTo: invisibleWindow.contentView!.frame, of: invisibleWindow.contentView!, preferredEdge: NSRectEdge.minY)
                 sender.bounds = sender.bounds.offsetBy(dx: 0, dy: invisibleWindow.contentView!.frame.height)
                 NSApp.activate(ignoringOtherApps: true)
+                
+                // don't want the textfield to be automatically focused
+                NSApp.keyWindow?.makeFirstResponder(nil)
             }
         }
+    }
+}
+
+class WelcomeViewController: NSViewController {
+    init() {
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError()
     }
 }
