@@ -97,7 +97,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 
                 // position and show the NSPopover
                 popover?.show(relativeTo: invisibleWindow.contentView!.frame, of: invisibleWindow.contentView!, preferredEdge: NSRectEdge.minY)
-                sender.bounds = sender.bounds.offsetBy(dx: 0, dy: invisibleWindow.contentView!.frame.height)
+//                sender.bounds = sender.bounds.offsetBy(dx: 0, dy: invisibleWindow.contentView!.frame.height)
                 NSApp.activate(ignoringOtherApps: true)
                 
                 // don't want the textfield to be automatically focused

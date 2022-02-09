@@ -82,12 +82,22 @@ extension AnilistNetworkClient {
             switch result {
             case .success(let graphQLResult):
                 if let viewer = graphQLResult.data?.viewer {
-                    print(profileColorStringToColor[viewer.options?.profileColor ?? ""])
+                    let userProfileColorStr: String? = viewer.options?.profileColor
+                    var userProfileColor: Color = .red
+                    
+                    if let userProfileColorStr = userProfileColorStr {
+                        if let defaultColor = profileColorStringToColor[userProfileColorStr] {
+                            userProfileColor = defaultColor
+                        } else {
+                            userProfileColor = Color(hex: userProfileColorStr)
+                        }
+                    }
+                    
                     completion(User(id: viewer.id,
                                     avatar: Avatar(large: viewer.avatar?.large,
                                                    medium: viewer.avatar?.large),
                                     name: viewer.name,
-                                    profileColor: profileColorStringToColor[viewer.options?.profileColor ?? ""] ?? nil))
+                                    profileColor: .red))
                 } else {
                     completion(nil)
                 }

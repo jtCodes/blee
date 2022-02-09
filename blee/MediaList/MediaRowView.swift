@@ -110,9 +110,9 @@ struct MediaRowView: View {
             .cornerRadius(5)
             .contentShape(Rectangle())
             .onTapGesture {
-                withAnimation(Animation.spring().speed(2)) {
+//                withAnimation(Animation.spring().speed(2)) {
                     viewModel.isExpanded.toggle()
-                }
+//                }
             }
             if viewModel.isExpanded {
                 MediaTrackingEditView(viewModel: viewModel.mediaTrackingEditViewModel)

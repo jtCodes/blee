@@ -86,8 +86,9 @@ struct MediaListView: View {
                 Button {
                     fetchFromServer()
                 } label: {
-                    Image(systemName: "arrow.clockwise")
+                    Image(systemName: "arrow.triangle.2.circlepath")
                 }
+                .help("Fetch updates made on the web app")
             }
             .padding(.leading,5)
             .padding(.trailing, 5)

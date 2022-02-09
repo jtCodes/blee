@@ -29,6 +29,7 @@ class AuthManager: ObservableObject {
     
     // TODO: check expiration date
     func checkIfAuthed() -> Bool {
+        print(keychain.get(AnilistKeychainKey.accessToken.rawValue))
         return keychain.get(AnilistKeychainKey.accessToken.rawValue) != nil
     }
     
