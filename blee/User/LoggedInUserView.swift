@@ -19,7 +19,7 @@ struct LoggedInUserView: View {
                 KFImage(URL(string: authManager.authedUser!.avatar.large!)!)
                     .resizable()
                     .scaledToFill()
-                    .frame(width: 25, height: 25)
+                    .frame(width: 20, height: 20)
                     .cornerRadius(5)
                 Text(authManager.authedUser!.name)
             }
