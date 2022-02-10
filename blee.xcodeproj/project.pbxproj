@@ -50,6 +50,8 @@
 		ED9F0E9E27A60D230025668E /* MediaTrackingOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9F0E9D27A60D230025668E /* MediaTrackingOptionView.swift */; };
 		ED9F0EA027A60EE60025668E /* MediaStatusTrackingOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9F0E9F27A60EE60025668E /* MediaStatusTrackingOptionView.swift */; };
 		ED9F0EA227A618C40025668E /* KeychainSwiftDistrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9F0EA127A618C40025668E /* KeychainSwiftDistrib.swift */; };
+		EDB7559427B4C62300B73C6E /* SettingsButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7559327B4C62300B73C6E /* SettingsButtonView.swift */; };
+		EDB7559627B4C8CA00B73C6E /* RefreshButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7559527B4C8CA00B73C6E /* RefreshButtonView.swift */; };
 		EDB888C427A63CCF0033453B /* MediaTrackingEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB888C327A63CCF0033453B /* MediaTrackingEditView.swift */; };
 		EDB888C627A64AE50033453B /* MediaTrackingEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB888C527A64AE50033453B /* MediaTrackingEntry.swift */; };
 		EDB888C927A6ECEF0033453B /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB888C827A6ECEF0033453B /* AuthManager.swift */; };
@@ -121,6 +123,8 @@
 		ED9F0E9D27A60D230025668E /* MediaTrackingOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaTrackingOptionView.swift; sourceTree = "<group>"; };
 		ED9F0E9F27A60EE60025668E /* MediaStatusTrackingOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaStatusTrackingOptionView.swift; sourceTree = "<group>"; };
 		ED9F0EA127A618C40025668E /* KeychainSwiftDistrib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainSwiftDistrib.swift; sourceTree = "<group>"; };
+		EDB7559327B4C62300B73C6E /* SettingsButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsButtonView.swift; sourceTree = "<group>"; };
+		EDB7559527B4C8CA00B73C6E /* RefreshButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshButtonView.swift; sourceTree = "<group>"; };
 		EDB888C327A63CCF0033453B /* MediaTrackingEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaTrackingEditView.swift; sourceTree = "<group>"; };
 		EDB888C527A64AE50033453B /* MediaTrackingEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaTrackingEntry.swift; sourceTree = "<group>"; };
 		EDB888C827A6ECEF0033453B /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
@@ -168,6 +172,7 @@
 				ED266FCB27A8C5F3005D7EF0 /* MediaRowView.swift */,
 				ED266FCD27A8CC5F005D7EF0 /* MediaRowViewModel.swift */,
 				ED266FE327AE23D7005D7EF0 /* MediaRowInfoItemView.swift */,
+				EDB7559527B4C8CA00B73C6E /* RefreshButtonView.swift */,
 			);
 			path = MediaList;
 			sourceTree = "<group>";
@@ -243,6 +248,7 @@
 				ED266FD327AB243A005D7EF0 /* TabBar */,
 				EDB888CA27A6F1AE0033453B /* MenuBar */,
 				ED9F0E9427A5989F0025668E /* Search */,
+				EDB7559227B4C60100B73C6E /* Settings */,
 				ED266FC427A8A3DC005D7EF0 /* MediaList */,
 				ED9F0E9C27A60BCA0025668E /* MediaTracking */,
 				ED9F0E8927A596120025668E /* Model */,
@@ -323,6 +329,14 @@
 				ED266FCF27A8FEAD005D7EF0 /* MediaTrackingEntryStore.swift */,
 			);
 			path = MediaTracking;
+			sourceTree = "<group>";
+		};
+		EDB7559227B4C60100B73C6E /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				EDB7559327B4C62300B73C6E /* SettingsButtonView.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		EDB888C727A6EC1E0033453B /* Auth */ = {
@@ -529,6 +543,7 @@
 				ED9F0EA227A618C40025668E /* KeychainSwiftDistrib.swift in Sources */,
 				ED9F0E8727A3B4730025668E /* AnilistNetworkClient.swift in Sources */,
 				ED266FD727AB2946005D7EF0 /* TabBarItem.swift in Sources */,
+				EDB7559627B4C8CA00B73C6E /* RefreshButtonView.swift in Sources */,
 				ED266FED27AF2FD4005D7EF0 /* SearchBarView.swift in Sources */,
 				ED266FC827A8A899005D7EF0 /* MediaListView.swift in Sources */,
 				EDB888C627A64AE50033453B /* MediaTrackingEntry.swift in Sources */,
@@ -544,6 +559,7 @@
 				ED9F0E8D27A597990025668E /* RelatedMedia.swift in Sources */,
 				ED266FCE27A8CC5F005D7EF0 /* MediaRowViewModel.swift in Sources */,
 				EDB888CE27A772F00033453B /* TokenAddingInterceptor.swift in Sources */,
+				EDB7559427B4C62300B73C6E /* SettingsButtonView.swift in Sources */,
 				EDB888C927A6ECEF0033453B /* AuthManager.swift in Sources */,
 				EDB888C427A63CCF0033453B /* MediaTrackingEditView.swift in Sources */,
 				ED266FF827AF9F09005D7EF0 /* LoggedInUserView.swift in Sources */,

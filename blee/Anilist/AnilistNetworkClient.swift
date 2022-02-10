@@ -97,7 +97,7 @@ extension AnilistNetworkClient {
                                     avatar: Avatar(large: viewer.avatar?.large,
                                                    medium: viewer.avatar?.large),
                                     name: viewer.name,
-                                    profileColor: .red))
+                                    profileColor: userProfileColor))
                 } else {
                     completion(nil)
                 }

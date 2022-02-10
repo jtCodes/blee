@@ -83,12 +83,10 @@ struct MediaListView: View {
                                     onMediaListSelect: onMediaListSelect)
                     .frame(width: 120)
                 Spacer()
-                Button {
-                    fetchFromServer()
-                } label: {
-                    Image(systemName: "arrow.triangle.2.circlepath")
-                }
-                .help("Fetch updates made on the web app")
+                RefreshButtonView()
+                    .onTapGesture {
+                        fetchFromServer()
+                    }
             }
             .padding(.leading,5)
             .padding(.trailing, 5)

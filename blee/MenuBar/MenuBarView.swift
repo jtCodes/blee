@@ -21,15 +21,18 @@ struct MenuBarView: View {
             Spacer()
             if authManager.isAuthed && (authManager.authedUser != nil) {
                 HStack() {
-                    Text("ß")
-                    Spacer()
                     LoggedInUserView()
+                    Spacer()
+                    SettingsButtonView()
                 }
                 .padding(.leading,5)
                 .padding(.trailing, 5)
             } else {
                 Button("Click to authorize this app") {
                     openURL(URL(string: "https://anilist.co/api/v2/oauth/authorize?client_id=7361&response_type=token")!)
+                }
+                Button("Quit") {
+                    NSApplication.shared.terminate(nil)
                 }
             }
             
@@ -38,16 +41,6 @@ struct MenuBarView: View {
                     .environmentObject(mediaTrackingEntryStore)
             }
             Spacer()
-            HStack() {
-                Button("Quit") {
-                    NSApplication.shared.terminate(nil)
-                }
-                Spacer()
-                if authManager.isAuthed && (authManager.authedUser != nil) {
-                    LogoutButtonView()
-                }
-            }
-            .padding(5)
         }
         .padding(5)
         .accentColor(authManager.authedUser?.profileColor)
