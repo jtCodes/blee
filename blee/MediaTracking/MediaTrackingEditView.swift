@@ -116,6 +116,12 @@ struct MediaTrackingEditView: View {
                     isStartDateAdded = true
                 }
             }
+            
+            if let isCompleteDateExist = viewModel.initialEntry?.isCompleteDateExist {
+                if (isCompleteDateExist) {
+                    isCompleteDateAdded = true
+                }
+            }
         }
     }
 }
