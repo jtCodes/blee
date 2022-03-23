@@ -6,7 +6,7 @@ Manage Anilist from your Mac's status bar.
 ## Features
 - Search your anilist
 - Edit status, episode progress, start date, end date, score, repeat count and note
-- Color matching with Anilist
+- Color matching with Anilist (restart the app after changing color)
 
 <div style="display: flex;">
  <img width="476" alt="Screen Shot 2022-03-23 at 4 14 42 PM" src="https://user-images.githubusercontent.com/23707104/159787675-5453a685-04f0-48c3-9ccc-d1aa707c28f2.png">
