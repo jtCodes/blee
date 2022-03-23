@@ -21,15 +21,14 @@ struct bleeApp: App {
         WindowGroup {
             VStack() {
                 if (authManager.isAuthed) {
-                    Text("Hello, you may close this window now")
+                    Text("Hello " + (authManager.authedUser?.name ?? "") + ", you may close this window now")
                 } else {
-                    Button("CLICK TO AUTH") {
+                    Button("Click to login") {
                         openURL(URL(string: "https://anilist.co/api/v2/oauth/authorize?client_id=7361&response_type=token")!)
                     }
                 }
-                SearchBarView(searchText: $searchText)
             }
-            .frame(width: 400, height: 400)
+            .frame(width: 200, height: 200)
             .handlesExternalEvents(preferring: Set(arrayLiteral: "blee"),
                                    allowing: Set(arrayLiteral: "*")) // activate existing window if exists
             .onOpenURL(perform: { url in

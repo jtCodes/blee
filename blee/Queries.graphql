@@ -1,0 +1,636 @@
+# media
+fragment MediaDetails on Media {
+	type
+	id
+	idMal
+	nextAiringEpisode {
+		id
+		episode
+		timeUntilAiring
+	}
+	title {
+		romaji
+		english
+		native
+		userPreferred
+	}
+	format
+	genres
+	description
+	season
+	seasonYear
+	episodes
+	chapters
+	duration
+	startDate {
+		year
+		month
+		day
+	}
+	endDate {
+		year
+		month
+		day
+	}
+	status
+	averageScore
+	coverImage {
+		extraLarge
+		large
+		medium
+	}
+	bannerImage
+	meanScore
+	relations {
+		edges {
+			relationType
+		}
+		nodes {
+			...ShortMediaDetails
+		}
+	}
+	recommendations {
+		edges {
+			node {
+				id
+				mediaRecommendation {
+					...ShortMediaDetails
+				}
+			}
+		}
+	}
+	reviews {
+		edges {
+			node {
+				...ReviewDetails
+			}
+		}
+	}
+	trailer {
+		...TrailerDetails
+	}
+	externalLinks {
+		site
+		url
+		id
+	}
+}
+
+fragment TrailerDetails on MediaTrailer {
+	id
+	site
+	thumbnail
+}
+
+fragment ShortMediaDetails on Media {
+	id
+	idMal
+	format
+	title {
+		romaji
+		english
+		native
+		userPreferred
+	}
+	status
+	season
+	seasonYear
+	coverImage {
+		extraLarge
+		large
+		medium
+	}
+}
+
+fragment UserDetails on User {
+	id
+	avatar {
+		large
+		medium
+	}
+	name
+}
+
+fragment ReviewDetails on Review {
+	id
+	createdAt
+	updatedAt
+	user {
+		...UserDetails
+	}
+	userId
+	score
+	rating
+	ratingAmount
+	userRating
+	summary
+	body
+}
+
+query TrendingNow($perPage: Int, $page: Int, $type: MediaType) {
+	Page(perPage: $perPage, page: $page) {
+		media(sort: [TRENDING_DESC],
+			  type: $type,
+			  isAdult: false) {
+			...ShortMediaDetails
+		}
+	}
+}
+
+query TrendingNowByGenre($perPage: Int, $page: Int, $type: MediaType, $genre: String) {
+	Page(perPage: $perPage, page: $page) {
+		media(sort: [TRENDING_DESC],
+			  type: $type,
+			  genre: $genre,
+			  isAdult: false) {
+			...ShortMediaDetails
+		}
+	}
+}
+
+query PopularThisSeasonAnime($perPage: Int, $page: Int, $type: MediaType) {
+	Page(perPage: $perPage, page: $page) {
+		media(sort: [POPULARITY_DESC],
+			  type: $type,
+			  seasonYear: 2021,
+			  season: FALL,
+			  isAdult: false) {
+			...ShortMediaDetails
+		}
+	}
+}
+
+query AllTimeTop($perPage: Int, $page: Int, $type: MediaType) {
+	Page(perPage: $perPage, page: $page) {
+		media(sort: [SCORE_DESC],
+			  type: $type,
+			  isAdult: false) {
+			...ShortMediaDetails
+		}
+	}
+}
+
+query SearchMedia($search: String,
+				  $sort: [MediaSort],
+				  $type: MediaType){
+	Page {
+		media(search: $search,
+			  sort: $sort,
+			  type: $type,
+			  isAdult: false) {
+			...MediaDetails
+		}
+		
+	}
+}
+
+query GetMediaById($id: Int) {
+	Media(id: $id) {
+		...MediaDetails
+	}
+}
+
+query Discover($perPage: Int,
+			   $page: Int,
+			   $currentSeasonYear: Int,
+			   $currentSeason: MediaSeason,
+			   $nextSeasonYear: Int,
+			   $nextSeason: MediaSeason) {
+	trendingAnime: Page(perPage: $perPage, page: $page) {
+		media(sort: [TRENDING_DESC],
+			  genre: null,
+			  type: ANIME,
+			  isAdult: false) {
+			...ShortMediaDetails
+		}
+	}
+	
+	trendingManga: Page(perPage: $perPage, page: $page) {
+		media(sort: [TRENDING_DESC],
+			  genre: null,
+			  type: MANGA,
+			  isAdult: false) {
+			...ShortMediaDetails
+		}
+	}
+	
+	trendingRomanceManga: Page(perPage: $perPage, page: $page) {
+		media(sort: [TRENDING_DESC],
+			  genre: "Romance",
+			  type: MANGA,
+			  isAdult: false) {
+			...ShortMediaDetails
+		}
+	}
+	
+	popularCurrentSeasonAnime: Page(perPage: $perPage, page: $page) {
+		media(sort: [POPULARITY_DESC],
+			  genre: null,
+			  type: ANIME,
+			  seasonYear: $currentSeasonYear,
+			  season: $currentSeason,
+			  isAdult: false) {
+			...ShortMediaDetails
+		}
+	}
+	
+	popularNextSeasonAnime: Page(perPage: $perPage, page: $page) {
+		media(sort: [POPULARITY_DESC],
+			  genre: null,
+			  type: ANIME,
+			  seasonYear: $nextSeasonYear,
+			  season: $nextSeason,
+			  isAdult: false) {
+			...ShortMediaDetails
+		}
+	}
+	
+	allTimeTopAnime: Page(perPage: $perPage, page: $page) {
+		media(sort: [SCORE_DESC],
+			  genre: null,
+			  type: ANIME,
+			  isAdult: false) {
+			...ShortMediaDetails
+		}
+	}
+	
+	allTimeTopManga: Page(perPage: $perPage, page: $page) {
+		media(sort: [SCORE_DESC],
+			  genre: null,
+			  type: MANGA,
+			  isAdult: false) {
+			...ShortMediaDetails
+		}
+	}
+}
+
+# social
+query GetThreadsByMediaCatId($id: Int, $sort: [ThreadSort]) {
+	Page(page: 1, perPage: 10) {
+		pageInfo {
+			...PageInfoDetails
+		}
+		threads(mediaCategoryId: $id, sort: $sort) {
+			...ThreadDetails
+		}
+	}
+}
+
+query GetThreadCommentsByThreadId($threadId: Int) {
+	Page(page: 1, perPage: 15) {
+		pageInfo {
+			total
+			perPage
+			currentPage
+			lastPage
+			hasNextPage
+		}
+		threadComments(threadId: $threadId) {
+			id
+			threadId
+			comment
+			isLiked
+			likeCount
+			createdAt
+			user {
+				id
+				name
+				donatorTier
+				donatorBadge
+				avatar {
+					large
+				}
+			}
+			childComments
+		}
+	}
+}
+
+query GetLatestActiveThreads($page: Int, $perPage: Int) {
+	Page(page: $page, perPage: $perPage) {
+		pageInfo {
+			total
+			perPage
+			currentPage
+			lastPage
+			hasNextPage
+		}
+		threads(sort: REPLIED_AT_DESC) {
+			...ThreadDetails
+		}
+	}
+}
+
+query GetRecentReviews($page: Int, $perPage: Int) {
+	Page(page: $page, perPage: $perPage) {
+		pageInfo {
+			total
+			perPage
+			currentPage
+			lastPage
+			hasNextPage
+		}
+		reviews(sort: ID_DESC) {
+			id
+			createdAt
+			updatedAt
+			user {
+				...UserDetails
+			}
+			userId
+			score
+			rating
+			ratingAmount
+			userRating
+			summary
+			media {
+				id
+				title {
+					userPreferred
+				}
+				type
+				bannerImage
+			}
+		}
+	}
+}
+
+query GetUserActivities( $isFollowing: Boolean = true,$hasReplies: Boolean = false, $activityType: ActivityType, $page: Int) {
+	Page(page: $page, perPage: 25) {
+		pageInfo {
+			total
+			perPage
+			currentPage
+			lastPage
+			hasNextPage
+		}
+		activities(isFollowing: $isFollowing, type: $activityType, hasRepliesOrTypeText: $hasReplies, type_in: [TEXT, ANIME_LIST, MANGA_LIST],
+				   sort: ID_DESC) {
+			... on TextActivity {
+				id
+				userId
+				type
+				replyCount
+				text
+				isLocked
+				isSubscribed
+				isLiked
+				likeCount
+				createdAt
+				user {
+					id
+					name
+					donatorTier
+					donatorBadge
+					moderatorRoles
+					avatar {
+						large
+					}
+				}
+			}
+			... on ListActivity {
+				id
+				userId
+				type
+				status
+				progress
+				replyCount
+				isLocked
+				isSubscribed
+				isLiked
+				likeCount
+				createdAt
+				user {
+					id
+					name
+					donatorTier
+					donatorBadge
+					avatar {
+						large
+					}
+				}
+				media {
+					id
+					idMal
+					type
+					status
+					isAdult
+					title {
+						userPreferred
+					}
+					bannerImage
+					coverImage {
+						large
+					}
+				}
+			}
+		}
+	}
+}
+
+fragment PageInfoDetails on PageInfo {
+	total
+	perPage
+	currentPage
+	lastPage
+	hasNextPage
+}
+
+fragment UserDetails on User {
+	id
+	avatar {
+		large
+		medium
+	}
+	name
+}
+
+fragment ThreadDetails on Thread {
+	id
+	user {
+		...UserDetails
+	}
+	title
+	body
+	replyCount
+	viewCount
+	likeCount
+	categories {
+		id
+		name
+	}
+	replyUser {
+		...UserDetails
+	}
+	repliedAt
+	createdAt
+	updatedAt
+}
+
+query ViewerDetail {
+	Viewer {
+		id
+		name
+		about
+		avatar {
+			large
+		}
+		bannerImage
+		unreadNotificationCount
+		donatorTier
+		donatorBadge
+		moderatorRoles
+		options {
+			titleLanguage
+			airingNotifications
+			displayAdultContent
+			profileColor
+			notificationOptions {
+				type
+				enabled
+			}
+		}
+		mediaListOptions {
+			scoreFormat
+			rowOrder
+			animeList {
+				customLists
+				sectionOrder
+				splitCompletedSectionByFormat
+				advancedScoring
+				advancedScoringEnabled
+			}
+			mangaList {
+				customLists
+				sectionOrder
+				splitCompletedSectionByFormat
+				advancedScoring
+				advancedScoringEnabled
+			}
+		}
+	}
+}
+
+query GetMediaListCollection($userId: Int,
+							 $userName: String,
+							 $type: MediaType) {
+	MediaListCollection(userId: $userId,
+						userName: $userName,
+						type: $type) {
+		lists {
+			name
+			isCustomList
+			isCompletedList: isSplitCompletedList
+			entries {
+				...mediaListEntry
+			}
+		}
+		user {
+			id
+			name
+			avatar {
+				large
+			}
+			mediaListOptions {
+				scoreFormat
+				rowOrder
+				animeList {
+					sectionOrder
+					customLists
+					splitCompletedSectionByFormat
+				}
+				mangaList {
+					sectionOrder
+					customLists
+					splitCompletedSectionByFormat
+				}
+			}
+		}
+	}
+}
+
+fragment mediaListEntry on MediaList {
+	id
+	mediaId
+	status
+	score
+	progress
+	progressVolumes
+	repeat
+	priority
+	private
+	hiddenFromStatusLists
+	customLists
+	notes
+	updatedAt
+	startedAt {
+		year
+		month
+		day
+	}
+	completedAt {
+		year
+		month
+		day
+	}
+	media {
+		...ShortMediaDetails
+	}
+}
+
+mutation SaveMediaListEntry (
+							 $mediaId: Int,
+							 $status: MediaListStatus,
+							 $score: Float,
+							 $progress: Int,
+							 $progressVolumes: Int,
+							 $repeat: Int,
+							 $private: Boolean,
+							 $notes: String,
+							 $customLists: [String],
+							 $hiddenFromStatusLists: Boolean,
+							 $startedAt: FuzzyDateInput,
+							 $completedAt: FuzzyDateInput) {
+	SaveMediaListEntry(
+					   mediaId: $mediaId,
+					   status: $status,
+					   score: $score,
+					   progress: $progress,
+					   progressVolumes: $progressVolumes,
+					   repeat: $repeat,
+					   private: $private,
+					   notes: $notes,
+					   customLists: $customLists,
+					   hiddenFromStatusLists: $hiddenFromStatusLists,
+					   startedAt: $startedAt,
+					   completedAt: $completedAt) {
+		id
+		mediaId
+		status
+		score
+		progress
+		progressVolumes
+		repeat
+		priority
+		private
+		hiddenFromStatusLists
+	
+		notes
+		updatedAt
+		startedAt {
+			year
+			month
+			day
+		}
+		completedAt {
+			year
+			month
+			day
+		}
+		user {
+			id
+			name
+		}
+	}
+}
+
