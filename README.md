@@ -1,5 +1,5 @@
 # blee
-Manage Anilist from your Mac's status bar.
+Manage Anilist from your Mac's menu bar.
 
 <img width="472" alt="Screen Shot 2022-03-23 at 4 10 03 PM" src="https://user-images.githubusercontent.com/23707104/159786937-831cca46-a43e-420a-9f36-696b5b9b9d62.png">
 
