@@ -13,6 +13,7 @@ struct MediaListView: View {
     @State var selectedMediaTypeTabItemIndex: Int = 0
     @State var selectedMediaList: MediaListPickerItem
     @State var searchText: String = ""
+    @State var isSearchAnilist: Bool = false
     
     init(viewModel: MediaListViewModel) {
         self.viewModel = viewModel
@@ -90,7 +91,8 @@ struct MediaListView: View {
             }
             .padding(.leading,5)
             .padding(.trailing, 5)
-            SearchBarView(searchText: $searchText)
+            SearchBarView(searchText: $searchText,
+                          isSearchAnilist: $isSearchAnilist)
                 .padding(.leading, 5)
                 .padding(.trailing, 5)
             ScrollView() {
