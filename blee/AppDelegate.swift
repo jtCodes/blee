@@ -48,6 +48,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             //            button.image = NSImage(named: NSImage.Name("icon-orange"))
             button.action = #selector(showPopover(_:))
         }
+        
+        // Close main app window
+        if let window = NSApplication.shared.windows.first {
+            window.close()
+        }
     }
     
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -101,9 +106,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 NSApp.activate(ignoringOtherApps: true)
                 
                 // don't want the textfield to be automatically focused
-                DispatchQueue.main.async {
-                    NSApp.keyWindow?.makeFirstResponder(nil)
-                }
+//                DispatchQueue.main.async {
+//                    NSApp.keyWindow?.makeFirstResponder(nil)
+//                }
             }
         }
     }
