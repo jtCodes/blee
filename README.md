@@ -18,3 +18,4 @@ Manage Anilist from your Mac's menu bar.
 
 ### TODO:
 - Ability to search and add new media to list
+- Explore MenuBarExtra (https://sarunw.com/posts/swiftui-menu-bar-app/)
