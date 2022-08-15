@@ -15,6 +15,7 @@ class MediaTrackingEntryStore: ObservableObject {
     @Published var mangaMediaRowViewModelCollection: [MediaRowViewModel] = []
     @Published var isSavingToServer: Bool = false
     @Published var currentViewingMediaType: MediaType = .anime
+    var mediaTrackingEntryByMediaId: [Int: MediaTrackingEntry] = [:]
     
     func fetchMediaCollection(user: User,
                               type: MediaType,
@@ -76,6 +77,7 @@ class MediaTrackingEntryStore: ObservableObject {
                                         mediaEntries.append(entry)
                                         mediaRowViewModelCollection.append(MediaRowViewModel(media: Media(mediaDetails: (entry.fragments.mediaListEntry.media?.fragments.mediaDetails)!),
                                                                                              mediaListEntry: mediaTrackingEntry))
+                                        self.mediaTrackingEntryByMediaId[mediaTrackingEntry.mediaId] = mediaTrackingEntry
                                         
                                     }
                                 }
