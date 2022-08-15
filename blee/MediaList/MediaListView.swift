@@ -113,6 +113,7 @@ struct MediaListView: View {
                                     selectedList: $selectedMediaList,
                                     onMediaListSelect: onMediaListSelect)
                     .frame(width: 120)
+                    .disabled(isSearchVisible)
                 Spacer()
                 RefreshButtonView()
                     .onTapGesture {

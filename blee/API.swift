@@ -6207,7 +6207,7 @@ public final class GetMediaListCollectionQuery: GraphQLQuery {
   public var queryDocument: String {
     var document: String = operationDefinition
     document.append("\n" + MediaListEntry.fragmentDefinition)
-    document.append("\n" + ShortMediaDetails.fragmentDefinition)
+    document.append("\n" + MediaDetails.fragmentDefinition)
     return document
   }
 
@@ -6921,12 +6921,6 @@ public struct MediaDetails: GraphQLFragment {
       }
       bannerImage
       meanScore
-      externalLinks {
-        __typename
-        site
-        url
-        id
-      }
     }
     """
 
@@ -6955,7 +6949,6 @@ public struct MediaDetails: GraphQLFragment {
       GraphQLField("coverImage", type: .object(CoverImage.selections)),
       GraphQLField("bannerImage", type: .scalar(String.self)),
       GraphQLField("meanScore", type: .scalar(Int.self)),
-      GraphQLField("externalLinks", type: .list(.object(ExternalLink.selections))),
     ]
   }
 
@@ -6965,8 +6958,8 @@ public struct MediaDetails: GraphQLFragment {
     self.resultMap = unsafeResultMap
   }
 
-  public init(type: MediaType? = nil, id: Int, idMal: Int? = nil, nextAiringEpisode: NextAiringEpisode? = nil, title: Title? = nil, format: MediaFormat? = nil, genres: [String?]? = nil, description: String? = nil, season: MediaSeason? = nil, seasonYear: Int? = nil, episodes: Int? = nil, chapters: Int? = nil, duration: Int? = nil, startDate: StartDate? = nil, endDate: EndDate? = nil, status: MediaStatus? = nil, averageScore: Int? = nil, coverImage: CoverImage? = nil, bannerImage: String? = nil, meanScore: Int? = nil, externalLinks: [ExternalLink?]? = nil) {
-    self.init(unsafeResultMap: ["__typename": "Media", "type": type, "id": id, "idMal": idMal, "nextAiringEpisode": nextAiringEpisode.flatMap { (value: NextAiringEpisode) -> ResultMap in value.resultMap }, "title": title.flatMap { (value: Title) -> ResultMap in value.resultMap }, "format": format, "genres": genres, "description": description, "season": season, "seasonYear": seasonYear, "episodes": episodes, "chapters": chapters, "duration": duration, "startDate": startDate.flatMap { (value: StartDate) -> ResultMap in value.resultMap }, "endDate": endDate.flatMap { (value: EndDate) -> ResultMap in value.resultMap }, "status": status, "averageScore": averageScore, "coverImage": coverImage.flatMap { (value: CoverImage) -> ResultMap in value.resultMap }, "bannerImage": bannerImage, "meanScore": meanScore, "externalLinks": externalLinks.flatMap { (value: [ExternalLink?]) -> [ResultMap?] in value.map { (value: ExternalLink?) -> ResultMap? in value.flatMap { (value: ExternalLink) -> ResultMap in value.resultMap } } }])
+  public init(type: MediaType? = nil, id: Int, idMal: Int? = nil, nextAiringEpisode: NextAiringEpisode? = nil, title: Title? = nil, format: MediaFormat? = nil, genres: [String?]? = nil, description: String? = nil, season: MediaSeason? = nil, seasonYear: Int? = nil, episodes: Int? = nil, chapters: Int? = nil, duration: Int? = nil, startDate: StartDate? = nil, endDate: EndDate? = nil, status: MediaStatus? = nil, averageScore: Int? = nil, coverImage: CoverImage? = nil, bannerImage: String? = nil, meanScore: Int? = nil) {
+    self.init(unsafeResultMap: ["__typename": "Media", "type": type, "id": id, "idMal": idMal, "nextAiringEpisode": nextAiringEpisode.flatMap { (value: NextAiringEpisode) -> ResultMap in value.resultMap }, "title": title.flatMap { (value: Title) -> ResultMap in value.resultMap }, "format": format, "genres": genres, "description": description, "season": season, "seasonYear": seasonYear, "episodes": episodes, "chapters": chapters, "duration": duration, "startDate": startDate.flatMap { (value: StartDate) -> ResultMap in value.resultMap }, "endDate": endDate.flatMap { (value: EndDate) -> ResultMap in value.resultMap }, "status": status, "averageScore": averageScore, "coverImage": coverImage.flatMap { (value: CoverImage) -> ResultMap in value.resultMap }, "bannerImage": bannerImage, "meanScore": meanScore])
   }
 
   public var __typename: String {
@@ -7175,16 +7168,6 @@ public struct MediaDetails: GraphQLFragment {
     }
     set {
       resultMap.updateValue(newValue, forKey: "meanScore")
-    }
-  }
-
-  /// External links to another site related to the media
-  public var externalLinks: [ExternalLink?]? {
-    get {
-      return (resultMap["externalLinks"] as? [ResultMap?]).flatMap { (value: [ResultMap?]) -> [ExternalLink?] in value.map { (value: ResultMap?) -> ExternalLink? in value.flatMap { (value: ResultMap) -> ExternalLink in ExternalLink(unsafeResultMap: value) } } }
-    }
-    set {
-      resultMap.updateValue(newValue.flatMap { (value: [ExternalLink?]) -> [ResultMap?] in value.map { (value: ExternalLink?) -> ResultMap? in value.flatMap { (value: ExternalLink) -> ResultMap in value.resultMap } } }, forKey: "externalLinks")
     }
   }
 
@@ -7505,68 +7488,6 @@ public struct MediaDetails: GraphQLFragment {
       }
       set {
         resultMap.updateValue(newValue, forKey: "medium")
-      }
-    }
-  }
-
-  public struct ExternalLink: GraphQLSelectionSet {
-    public static let possibleTypes: [String] = ["MediaExternalLink"]
-
-    public static var selections: [GraphQLSelection] {
-      return [
-        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-        GraphQLField("site", type: .nonNull(.scalar(String.self))),
-        GraphQLField("url", type: .nonNull(.scalar(String.self))),
-        GraphQLField("id", type: .nonNull(.scalar(Int.self))),
-      ]
-    }
-
-    public private(set) var resultMap: ResultMap
-
-    public init(unsafeResultMap: ResultMap) {
-      self.resultMap = unsafeResultMap
-    }
-
-    public init(site: String, url: String, id: Int) {
-      self.init(unsafeResultMap: ["__typename": "MediaExternalLink", "site": site, "url": url, "id": id])
-    }
-
-    public var __typename: String {
-      get {
-        return resultMap["__typename"]! as! String
-      }
-      set {
-        resultMap.updateValue(newValue, forKey: "__typename")
-      }
-    }
-
-    /// The site location of the external link
-    public var site: String {
-      get {
-        return resultMap["site"]! as! String
-      }
-      set {
-        resultMap.updateValue(newValue, forKey: "site")
-      }
-    }
-
-    /// The url of the external link
-    public var url: String {
-      get {
-        return resultMap["url"]! as! String
-      }
-      set {
-        resultMap.updateValue(newValue, forKey: "url")
-      }
-    }
-
-    /// The id of the external link
-    public var id: Int {
-      get {
-        return resultMap["id"]! as! Int
-      }
-      set {
-        resultMap.updateValue(newValue, forKey: "id")
       }
     }
   }
@@ -8752,7 +8673,7 @@ public struct MediaListEntry: GraphQLFragment {
       }
       media {
         __typename
-        ...ShortMediaDetails
+        ...MediaDetails
       }
     }
     """
@@ -9089,7 +9010,7 @@ public struct MediaListEntry: GraphQLFragment {
     public static var selections: [GraphQLSelection] {
       return [
         GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-        GraphQLFragmentSpread(ShortMediaDetails.self),
+        GraphQLFragmentSpread(MediaDetails.self),
       ]
     }
 
@@ -9124,9 +9045,9 @@ public struct MediaListEntry: GraphQLFragment {
         self.resultMap = unsafeResultMap
       }
 
-      public var shortMediaDetails: ShortMediaDetails {
+      public var mediaDetails: MediaDetails {
         get {
-          return ShortMediaDetails(unsafeResultMap: resultMap)
+          return MediaDetails(unsafeResultMap: resultMap)
         }
         set {
           resultMap += newValue.resultMap

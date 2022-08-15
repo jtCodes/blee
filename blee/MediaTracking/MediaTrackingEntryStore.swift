@@ -39,7 +39,7 @@ class MediaTrackingEntryStore: ObservableObject {
                                     if let entry = entry {
                                         let mediaTrackingEntry: MediaTrackingEntry = MediaTrackingEntry(mediaId: entry.fragments.mediaListEntry.mediaId,
                                                                                                         mediaType: type)
-                                        mediaTrackingEntry.media = Media(shortMediaDetails: (entry.fragments.mediaListEntry.media?.fragments.shortMediaDetails)!)
+                                        mediaTrackingEntry.media = Media(mediaDetails: (entry.fragments.mediaListEntry.media?.fragments.mediaDetails)!)
                                         mediaTrackingEntry.status = entry.fragments.mediaListEntry.status
                                         mediaTrackingEntry.score = entry.fragments.mediaListEntry.score ?? 0
                                         mediaTrackingEntry.progress = entry.fragments.mediaListEntry.progress ?? 0
@@ -74,7 +74,7 @@ class MediaTrackingEntryStore: ObservableObject {
                                         mediaTrackingEntry.isEdited = false
                                         
                                         mediaEntries.append(entry)
-                                        mediaRowViewModelCollection.append(MediaRowViewModel(media: Media(shortMediaDetails: (entry.fragments.mediaListEntry.media?.fragments.shortMediaDetails)!),
+                                        mediaRowViewModelCollection.append(MediaRowViewModel(media: Media(mediaDetails: (entry.fragments.mediaListEntry.media?.fragments.mediaDetails)!),
                                                                                              mediaListEntry: mediaTrackingEntry))
                                         
                                     }

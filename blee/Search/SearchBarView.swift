@@ -45,7 +45,8 @@ struct SearchBarView: View {
                 .font(.system(size: 12))
                 .fontWeight(.medium)
                 .padding(2)
-                .background(isSearchAnilist ? Color.green : Color.gray)
+                .foregroundColor(Color.white.opacity(0.8))
+                .background(isSearchAnilist ? Color.green : Color.gray.opacity(0.5))
                 .cornerRadius(5)
                 .contentShape(Rectangle())
                 .onTapGesture {
@@ -53,7 +54,7 @@ struct SearchBarView: View {
                 }
             ZStack (alignment: .leading) {
                 OmenTextField(
-                    "Search",
+                    isSearchAnilist ? "Search Anilist" : "Search your list",
                     text: $searchText,
                     isFocused: $focus,
                     returnKeyType: frontReturnKeyType,

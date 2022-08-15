@@ -28,6 +28,10 @@ struct MediaRowView: View {
                         .lineLimit(1)
                     Spacer()
                     HStack() {
+                        MediaRowInfoItemView(label: mediaListEntry.status != nil ?
+                                             mediaListEntry.getStatusLabel() : "Not in List",
+                                             sfSymbolName: "diamond.circle",
+                                             helpText: "Status")
                         if (mediaListEntry.score > 0) {
                             MediaRowInfoItemView(label: String(mediaListEntry.score),
                                                  sfSymbolName: "star.fill",
@@ -61,7 +65,7 @@ struct MediaRowView: View {
                     }
                     Spacer()
                     HStack() {
-                        if let format = mediaListEntry.media?.anilistFormat?.rawValue {
+                        if let format = mediaListEntry.media?.format {
                             Text(format)
                                 .font(.system(size: 11))
                                 .cornerRadius(5)
@@ -71,16 +75,8 @@ struct MediaRowView: View {
                                 .padding(.bottom, 1.5)
                                 .overlay(RoundedRectangle(cornerRadius: 5)
                                             .stroke(.white.opacity(0.6), lineWidth: 1))
+                                .opacity(0.7)
                         }
-                        Text(mediaListEntry.status != nil ? mediaListEntry.getStatusLabel() : "Not in List")
-                            .font(.system(size: 11))
-                            .cornerRadius(5)
-                            .padding(.leading, 2.5)
-                            .padding(.trailing, 2.5)
-                            .padding(.top, 1.5)
-                            .padding(.bottom, 1.5)
-                            .overlay(RoundedRectangle(cornerRadius: 5)
-                                        .stroke(.white.opacity(0.6), lineWidth: 1))
                         if let seasonYear = mediaListEntry.media?.seasonYear {
                             if (seasonYear > 0) {
                                 Text(String(seasonYear))
@@ -92,6 +88,7 @@ struct MediaRowView: View {
                                     .padding(.bottom, 1.5)
                                     .overlay(RoundedRectangle(cornerRadius: 5)
                                         .stroke(.white.opacity(0.6), lineWidth: 1))
+                                    .opacity(0.7)
                             }
                         }
                         Spacer()
@@ -111,7 +108,7 @@ struct MediaRowView: View {
                         } else if (mediaListEntry.media?.anilistStatus == .notYetReleased) {
                             MediaRowInfoItemView(label: "",
                                                  sfSymbolName: "circle.fill",
-                                                 helpText: "Releasing")
+                                                 helpText: "Not Yet Released")
                                 .foregroundColor(.red)
                                 .font(.footnote)
                         }

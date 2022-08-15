@@ -181,6 +181,8 @@ struct Media: Hashable {
         self.dataSource = .anilist
         self.chapters = mediaDetails.chapters ?? -1
         self.premiered = getAnilistPremieredLabel()
+        self.anilistStatus = mediaDetails.status
+        self.anilistFormat = mediaDetails.format
         
         if mediaDetails.genres != nil {
             self.genres = mediaDetails.genres.flatMap{ $0 } as? [String] ?? []
