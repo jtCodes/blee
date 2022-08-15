@@ -72,7 +72,7 @@ struct MediaRowView: View {
                                 .overlay(RoundedRectangle(cornerRadius: 5)
                                             .stroke(.white.opacity(0.6), lineWidth: 1))
                         }
-                        Text(mediaListEntry.getStatusLabel())
+                        Text(mediaListEntry.status != nil ? mediaListEntry.getStatusLabel() : "Not in List")
                             .font(.system(size: 11))
                             .cornerRadius(5)
                             .padding(.leading, 2.5)
@@ -81,6 +81,19 @@ struct MediaRowView: View {
                             .padding(.bottom, 1.5)
                             .overlay(RoundedRectangle(cornerRadius: 5)
                                         .stroke(.white.opacity(0.6), lineWidth: 1))
+                        if let seasonYear = mediaListEntry.media?.seasonYear {
+                            if (seasonYear > 0) {
+                                Text(String(seasonYear))
+                                    .font(.system(size: 11))
+                                    .cornerRadius(5)
+                                    .padding(.leading, 2.5)
+                                    .padding(.trailing, 2.5)
+                                    .padding(.top, 1.5)
+                                    .padding(.bottom, 1.5)
+                                    .overlay(RoundedRectangle(cornerRadius: 5)
+                                        .stroke(.white.opacity(0.6), lineWidth: 1))
+                            }
+                        }
                         Spacer()
                         if (mediaListEntry.isPrivate) {
                             MediaRowInfoItemView(label: "",
