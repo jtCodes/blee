@@ -25,10 +25,14 @@ struct MediaTrackingEditView: View {
     }
     
     var body: some View {
-        VStack() {
+        ZStack() {
             if (mediaTrackingStore.isSavingToServer) {
                 ProgressView()
-            } else {
+                    .zIndex(1)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .background(Color.gray.opacity(0.5))
+            }
+            VStack() {
                 HStack() {
                     MediaStatusTrackingOptionView()
                         .frame(width: 140)
@@ -68,6 +72,19 @@ struct MediaTrackingEditView: View {
                     TextField("Notes", text: $mediaTrackingEntry.note)
                     if (mediaTrackingEntry.isEdited) {
                         Button("Save") {
+                            print("saving entry: ",
+                                  mediaTrackingEntry.mediaId,
+                                  mediaTrackingEntry.status,
+                                  mediaTrackingEntry.score,
+                                  mediaTrackingEntry.progress,
+                                  mediaTrackingEntry.progressVolume,
+                                  mediaTrackingEntry.repeatCount,
+                                  mediaTrackingEntry.note,
+                                  mediaTrackingEntry.isStartDateExist ?
+                                  mediaTrackingEntry.startDate.toFuzzyDateInput() : nil,
+                                  mediaTrackingEntry.isCompleteDateExist ?
+                                  mediaTrackingEntry.completeDate.toFuzzyDateInput() : nil
+                            )
                             mediaTrackingStore.isSavingToServer = true
                             AnilistNetworkClient.shared.saveMediaListEntry(mediaId: mediaTrackingEntry.mediaId,
                                                                            status: mediaTrackingEntry.status,
@@ -108,8 +125,8 @@ struct MediaTrackingEditView: View {
                     }
                 }
             }
+            .padding(10)
         }
-        .padding(10)
         .onAppear() {
             if let isStartDateExist = viewModel.initialEntry?.isStartDateExist {
                 if (isStartDateExist) {
@@ -178,5 +195,6 @@ struct MediaTrackingEditView_Previews: PreviewProvider {
         MediaTrackingEditView(viewModel: MediaTrackingEditViewModel())
             .frame(width: 400)
             .environmentObject(mediaTrackingEntry)
+            .environmentObject(MediaTrackingEntryStore())
     }
 }

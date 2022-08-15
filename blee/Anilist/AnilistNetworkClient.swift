@@ -33,7 +33,9 @@ class AnilistNetworkClient {
 }
 
 extension AnilistNetworkClient {
-    func searchAnilistAnime(keywords: String, mediaType: MediaType) {
+    func searchAnilistAnime(keywords: String,
+                            mediaType: MediaType,
+                            completion: @escaping (_ mediaCollection: [SearchMediaQuery.Data.Page.Medium?]?) -> ()) {
         if (!keywords.isEmpty) {
             AnilistNetworkClient.shared.apollo.fetch(query: SearchMediaQuery(search: keywords,
                                                                              sort: [.searchMatch, .popularityDesc],
@@ -41,8 +43,7 @@ extension AnilistNetworkClient {
                 switch result {
                 case .success(let graphQLResult):
                     let graphQLMediaCollection = graphQLResult.data?.page?.media
-                    
-                    print(graphQLMediaCollection)
+                    completion(graphQLMediaCollection)
                 case .failure(let error):
                     print("Failure! Error: \(error)")
                 }
@@ -108,8 +109,7 @@ extension AnilistNetworkClient {
         }
     }
     
-    func saveMediaListEntry(
-                            mediaId: Int,
+    func saveMediaListEntry(mediaId: Int,
                             status: MediaListStatus?,
                             score: Double?,
                             progress: Int?,
@@ -122,17 +122,16 @@ extension AnilistNetworkClient {
                             startedAt: FuzzyDateInput?,
                             completedAt: FuzzyDateInput?,
                             completion: @escaping (_ success: Bool) -> ()) {
-        AnilistNetworkClient.shared.apollo.perform(mutation: SaveMediaListEntryMutation(
-                                                                                        mediaId: mediaId,
+        AnilistNetworkClient.shared.apollo.perform(mutation: SaveMediaListEntryMutation(mediaId: mediaId,
                                                                                         status: status,
                                                                                         score: score,
                                                                                         progress: progress,
                                                                                         progressVolumes: progressVolumes,
                                                                                         repeat: repeatCount,
-                                                                                        private: isPrivate,
+                                                                                        private: false,
                                                                                         notes: notes,
-                                                                                        customLists: customLists,
-                                                                                        hiddenFromStatusLists: hiddenFromStatusLists,
+                                                                                        customLists: [],
+                                                                                        hiddenFromStatusLists: false,
                                                                                         startedAt: startedAt,
                                                                                         completedAt: completedAt)) { result in
             switch result {
@@ -140,7 +139,7 @@ extension AnilistNetworkClient {
                 print(graphQLResult)
                 completion(true)
             case .failure(let error):
-                print("Failure! Error: \(error.localizedDescription)")
+                print("Failure! Error: \(error.localizedDescription)", error)
                 completion(false)
             }
         }

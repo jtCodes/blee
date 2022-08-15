@@ -5,8 +5,20 @@
 //  based on https://github.com/UPetersen/SwiftUI-SearchBar/blob/master/SearchBar/ContentView.swift
 //
 
+import Combine
 import SwiftUI
 import OmenTextField
+
+class TextFieldObserver : ObservableObject {
+    @Published var debouncedText = ""
+    @Published var searchText = ""
+    
+    init(delay: DispatchQueue.SchedulerTimeType.Stride) {
+        $searchText
+            .debounce(for: delay, scheduler: DispatchQueue.main)
+            .assign(to: &$debouncedText)
+    }
+}
 
 enum FocusField: Hashable {
     case field
@@ -14,6 +26,7 @@ enum FocusField: Hashable {
 
 struct SearchBarView: View {
     @Binding var searchText: String
+    @Binding var isSearchAnilist: Bool
     @State private var isEditing: Bool = false
     @State var focus: Bool = false
     @State var frontReturnKeyType = OmenTextField.ReturnKeyType.next
@@ -28,6 +41,16 @@ struct SearchBarView: View {
         
         HStack {
             Image(systemName: "magnifyingglass")
+            Text("Anilist")
+                .font(.system(size: 12))
+                .fontWeight(.medium)
+                .padding(2)
+                .background(isSearchAnilist ? Color.green : Color.gray)
+                .cornerRadius(5)
+                .contentShape(Rectangle())
+                .onTapGesture {
+                    isSearchAnilist.toggle()
+                }
             ZStack (alignment: .leading) {
                 OmenTextField(
                     "Search",
@@ -39,14 +62,17 @@ struct SearchBarView: View {
                     }
                 )
             }
-            // Clear button
-            Button(action: {
-                self.searchText = ""
-                NSApp.keyWindow?.makeFirstResponder(nil)
-            }) {
-                Image(systemName: "x.circle.fill")
+            
+            if (!searchText.isEmpty) {
+                // Clear button
+                Button(action: {
+                    self.searchText = ""
+                    NSApp.keyWindow?.makeFirstResponder(nil)
+                }) {
+                    Image(systemName: "x.circle.fill")
+                }
+                .buttonStyle(PlainButtonStyle())
             }
-            .buttonStyle(PlainButtonStyle())
         }
         .padding(.leading, 5)
         .padding(.trailing, 5)
@@ -54,16 +80,12 @@ struct SearchBarView: View {
         .padding(.bottom, 1.5)
         .background(.quaternary)
         .cornerRadius(5)
-        .onAppear() {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-                NSApp.keyWindow?.makeFirstResponder(nil)
-            }
-        }
     }
 }
 
 struct SearchBarView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchBarView(searchText: .constant("fd"))
+        SearchBarView(searchText: .constant("fds"),
+                      isSearchAnilist: .constant(false))
     }
 }

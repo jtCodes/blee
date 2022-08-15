@@ -41,34 +41,6 @@ fragment MediaDetails on Media {
 	}
 	bannerImage
 	meanScore
-	relations {
-		edges {
-			relationType
-		}
-		nodes {
-			...ShortMediaDetails
-		}
-	}
-	recommendations {
-		edges {
-			node {
-				id
-				mediaRecommendation {
-					...ShortMediaDetails
-				}
-			}
-		}
-	}
-	reviews {
-		edges {
-			node {
-				...ReviewDetails
-			}
-		}
-	}
-	trailer {
-		...TrailerDetails
-	}
 	externalLinks {
 		site
 		url
@@ -605,32 +577,31 @@ mutation SaveMediaListEntry (
 					   startedAt: $startedAt,
 					   completedAt: $completedAt) {
 		id
-		mediaId
-		status
-		score
-		progress
-		progressVolumes
-		repeat
-		priority
-		private
-		hiddenFromStatusLists
-	
-		notes
-		updatedAt
-		startedAt {
-			year
-			month
-			day
-		}
-		completedAt {
-			year
-			month
-			day
-		}
-		user {
-			id
-			name
-		}
+#		mediaId
+#		status
+#		score
+#		progress
+#		progressVolumes
+#		repeat
+#		priority
+#		private
+#		hiddenFromStatusLists
+#		notes
+#		updatedAt
+#		startedAt {
+#			year
+#			month
+#			day
+#		}
+#		completedAt {
+#			year
+#			month
+#			day
+#		}
+#		user {
+#			id
+#			name
+#		}
 	}
 }
 
