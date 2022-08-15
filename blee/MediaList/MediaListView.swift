@@ -81,7 +81,8 @@ struct MediaListView: View {
                                                                      mediaType: media.type == .anime ? .anime : .manga)
                         mediaTrackingEntry.media = media
                         return MediaRowViewModel(media: media,
-                                                 mediaListEntry: mediaTrackingEntry)
+                                                 mediaListEntry: mediaTrackingEntryStore.mediaTrackingEntryByMediaId[media.id] != nil ?
+                                                 mediaTrackingEntryStore.mediaTrackingEntryByMediaId[media.id]! : mediaTrackingEntry)
                     }
                 }
             }
