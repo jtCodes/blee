@@ -45,8 +45,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         if let button = self.statusItem?.button {
             button.title = "ß"
-            //            button.image = NSImage(named: NSImage.Name("icon-orange"))
-            button.action = #selector(showPopover(_:))
+//            button.image = NSImage(named: NSImage.Name("menu-bar-icon"))?.resizeImage(width: 25, 25)
+            
+//            button.action = #selector(showPopover(_:))
+        }
+        
+        NSEvent.addLocalMonitorForEvents(matching: .leftMouseDown) { [weak self] event in
+            if event.window == self?.statusItem?.button?.window {
+                // Your action:
+                self?.showPopover((self?.statusItem?.button)!)
+                return nil
+            }
+
+            return event
         }
         
         // Close main app window
@@ -83,7 +94,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if let button = self.statusItem?.button {
             if (self.popover?.isShown ?? false == true) {
                 self.popover?.performClose(sender)
+                button.isHighlighted = false
             } else {
+                button.isHighlighted = true
                 let invisibleWindow = NSWindow(contentRect: NSMakeRect(0, 0, 20, 5), styleMask: .borderless, backing: .buffered, defer: false)
                 invisibleWindow.backgroundColor = .red
                 invisibleWindow.alphaValue = 0
@@ -121,5 +134,19 @@ class WelcomeViewController: NSViewController {
     
     required init?(coder: NSCoder) {
         fatalError()
+    }
+}
+
+extension NSImage {
+    func resizeImage(width: CGFloat, _ height: CGFloat) -> NSImage {
+        let img = NSImage(size: CGSize(width:width, height:height))
+
+        img.lockFocus()
+        let ctx = NSGraphicsContext.current
+        ctx?.imageInterpolation = .high
+        self.draw(in: NSMakeRect(0, 0, width, height), from: NSMakeRect(0, 0, size.width, size.height), operation: .copy, fraction: 1)
+        img.unlockFocus()
+
+        return img
     }
 }
