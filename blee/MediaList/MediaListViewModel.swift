@@ -38,6 +38,7 @@ class MediaListViewModel: ObservableObject {
                                                                            isCustomList: false)]
     var tabBarItems: [TabBarItem<MediaType>]
     @Published var selectedMediaType: MediaType = .anime
+    @Published var rows: [MediaRowViewModel] = []
     
     init() {
         tabBarItems = [TabBarItem(id: .anime,
@@ -46,5 +47,9 @@ class MediaListViewModel: ObservableObject {
                        TabBarItem(id: .manga,
                                   label: "Manga",
                                   selectedColor: AuthManager.shared.authedUser?.profileColor ?? .teal)]
+    }
+    
+    func searchAnilist() {
+        
     }
 }

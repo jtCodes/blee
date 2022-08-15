@@ -5,8 +5,20 @@
 //  based on https://github.com/UPetersen/SwiftUI-SearchBar/blob/master/SearchBar/ContentView.swift
 //
 
+import Combine
 import SwiftUI
 import OmenTextField
+
+class TextFieldObserver : ObservableObject {
+    @Published var debouncedText = ""
+    @Published var searchText = ""
+    
+    init(delay: DispatchQueue.SchedulerTimeType.Stride) {
+        $searchText
+            .debounce(for: delay, scheduler: DispatchQueue.main)
+            .assign(to: &$debouncedText)
+    }
+}
 
 enum FocusField: Hashable {
     case field
@@ -68,11 +80,6 @@ struct SearchBarView: View {
         .padding(.bottom, 1.5)
         .background(.quaternary)
         .cornerRadius(5)
-        .onAppear() {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-                NSApp.keyWindow?.makeFirstResponder(nil)
-            }
-        }
     }
 }
 
