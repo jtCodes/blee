@@ -71,16 +71,18 @@ struct MediaListView: View {
     }
     
     func searchAnilist(val: String) {
-        AnilistNetworkClient.shared.searchAnilistAnime(keywords: val,
-                                                       mediaType: viewModel.selectedMediaType) { resp in
-            if let resp = resp {
-                self.viewModel.rows =  resp.map { (medium: SearchMediaQuery.Data.Page.Medium?) -> MediaRowViewModel in
-                    let media = Media(mediaDetails: medium!.fragments.mediaDetails)
-                    let mediaTrackingEntry =  MediaTrackingEntry(mediaId: media.id,
-                                                                 mediaType: media.type == .anime ? .anime : .manga)
-                    mediaTrackingEntry.media = media
-                    return MediaRowViewModel(media: media,
-                                             mediaListEntry: mediaTrackingEntry)
+        if (!val.isEmpty) {
+            AnilistNetworkClient.shared.searchAnilistAnime(keywords: val,
+                                                           mediaType: viewModel.selectedMediaType) { resp in
+                if let resp = resp {
+                    self.viewModel.rows =  resp.map { (medium: SearchMediaQuery.Data.Page.Medium?) -> MediaRowViewModel in
+                        let media = Media(mediaDetails: medium!.fragments.mediaDetails)
+                        let mediaTrackingEntry =  MediaTrackingEntry(mediaId: media.id,
+                                                                     mediaType: media.type == .anime ? .anime : .manga)
+                        mediaTrackingEntry.media = media
+                        return MediaRowViewModel(media: media,
+                                                 mediaListEntry: mediaTrackingEntry)
+                    }
                 }
             }
         }
