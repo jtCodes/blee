@@ -41,11 +41,6 @@ fragment MediaDetails on Media {
 	}
 	bannerImage
 	meanScore
-	externalLinks {
-		site
-		url
-		id
-	}
 }
 
 fragment TrailerDetails on MediaTrailer {
@@ -546,7 +541,7 @@ fragment mediaListEntry on MediaList {
 		day
 	}
 	media {
-		...ShortMediaDetails
+		...MediaDetails
 	}
 }
 

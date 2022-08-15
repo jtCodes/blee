@@ -19,7 +19,7 @@ struct HoverableButtonView: View {
             .padding(5)
             .background(isHovered || isSelected ? AuthManager.shared.authedUser!.profileColor! : Color.clear)
             .cornerRadius(5)
-            .onHover() {_ in
+            .onHover() { inside in
                 isHovered.toggle()
             }
             .help(helperText)
