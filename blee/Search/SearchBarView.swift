@@ -46,7 +46,7 @@ struct SearchBarView: View {
                 .fontWeight(.medium)
                 .padding(2)
                 .foregroundColor(Color.white.opacity(0.8))
-                .background(isSearchAnilist ? Color.green : Color.gray.opacity(0.5))
+                .background(isSearchAnilist ? AuthManager.shared.authedUser!.profileColor! : Color.gray.opacity(0.5))
                 .cornerRadius(5)
                 .contentShape(Rectangle())
                 .onTapGesture {

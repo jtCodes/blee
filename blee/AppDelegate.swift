@@ -45,8 +45,26 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         if let button = self.statusItem?.button {
             button.title = "ß"
-            //            button.image = NSImage(named: NSImage.Name("icon-orange"))
-            button.action = #selector(showPopover(_:))
+            button.titleColor = NSColor(hex: "#f07878")
+
+//            button.image = NSImage(named: NSImage.Name("menu-bar-icon"))?.resizeImage(width: 25, 25)
+            
+//            button.action = #selector(showPopover(_:))
+        }
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.handlePopoverClose(_:)),
+                                               name: NSPopover.didCloseNotification,
+                                               object: nil)
+        
+        NSEvent.addLocalMonitorForEvents(matching: .leftMouseDown) { [weak self] event in
+            if event.window == self?.statusItem?.button?.window {
+                // Your action:
+                self?.showPopover((self?.statusItem?.button)!)
+                return nil
+            }
+
+            return event
         }
         
         // Close main app window
@@ -79,11 +97,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         authManager.onReceiveAuthUrlScheme(url: URL(string: urlStr)!)
     }
     
+    @objc func handlePopoverClose(_ sender: AnyObject) {
+        if let button = self.statusItem?.button {
+            button.isHighlighted = false
+        }
+    }
+    
     @objc func showPopover(_ sender: NSButton) {
         if let button = self.statusItem?.button {
             if (self.popover?.isShown ?? false == true) {
                 self.popover?.performClose(sender)
+                button.isHighlighted = false
             } else {
+                button.isHighlighted = true
                 let invisibleWindow = NSWindow(contentRect: NSMakeRect(0, 0, 20, 5), styleMask: .borderless, backing: .buffered, defer: false)
                 invisibleWindow.backgroundColor = .red
                 invisibleWindow.alphaValue = 0
@@ -121,5 +147,70 @@ class WelcomeViewController: NSViewController {
     
     required init?(coder: NSCoder) {
         fatalError()
+    }
+}
+
+extension NSImage {
+    func resizeImage(width: CGFloat, _ height: CGFloat) -> NSImage {
+        let img = NSImage(size: CGSize(width:width, height:height))
+
+        img.lockFocus()
+        let ctx = NSGraphicsContext.current
+        ctx?.imageInterpolation = .high
+        self.draw(in: NSMakeRect(0, 0, width, height), from: NSMakeRect(0, 0, size.width, size.height), operation: .copy, fraction: 1)
+        img.unlockFocus()
+
+        return img
+    }
+}
+
+extension NSButton {
+
+@IBInspectable var titleColor: NSColor? {
+    get {
+        return   NSColor.white
+    }
+    set {
+        let pstyle = NSMutableParagraphStyle()
+        pstyle.alignment = .center
+        
+        self.attributedTitle = NSAttributedString(
+            string: self.title,
+            attributes: [ NSAttributedString.Key.foregroundColor :newValue, NSAttributedString.Key.paragraphStyle: pstyle])
+        
+    }
+   }
+ }
+
+extension String  {
+    func conformsTo(_ pattern: String) -> Bool {
+        return NSPredicate(format:"SELF MATCHES %@", pattern).evaluate(with: self)
+    }
+}
+
+extension NSColor {
+    convenience init(hex: String) {
+        let trimHex = hex.trimmingCharacters(in: .whitespacesAndNewlines)
+        let dropHash = String(trimHex.dropFirst()).trimmingCharacters(in: .whitespacesAndNewlines)
+        let hexString = trimHex.starts(with: "#") ? dropHash : trimHex
+        let ui64 = UInt64(hexString, radix: 16)
+        let value = ui64 != nil ? Int(ui64!) : 0
+        // #RRGGBB
+        var components = (
+            R: CGFloat((value >> 16) & 0xff) / 255,
+            G: CGFloat((value >> 08) & 0xff) / 255,
+            B: CGFloat((value >> 00) & 0xff) / 255,
+            a: CGFloat(1)
+        )
+        if String(hexString).count == 8 {
+            // #RRGGBBAA
+            components = (
+                R: CGFloat((value >> 24) & 0xff) / 255,
+                G: CGFloat((value >> 16) & 0xff) / 255,
+                B: CGFloat((value >> 08) & 0xff) / 255,
+                a: CGFloat((value >> 00) & 0xff) / 255
+            )
+        }
+        self.init(red: components.R, green: components.G, blue: components.B, alpha: components.a)
     }
 }

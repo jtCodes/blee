@@ -9,6 +9,12 @@ import SwiftUI
 import Kingfisher
 
 struct MediaRowView: View {
+    let mediaStatusColorMap: [MediaListStatus: Color] = [.current: Color(hex: "#2db039"),
+                                                         .repeating: Color(hex: "#2db039"),
+                                                         .completed: Color(hex:"#26448f"),
+                                                         .paused: Color(hex:"#f9d457"),
+                                                         .dropped: Color(hex:"#a12f31"),
+                                                         .planning: Color(hex:"#b5dfbf")]
     @ObservedObject var viewModel: MediaRowViewModel
     @EnvironmentObject var mediaListEntry: MediaTrackingEntry
     @State var isHovered: Bool = false
@@ -30,8 +36,16 @@ struct MediaRowView: View {
                     HStack() {
                         MediaRowInfoItemView(label: mediaListEntry.status != nil ?
                                              mediaListEntry.getStatusLabel() : "Not in List",
-                                             sfSymbolName: "diamond.circle",
+                                             sfSymbolName: "circle.fill",
                                              helpText: "Status")
+                        .if(mediaListEntry.status != nil) { view in
+                            view.foregroundColor(mediaStatusColorMap[mediaListEntry.status!] != nil ?
+                                                 mediaStatusColorMap[mediaListEntry.status!] : Color(hex:"#c3c3c3"))
+                        }
+                        .if(mediaListEntry.status == nil) { view in
+                            view.foregroundColor(Color(hex:"#c3c3c3"))
+                        }
+                        
                         if (mediaListEntry.score > 0) {
                             MediaRowInfoItemView(label: String(mediaListEntry.score),
                                                  sfSymbolName: "star.fill",
@@ -101,13 +115,13 @@ struct MediaRowView: View {
                         
                         if (mediaListEntry.media?.anilistStatus == .releasing) {
                             MediaRowInfoItemView(label: "",
-                                                 sfSymbolName: "circle.fill",
+                                                 sfSymbolName: "circle.inset.filled",
                                                  helpText: "Releasing")
                                 .foregroundColor(.green)
                                 .font(.footnote)
                         } else if (mediaListEntry.media?.anilistStatus == .notYetReleased) {
                             MediaRowInfoItemView(label: "",
-                                                 sfSymbolName: "circle.fill",
+                                                 sfSymbolName: "circle.inset.filled",
                                                  helpText: "Not Yet Released")
                                 .foregroundColor(.red)
                                 .font(.footnote)
