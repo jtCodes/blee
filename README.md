@@ -1,7 +1,9 @@
 # blee
 Manage Anilist from your Mac's menu bar.
 
+<img width="1229" alt="Screen Shot 2022-08-15 at 9 11 38 PM" src="https://user-images.githubusercontent.com/23707104/184773721-50a02cec-6e32-4ce8-9619-a7e0ab1985a1.png">
 <img width="472" alt="Screen Shot 2022-08-15 at 4 13 50 PM" src="https://user-images.githubusercontent.com/23707104/184758956-90d50aa3-0063-48f1-8fd8-f925f0208af5.png">
+
 
 #### Download it here: https://github.com/jtCodes/blee/releases
 
