@@ -6,8 +6,8 @@ Manage Anilist from your Mac's menu bar.
 #### Download it here: https://github.com/jtCodes/blee/releases
 
 ## Features
-- Search your Anilist
 - Edit status, episode progress, start date, end date, score, repeat count and note
+- Search and add new media to list
 - Color matching with Anilist (restart the app after changing color)
 
 <div style="display: flex;">
